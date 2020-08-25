@@ -12,7 +12,7 @@ const mockQueryBuilder = () => ({
 });
 
 const mockTaskEntity = () => ({
-    save: jest.fn(),
+  save: jest.fn(),
 });
 
 describe('TaskRepository', () => {
@@ -30,15 +30,17 @@ describe('TaskRepository', () => {
     }).compile();
 
     taskRepository = await module.get<TaskRepository>(TaskRepository);
-    queryBuilder = await module.get<SelectQueryBuilder<Task>>(SelectQueryBuilder);
+    queryBuilder = await module.get<SelectQueryBuilder<Task>>(
+      SelectQueryBuilder,
+    );
     taskEntity = await module.get<Task>(Task);
   });
 
   describe('getTasks', () => {
     it('calls createQueryBuilder and gets all tasks from the repository', async () => {
       taskRepository.createQueryBuilder = jest.fn().mockReturnValue(queryBuilder);
-      queryBuilder.andWhere = jest.fn().mockReturnValue('mockStatus/Search');
-      queryBuilder.getMany = jest.fn().mockReturnValue('mockTasks');
+      queryBuilder.andWhere.mockReturnValue('mockStatus/Search');
+      queryBuilder.getMany.mockReturnValue('mockTasks');
       expect(taskRepository.createQueryBuilder).not.toHaveBeenCalled();
       expect(queryBuilder.andWhere).not.toHaveBeenCalled();
       expect(queryBuilder.getMany).not.toHaveBeenCalled();
@@ -62,28 +64,38 @@ describe('TaskRepository', () => {
   });
 
   describe('createTask', () => {
-    it('creates a new Task entity with the info passed from CreateTaskDTO', async () => { 
-        taskEntity.save.mockResolvedValue(undefined);
-        taskRepository.create = jest.fn().mockReturnValue(taskEntity);
-        expect(taskEntity.save).not.toHaveBeenCalled();
-        expect(taskRepository.create).not.toHaveBeenCalled();
+    it('creates a new Task entity with the info passed from CreateTaskDTO', async () => {
+      taskEntity.save.mockResolvedValue(undefined);
+      taskRepository.create = jest.fn().mockReturnValue(taskEntity);
+      expect(taskEntity.save).not.toHaveBeenCalled();
+      expect(taskRepository.create).not.toHaveBeenCalled();
 
-        const createDTO: CreateTask = {
-            title: 'Test Task',
-            description: 'Test Desc'
-        }
-        const result = taskRepository.createTask(createDTO);
-        expect(taskEntity.save).toHaveBeenCalled();
-        expect(taskRepository.create).toHaveBeenCalled();
-        expect(result).resolves;
+      const createDTO: CreateTask = {
+        title: 'Test Task',
+        description: 'Test Desc',
+      };
+      const result = taskRepository.createTask(createDTO);
+      expect(taskEntity.save).toHaveBeenCalled();
+      expect(taskRepository.create).toHaveBeenCalled();
+      expect(result).resolves;
     });
   });
 
   describe('updateTaskStatus', () => {
     it('calls findOne() to update the status of a task', async () => {
-        taskEntity.save.mockResolvedValue(undefined);
-        taskRepository.findOne.mockResolvedValue('mockTask');
-        expect(taskRepository.findOne).not.toHaveBeenCalled();
+      taskRepository.findOne = jest.fn().mockResolvedValue({
+        id: 1,
+        status: TaskStatus.OPEN,
+        save: taskEntity.save,
+      });
+      taskEntity.save.mockResolvedValue(undefined);
+      expect(taskRepository.findOne).not.toHaveBeenCalled();
+      expect(taskEntity.save).not.toHaveBeenCalled();
+
+      const result = await taskRepository.updateTaskStatus(1, TaskStatus.DONE);
+      expect(taskRepository.findOne).toHaveBeenCalledWith(1);
+      expect(taskEntity.save).toHaveBeenCalled();
+      expect(result.status).toEqual(TaskStatus.DONE);
     });
   });
 });

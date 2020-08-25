@@ -64,7 +64,7 @@ describe('TasksService', () => {
   });
 
   describe('createTask', () => {
-    it('calls taskRepository.createTask() and returns the result', async () => {
+    it('calls taskRepository.createTask() and returns the newly created task', async () => {
       taskRepository.createTask.mockResolvedValue('mockTask');
       expect(taskRepository.createTask).not.toHaveBeenCalled();
 
@@ -84,7 +84,6 @@ describe('TasksService', () => {
       taskRepository.updateTaskStatus.mockResolvedValue({
         status: TaskStatus.DONE,
       });
-      expect(taskRepository.findOne).not.toHaveBeenCalled();
       expect(taskRepository.updateTaskStatus).not.toHaveBeenCalled();
 
       const result = await tasksService.updateTaskStatus(1, TaskStatus.DONE);
