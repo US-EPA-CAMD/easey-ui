@@ -4,6 +4,7 @@ import { TaskRepository } from './task.repository';
 import { TaskStatus } from './task-status.enum';
 import { NotFoundException } from '@nestjs/common';
 import { TaskFilter } from './dto/task-filter.dto';
+import { CreateTask } from './dto/create-task.dto';
 
 const mockTaskRepository = () => ({
   getTasks: jest.fn(),
@@ -67,7 +68,10 @@ describe('TasksService', () => {
       taskRepository.createTask.mockResolvedValue('mockTask');
       expect(taskRepository.createTask).not.toHaveBeenCalled();
 
-      const createTaskDto = { title: 'Test Task', description: 'Test Desc' };
+      const createTaskDto: CreateTask = {
+        title: 'Test Task',
+        description: 'Test Desc',
+      };
       const result = await tasksService.createTask(createTaskDto);
 
       expect(taskRepository.createTask).toHaveBeenCalledWith(createTaskDto);
@@ -84,7 +88,10 @@ describe('TasksService', () => {
       expect(taskRepository.updateTaskStatus).not.toHaveBeenCalled();
 
       const result = await tasksService.updateTaskStatus(1, TaskStatus.DONE);
-      expect(taskRepository.updateTaskStatus).toHaveBeenCalledWith( 1, TaskStatus.DONE);
+      expect(taskRepository.updateTaskStatus).toHaveBeenCalledWith(
+        1,
+        TaskStatus.DONE,
+      );
       expect(result.status).toEqual(TaskStatus.DONE);
     });
   });
