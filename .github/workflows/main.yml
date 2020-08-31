@@ -31,3 +31,4 @@ jobs:
         cf target -o "epa-prototyping" -s "dev-easey-in"
         cd starter-kit
         cf push
+        cf logs task-api --recent
