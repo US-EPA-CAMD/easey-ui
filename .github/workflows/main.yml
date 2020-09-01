@@ -21,9 +21,9 @@ jobs:
         sudo apt-get update
         sudo apt-get install cf-cli
 
-    - name: Build task-api
+    - name: Build tasks-api
       run: |
-        cd starter-kit/task-api
+        cd starter-kit/tasks-api
         npm run build
         cd ..
   
