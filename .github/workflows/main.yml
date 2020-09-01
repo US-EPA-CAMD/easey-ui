@@ -20,6 +20,12 @@ jobs:
         echo "deb https://packages.cloudfoundry.org/debian stable main" | sudo tee /etc/apt/sources.list.d/cloudfoundry-cli.list
         sudo apt-get update
         sudo apt-get install cf-cli
+
+    - name: Build task-api
+      run: |
+        cd starter-kit/task-api
+        npm run build
+        cd ..
   
     # How to create a service account for automated deployments
     # https://cloud.gov/docs/services/cloud-gov-service-account/
@@ -29,6 +35,4 @@ jobs:
         cf api  https://api.fr.cloud.gov
         cf auth ${{secrets.CF_SERVICE_ACCOUNT_ID}} ${{secrets.CF_SERVICE_ACCOUNT_PASSWORD}}
         cf target -o "epa-prototyping" -s "dev-easey-in"
-        cd starter-kit
         cf push
-        cf logs task-api --recent
