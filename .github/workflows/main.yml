@@ -24,6 +24,7 @@ jobs:
     - name: Build tasks-api
       run: |
         cd starter-kit/tasks-api
+        npm install
         npm run build
         cd ..
   
