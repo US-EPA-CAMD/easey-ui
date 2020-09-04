@@ -1,4 +1,4 @@
-name: Master Branch Pipeline
+name: Develop Branch Pipeline
 
 on:
 
