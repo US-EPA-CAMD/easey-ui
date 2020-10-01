@@ -15,7 +15,8 @@
 /starter-kit/posts-api/build
 /starter-kit/tasks-api/dist
 /starter-kit/tasks-api/coverage
-
+/starter-kit/facilities-api/dist
+/starter-kit/facilities-api/coverage
 # misc
 .DS_Store
 #.env.local
