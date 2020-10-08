@@ -9,7 +9,7 @@ export class UnitBoilerType extends BaseEntity {
   @Column({ length: 38 })
   UNIT_ID: number;
 
-  @Column('varchar', { length: 7 })
+  @Column({ type: 'varchar', length: 7 })
   UNIT_TYPE_CD: string;
 
   @Column({ type: 'date' })

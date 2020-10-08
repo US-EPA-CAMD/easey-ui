@@ -12,6 +12,6 @@ export class UnitProgram extends BaseEntity {
   @Column({ length: 38 })
   PRG_ID: number;
 
-  @Column('varchar', { length: 7, nullable: true })
+  @Column({ type: 'varchar', length: 7, nullable: true })
   PRG_CD: string;
 }

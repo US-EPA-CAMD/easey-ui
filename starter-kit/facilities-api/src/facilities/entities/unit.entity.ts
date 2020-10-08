@@ -9,10 +9,10 @@ export class Unit extends BaseEntity {
   @Column({ length: 38 })
   FAC_ID: number;
 
-  @Column('varchar', { length: 6 })
+  @Column({ type: 'varchar', length: 6 })
   UNITID: string;
 
-  @Column('varchar', { length: 4000, nullable: true })
+  @Column({ type: 'varchar', length: 4000, nullable: true })
   UNIT_DESCRIPTION: string;
 
   @Column({ type: 'date', nullable: true })

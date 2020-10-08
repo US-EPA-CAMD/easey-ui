@@ -9,7 +9,7 @@ export class UnitOpStatus extends BaseEntity {
   @Column({ length: 38 })
   UNIT_ID: number;
 
-  @Column('varchar', { length: 7 })
+  @Column({ type: 'varchar', length: 7 })
   OP_STATUS_CD: string;
 
   @Column({ type: 'date' })
