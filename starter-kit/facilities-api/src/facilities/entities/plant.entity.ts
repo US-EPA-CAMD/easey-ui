@@ -3,7 +3,7 @@ import { BaseEntity, Entity, Column, PrimaryColumn, Unique } from 'typeorm';
 @Entity({ name: 'PLANT' })
 @Unique('UQ_PLANT_NAME_STATE', ['FACILITY_NAME', 'STATE'])
 export class Unit extends BaseEntity {
-  @PrimaryColumn({ length: 38,nullable: true })
+  @PrimaryColumn({ length: 38})
   FAC_ID: number;
 
   @Column({ length: 6 ,nullable: true})
@@ -15,7 +15,7 @@ export class Unit extends BaseEntity {
   @Column({ type: 'varchar', length: 4000 ,nullable: true})
   DESCRIPTION: string;
 
-  @Column({ type: 'varchar', length: 2 ,nullable: true})
+  @Column({ type: 'varchar', length: 2 })
   STATE: string;
   
   @Column({ type: 'varchar', length: 8 ,nullable: true})
