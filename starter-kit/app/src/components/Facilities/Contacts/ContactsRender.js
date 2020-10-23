@@ -1,10 +1,10 @@
 import React from "react";
 import ContactsCard from "./ContactsCard";
 import ContactsRoleCard from "./ContactsRoleCard";
-
+import './ContactsRender.css';
 const ContactsRender = ({ contacts, contactsRoles }) => {
   return (
-    <div>
+    <div className="contacts">
       {contactsRoles.map((rolesInfo) => {
         return rolesInfo.map((info, index) => {
           return info.units.length > 0 ? (
