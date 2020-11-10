@@ -1,6 +1,6 @@
 ## Welcome!
 
-We’re so glad you’re thinking about contributing to an EPA open source project! If you’re unsure about anything, just ask — or submit your issue or pull request anyway. The worst that can happen is we’ll politely ask you to change something. We appreciate all friendly contributions.
+We’re so glad you’re thinking about contributing to an EPA open source project!
 
 Please be aware that the Emissions and Allowance System for Energy (EASEY) is currently in development and has not yet been released to the public, so it is likely we will not immediately address your issue or pull request as your idea may already be in our product roadmap. 
 
