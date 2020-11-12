@@ -12,6 +12,7 @@ import TableBody from "./TableBody";
 import TablePagination from "./TablePagination/TablePagination";
 import TablePaginationFilter from "./TablePaginationFilter/TablePaginationFilter";
 import TableSearch from "./TableSearch/TableSearch";
+import { EditableCell, setEditable } from './TableCell';
 import "./UswdsTable.css";
 
 // if showEntries is not supplied, by default will have show entries of only [100 and all data]
@@ -37,44 +38,14 @@ const UswdsTable = ({
       });
     }
   }
-  // Create an editable cell renderer
-  const EditableCell = ({
-    value: initialValue,
-    row: { index },
-    column: { id },
-    updateMyData,
-  }) => {
-    const [value, setValue] = useState(initialValue);
-
-    const onChange = (e) => {
-      setValue(e.target.value);
-    };
-
-    const onBlur = () => {
-      updateMyData(index, id, value);
-    };
-
-    useEffect(() => {
-      setValue(initialValue);
-    }, [initialValue]);
-
-    return editable ? (
-      <input
-        value={value || ""}
-        style={id == "col1" ? { width: "30px" } : { width: "90px" }}
-        onChange={onChange}
-        onBlur={onBlur}
-      />
-    ) : (
-      <div>{initialValue}</div>
-    );
-  };
+  setEditable(editable);
   const [editableData, setEditableData] = useState(data);
+
   useEffect(() => {
     setEditableData(data);
   }, [data]);
 
-  const updateMyData = (rowIndex, columnId, value) => {
+  const updateData = (rowIndex, columnId, value) => {
     setEditableData((old) =>
       old.map((row, index) => {
         if (index === rowIndex) {
@@ -86,9 +57,9 @@ const UswdsTable = ({
         return row;
       })
     );
-    console.log("this is new data", editableData);
+    // use below to retreive/manipulate updated data 
     data = editableData;
-    console.log("testing data", data);
+
   };
 
   const defaultColumn = {
@@ -115,7 +86,6 @@ const UswdsTable = ({
     state: { pageIndex, pageSize },
     toggleRowSelected,
     toggleAllRowsSelected,
-    // try to reduce consts in uswds component and put them in respective component via useTable();
   } = useTable(
     {
       columns,
@@ -133,7 +103,7 @@ const UswdsTable = ({
         pageSize: paginate && showEntries ? showEntries[0] : 9999,
       },
       defaultColumn,
-      updateMyData,
+      updateData,
     },
     useFilters,
     useGlobalFilter,
