@@ -42,15 +42,13 @@ const UswdsTable = ({
     value: initialValue,
     row: { index },
     column: { id },
-    updateMyData, 
+    updateMyData,
   }) => {
-
     const [value, setValue] = useState(initialValue);
 
     const onChange = (e) => {
       setValue(e.target.value);
     };
-
 
     const onBlur = () => {
       updateMyData(index, id, value);
@@ -62,7 +60,7 @@ const UswdsTable = ({
 
     return editable ? (
       <input
-        value={value}
+        value={value || ""}
         style={id == "col1" ? { width: "30px" } : { width: "90px" }}
         onChange={onChange}
         onBlur={onBlur}
@@ -71,10 +69,13 @@ const UswdsTable = ({
       <div>{initialValue}</div>
     );
   };
-  const [data1, setData] = useState(data);
-  const updateMyData = (rowIndex, columnId, value) => {
+  const [editableData, setEditableData] = useState(data);
+  useEffect(() => {
+    setEditableData(data);
+  }, [data]);
 
-    setData((old) =>
+  const updateMyData = (rowIndex, columnId, value) => {
+    setEditableData((old) =>
       old.map((row, index) => {
         if (index === rowIndex) {
           return {
@@ -85,12 +86,14 @@ const UswdsTable = ({
         return row;
       })
     );
+    console.log("this is new data", editableData);
+    data = editableData;
+    console.log("testing data", data);
   };
 
   const defaultColumn = {
     Cell: EditableCell,
   };
-
 
   // Use the state and functions returned from useTable to build UI
   const {

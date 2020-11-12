@@ -67,7 +67,7 @@ const TableBody = ({
             })}
           </tr>
         );
-      }) ) || <div className="centerBox">No data found</div>  }
+      }) ) || <tr className="centerBox"><td>No data found</td></tr>  }
     </tbody>
   );
 };
