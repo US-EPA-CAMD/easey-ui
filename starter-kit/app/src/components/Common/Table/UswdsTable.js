@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import {
   useTable,
   useSortBy,
@@ -28,6 +28,7 @@ const UswdsTable = ({
   selectedRowHandler,
   dataSelector,
   defaultSelect,
+  editable,
 }) => {
   if (disabledColumnFilters) {
     if (disabledColumnFilters.length >= 1) {
@@ -36,6 +37,60 @@ const UswdsTable = ({
       });
     }
   }
+  // Create an editable cell renderer
+  const EditableCell = ({
+    value: initialValue,
+    row: { index },
+    column: { id },
+    updateMyData, 
+  }) => {
+
+    const [value, setValue] = useState(initialValue);
+
+    const onChange = (e) => {
+      setValue(e.target.value);
+    };
+
+
+    const onBlur = () => {
+      updateMyData(index, id, value);
+    };
+
+    useEffect(() => {
+      setValue(initialValue);
+    }, [initialValue]);
+
+    return editable ? (
+      <input
+        value={value}
+        style={id == "col1" ? { width: "30px" } : { width: "90px" }}
+        onChange={onChange}
+        onBlur={onBlur}
+      />
+    ) : (
+      <div>{initialValue}</div>
+    );
+  };
+  const [data1, setData] = useState(data);
+  const updateMyData = (rowIndex, columnId, value) => {
+
+    setData((old) =>
+      old.map((row, index) => {
+        if (index === rowIndex) {
+          return {
+            ...old[rowIndex],
+            [columnId]: value,
+          };
+        }
+        return row;
+      })
+    );
+  };
+
+  const defaultColumn = {
+    Cell: EditableCell,
+  };
+
 
   // Use the state and functions returned from useTable to build UI
   const {
@@ -74,6 +129,8 @@ const UswdsTable = ({
         //9999 is bad practice, -1 works to show all data, but removes 1 data row for some reason
         pageSize: paginate && showEntries ? showEntries[0] : 9999,
       },
+      defaultColumn,
+      updateMyData,
     },
     useFilters,
     useGlobalFilter,

@@ -59,8 +59,9 @@ const TableBody = ({
                   className={`${
                     row.isSelected ? "selected hovered" : "hovered"
                   }`}
+                  
                 >
-                  {cell.render("Cell")}
+                {cell.render("Cell")}
                 </td>
               );
             })}
