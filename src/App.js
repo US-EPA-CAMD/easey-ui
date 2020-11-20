@@ -2,8 +2,6 @@ import React from 'react';
 import { Route, Switch,Redirect } from 'react-router-dom';
 
 import Home from './components/Home/Home';
-import Posts from './components/Posts/Posts';
-import Tasks from './components/Tasks/Tasks';
 import NotFound from './components/Common/NotFound/NotFound';
 
 import Layout from './components/Common/Layout';
@@ -13,14 +11,11 @@ function App() {
 <div>
     <Layout>
     <Switch>
-      <Route path="/posts" component={Posts} />
-      <Route path="/tasks" component={Tasks} />
-      <Route path="/" exact component={Home} />
-      <Route path="/home">
-        <Redirect to='/' component={Home}/>
+      <Route path="/portal" exact component={Home} />
+      <Route path="/portal/home">
+        <Redirect to='/portal' component={Home}/>
       </Route>
-      <Route path='*' component={NotFound} />
-
+      <Route path='/portal/*' component={NotFound} />
     </Switch>
     </Layout>
 
