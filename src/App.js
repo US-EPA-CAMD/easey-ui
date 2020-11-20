@@ -11,11 +11,9 @@ function App() {
 <div>
     <Layout>
     <Switch>
-      <Route path="/portal" exact component={Home} />
-      <Route path="/portal/home">
-        <Redirect to='/portal' component={Home}/>
-      </Route>
-      <Route path='/portal/*' component={NotFound} />
+      <Redirect from="/home" to="/" />
+      <Route path="/" exact component={Home} />
+      <Route path='*' component={NotFound} />
     </Switch>
     </Layout>
 
