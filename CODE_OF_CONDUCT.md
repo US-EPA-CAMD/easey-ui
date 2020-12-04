@@ -3,7 +3,7 @@
 We are committed to building a safe, friendly, and harassment-free culture for everyone. We pledge to interact in ways that contribute to an open, welcoming, diverse, inclusive, and healthy community.
 
 ## Scope
-This Code of Conduct applies to the [US-EPA-CAMD](https://github.com/US-EPA-CAMD) GitHub organization, its communications, events, and anyone participating in the US-EPA-CAMD GitHub community. Your use of our repositories means you accept and agree to abide by this Code of Conduct, and the [EPA Comment Policy,](https://www.epa.gov/web-policies-and-procedures/epa-comment-policy#:~:text=In%20posting%20his%20or%20her,and%20free%2Dof%2Dcharge.) which will be periodically revised.
+This Code of Conduct applies to the [US-EPA-CAMD](https://github.com/US-EPA-CAMD) GitHub organization, its communications, events, and anyone participating in the US-EPA-CAMD GitHub community. Your use of our repositories means you accept and agree to abide by this Code of Conduct, and the [EPA Comment Policy,](https://www.epa.gov/web-policies-and-procedures/epa-comment-policy/) which will be periodically revised.
 
 ## Expectations of Visitors and Contributors
 We expect all visitors and contributors to the US-EPA-CAMD GitHub organization and its repositories to have a safe and engaging experience that is beneficial to our community. Members of our community have a diverse set of experiences and skillsets. As you engage our community, please ensure you are:
