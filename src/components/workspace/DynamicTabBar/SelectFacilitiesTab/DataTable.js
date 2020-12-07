@@ -54,7 +54,6 @@ export const DataTable = ({
     <DataTableRender
       columns={columns}
       data={data}
-      dataSelector={dataSelector}
       viewDataHandler={viewDataHandler}
       selectedRowHandler={selectedRowHandler}
     />

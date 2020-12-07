@@ -32,14 +32,22 @@ const TableBody = ({
     row.isSelected = true;
   };
   const handleDataSelector = (data) => {
-    if (!selectedRowHandler) return;
+    if (!selectedRowHandler && viewDataHandler) {
+      return viewDataHandler(data)
+    }
+    if(!selectedRowHandler) return;
+    
     if (!dataSelector) {
-      viewDataHandler(data);
+      if (viewDataHandler){
+        viewDataHandler(data);
+      }
       return selectedRowHandler(data[0].value);
     }
     data.forEach((element) => {
       if (element.column.Header == dataSelector) {
-        viewDataHandler(data);
+        // if (viewDataHandler){
+        //   viewDataHandler(data);
+        // }
         return selectedRowHandler(element.value);
       }
     });

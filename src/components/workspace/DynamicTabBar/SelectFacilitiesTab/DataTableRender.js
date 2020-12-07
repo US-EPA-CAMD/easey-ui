@@ -20,9 +20,7 @@ const DataTableRender = ({
         //paginate
         //showEntries={[100, 250, 500]}
         search
-        //disabledColumnFilters={[0]}
-        selectedRowHandler={selectedRowHandler}
-        dataSelector={dataSelector}
+        // selectedRowHandler={selectedRowHandler}
         //editable
         viewDataColumn
         title="Facilities"
