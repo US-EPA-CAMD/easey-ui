@@ -9,11 +9,11 @@ const HeaderInfo = ({ facility, monitoringPlans }) => {
     setMonitoringPlanLocationSelect,
   ] = useState(0);
   const monitoringPlanSections = [
+    { name: "Monitoring Methods" },
     { name: "Location Attributes" },
     { name: "Reporting Frequency" },
     { name: "Unit Information" },
     { name: "Stack/Pipe Information" },
-    { name: "Monitoring Methods" },
     { name: "Monitoring Systems" },
     { name: "Monitoring Defaults" },
     { name: "Span, Range, and Formulas" },
@@ -47,13 +47,13 @@ const HeaderInfo = ({ facility, monitoringPlans }) => {
           
           <div className="selects column">
             <SelectBox
-              caption="Monitoring Plan"
+              caption="Monitoring Plans"
               options={monitoringPlans}
               mpHandler={mpHandler}
               selectKey="name"
             />
             <SelectBox
-              caption="Monitoring Plan Locations"
+              caption="Monitoring Locations"
               options={monitoringPlans[monitoringPlanSelect].locations}
               mpHandler={mplHandler}
               selectKey="name"
