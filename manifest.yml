@@ -5,6 +5,6 @@ applications:
     memory: 1024M
     env:
       OPTIMIZE_MEMORY: true
-      REACT_APP_FACILITIES_API: https://easey-stg.app.cloud.gov/api/facilities
+      REACT_APP_FACILITIES_API: https://((host))/api/facilities
     routes:
-      - route: easey-stg.app.cloud.gov
+      - route: ((host))
