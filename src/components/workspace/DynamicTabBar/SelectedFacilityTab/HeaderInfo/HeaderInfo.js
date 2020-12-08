@@ -30,25 +30,14 @@ const HeaderInfo = ({ facility, monitoringPlans }) => {
   const mpsHandler = (index) => {
     setMonitoringSectionSelect(index);
   };
-  // useEffect(() => {
-  // }, [monitoringPlanSelect]);
-  var test = (
-    <SelectBox
-      caption="Monitoring Plan"
-      options={monitoringPlans}
-      mpHandler={mpHandler}
-      selectKey="name"
-    />
-  );
 
-  let configIndex = monitoringPlans.findIndex( (x) =>  {
+  let configIndex = monitoringPlans.findIndex((x) => {
     return x.name == monitoringPlanSelect;
   });
   configIndex = configIndex < 0 ? 0 : configIndex;
 
   return (
     <div className="header">
-
       <div className="title">
         <h2>{facility.name}</h2>
       </div>
@@ -59,7 +48,6 @@ const HeaderInfo = ({ facility, monitoringPlans }) => {
       </div>
       {monitoringPlans.length !== 0 ? (
         <div className="row">
-          
           <div className="selects column">
             <SelectBox
               caption="Configurations"
@@ -70,7 +58,7 @@ const HeaderInfo = ({ facility, monitoringPlans }) => {
             <SelectBox
               caption="Locations"
               //options={monitoringPlans[monitoringPlanSelect].locations}
-              options={monitoringPlans[configIndex].locations}              
+              options={monitoringPlans[configIndex].locations}
               mpHandler={mplHandler}
               selectKey="name"
             />
