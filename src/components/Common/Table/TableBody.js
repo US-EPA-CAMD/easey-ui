@@ -37,22 +37,16 @@ const TableBody = ({
     if (!selectedRowHandler) return;
 
     if (!dataSelector) {
-<<<<<<< HEAD
-=======
       if (viewDataHandler) {
         viewDataHandler(data);
       }
->>>>>>> e6e0689d2a2179dccf119601784dd01647f22876
       return selectedRowHandler(data[0].value);
     }
     data.forEach((element) => {
       if (element.column.Header == dataSelector) {
-<<<<<<< HEAD
-=======
         // if (viewDataHandler){
         //   viewDataHandler(data);
         // }
->>>>>>> e6e0689d2a2179dccf119601784dd01647f22876
         return selectedRowHandler(element.value);
       }
     });
