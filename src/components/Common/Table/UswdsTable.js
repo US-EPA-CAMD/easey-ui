@@ -18,6 +18,7 @@ import "./UswdsTable.css";
 // if showEntries is not supplied, by default will have show entries of only [100 and all data]
 // first page will default to all data if BOTH pagination and showentries are not supplied
 const UswdsTable = ({
+  title,
   columns,
   data,
   bordered = false,
@@ -30,7 +31,8 @@ const UswdsTable = ({
   dataSelector,
   defaultSelect,
   editable,
-  viewDataColumn
+  viewDataColumn,
+  viewDataHandler
 }) => {
   if (disabledColumnFilters) {
     if (disabledColumnFilters.length >= 1) {
@@ -39,10 +41,6 @@ const UswdsTable = ({
       });
     }
   }
-  const viewDataHandler = (info) =>{
-    console.log(info);
-  }
-  
   setEditable(editable);
   const [editableData, setEditableData] = useState(data);
 
@@ -122,7 +120,7 @@ const UswdsTable = ({
   return (
     <div className="container">
       <div className="filterAndSearch">
-        {paginate ? (
+        {(paginate && !(title)) ? (
           <span className="filter">
             <TablePaginationFilter
               setPageSize={setPageSize}
@@ -130,21 +128,32 @@ const UswdsTable = ({
               paginationFiltering={
                 showEntries ? [...showEntries, rows.length] : [100, rows.length]
               }
+              title={title}
             />
           </span>
         ) : (
           ""
         )}
+        {(title && !(paginate)) ? (
+          <span className="filter">
+            <TablePaginationFilter
+              title={title}
+            />
+          </span>
+        ) : (
+          ""
+        )}
+
+
         {search ? (
           <div className="search">
-            <TableSearch setGlobalFilter={setGlobalFilter} />
+            <TableSearch title={title} setGlobalFilter={setGlobalFilter} />
           </div>
         ) : (
           ""
         )}
       </div>
       <table className={variant} {...getTableProps()}>
-        
         <TableHeader headerGroups={headerGroups} viewDataColumn={viewDataColumn} />
         <TableBody
           selectedRowHandler={selectedRowHandler}

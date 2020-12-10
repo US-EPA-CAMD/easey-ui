@@ -11,12 +11,13 @@ export function loadFacilitiesSuccess(facilities) {
 }
 
 export function loadFacilities() {
+  console.log(process.env.REACT_APP_FACILITY_API);
   return (dispatch) => {
     dispatch(beginFacilitiesApiCall());
     return facilitiesApi
       .getAllFacilities()
       .then((res) => {
-        dispatch(loadFacilitiesSuccess(res.data.data));
+        dispatch(loadFacilitiesSuccess(res.data));
       })
       .catch((err) => {
         log(err);

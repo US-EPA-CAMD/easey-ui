@@ -1,0 +1,45 @@
+.accessories {
+  float: right;
+
+}
+.title {
+  display: inline-block;
+}
+a {
+  padding: 5px;
+  font-weight:bold;
+  color: gray;
+}
+
+.mpSelect {
+  align-items: center;
+  padding: 10px;
+  
+}
+.usa-accordion__button{
+  float:left;
+}
+.selects.column {
+  column-count: 4;
+  display: flex;
+  position: relative;
+  width: 70%;
+  
+}
+.statuses.column {
+  padding-right: 50px;
+  position: absolute;
+  right: 0;
+  width: 30%;
+  
+  
+}
+.eval,.submission {
+  font-weight:bold;
+  display: inline-block;
+}
+.answer{
+  padding:10px;
+  font-size: 15px;
+  display: inline-block;
+}

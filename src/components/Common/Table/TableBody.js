@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import "./TableBody.css";
+
 const TableBody = ({
   getTableBodyProps,
   rows,
@@ -33,13 +34,16 @@ const TableBody = ({
   const handleDataSelector = (data) => {
     if (!selectedRowHandler) return;
     if (!dataSelector) {
+      viewDataHandler(data);
       return selectedRowHandler(data[0].value);
     }
     data.forEach((element) => {
       if (element.column.Header == dataSelector) {
+        viewDataHandler(data);
         return selectedRowHandler(element.value);
       }
     });
+    
   };
   const onKeyDownHandler = (e) => {
     if (e.keyCode === 13) {
@@ -58,7 +62,7 @@ const TableBody = ({
               {...row.getRowProps()}
               onClick={() => {
                 rowSelection(row);
-                handleDataSelector(row.cells);
+                //handleDataSelector(row.cells);
               }}
               onKeyDown={onKeyDownHandler}
             >
@@ -77,13 +81,13 @@ const TableBody = ({
               })}
               {/* additional cell for viewing ( not related to incoming data) */}
               {viewDataColumn ? (
-                <td
+                <td width={row.cells[0].column.width}
                   className={`${
                     row.isSelected ? "selected hovered" : "hovered"
                   }`}
                 >
                   {" "}
-                  <button onClick={() => viewDataHandler(row)}>ⓘ</button>
+                  <button className="tableButton" onClick={() => handleDataSelector(row.cells)}> <img src={require("./images/openTab.jpg")}/> Open Tab </button>
                 </td>
               ) : (
                 ""
