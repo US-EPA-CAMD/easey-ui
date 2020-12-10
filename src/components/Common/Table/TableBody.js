@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import "./TableBody.css";
-
 const TableBody = ({
   getTableBodyProps,
   rows,
@@ -34,16 +33,13 @@ const TableBody = ({
   const handleDataSelector = (data) => {
     if (!selectedRowHandler) return;
     if (!dataSelector) {
-      viewDataHandler(data);
       return selectedRowHandler(data[0].value);
     }
     data.forEach((element) => {
       if (element.column.Header == dataSelector) {
-        viewDataHandler(data);
         return selectedRowHandler(element.value);
       }
     });
-    
   };
   const onKeyDownHandler = (e) => {
     if (e.keyCode === 13) {
@@ -62,7 +58,7 @@ const TableBody = ({
               {...row.getRowProps()}
               onClick={() => {
                 rowSelection(row);
-                //handleDataSelector(row.cells);
+                handleDataSelector(row.cells);
               }}
               onKeyDown={onKeyDownHandler}
             >
@@ -81,13 +77,13 @@ const TableBody = ({
               })}
               {/* additional cell for viewing ( not related to incoming data) */}
               {viewDataColumn ? (
-                <td width={row.cells[0].column.width}
+                <td
                   className={`${
                     row.isSelected ? "selected hovered" : "hovered"
                   }`}
                 >
                   {" "}
-                  <button className="tableButton" onClick={() => handleDataSelector(row.cells)}> <img src={require("./images/openTab.jpg")}/> Open Tab </button>
+                  <button onClick={() => viewDataHandler(row)}>ⓘ</button>
                 </td>
               ) : (
                 ""
@@ -96,7 +92,7 @@ const TableBody = ({
           );
         })) || (
         <tr className="centerBox">
-          <td>No data found</td>
+          <td>No results match that search criteria. Please change the criteria and try again.</td>
         </tr>
       )}
     </tbody>
