@@ -9,7 +9,7 @@ const TableBody = ({
   dataSelector,
   defaultSelect,
   viewDataColumn,
-  viewDataHandler
+  viewDataHandler,
 }) => {
   // just turns on react-table row selected to handle future css
   const defaultSelector = () => {
@@ -31,12 +31,28 @@ const TableBody = ({
     row.isSelected = true;
   };
   const handleDataSelector = (data) => {
+    if (!selectedRowHandler && viewDataHandler) {
+      return viewDataHandler(data);
+    }
     if (!selectedRowHandler) return;
+
     if (!dataSelector) {
+<<<<<<< HEAD
+=======
+      if (viewDataHandler) {
+        viewDataHandler(data);
+      }
+>>>>>>> e6e0689d2a2179dccf119601784dd01647f22876
       return selectedRowHandler(data[0].value);
     }
     data.forEach((element) => {
       if (element.column.Header == dataSelector) {
+<<<<<<< HEAD
+=======
+        // if (viewDataHandler){
+        //   viewDataHandler(data);
+        // }
+>>>>>>> e6e0689d2a2179dccf119601784dd01647f22876
         return selectedRowHandler(element.value);
       }
     });
@@ -78,12 +94,19 @@ const TableBody = ({
               {/* additional cell for viewing ( not related to incoming data) */}
               {viewDataColumn ? (
                 <td
+                  width={row.cells[0].column.width}
                   className={`${
                     row.isSelected ? "selected hovered" : "hovered"
                   }`}
                 >
                   {" "}
-                  <button onClick={() => viewDataHandler(row)}>ⓘ</button>
+                  <button
+                    className="tableButton"
+                    onClick={() => handleDataSelector(row.cells)}
+                  >
+                    {" "}
+                    <img src={require("./images/openTab.jpg")} /> Open Tab{" "}
+                  </button>
                 </td>
               ) : (
                 ""
