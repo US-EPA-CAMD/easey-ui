@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { loadFacilities } from "../../../../store/actions/facilities";
 import * as fs from "../../../../utils/selectors/facilities";
 import DataTableRender from "./DataTableRender";
-import SelectedFacilityTab from "../SelectedFacilityTab/SelectedFacilityTab";
+import SelectedFacilityTab from "../MonitoringPlanTab/SelectedFacilityTab";
 
 export const DataTable = ({
   facilities,
@@ -54,7 +54,7 @@ export const DataTable = ({
         title: info[1].value,
         component: (
           <div className="selectedTabsBox">
-            <SelectedFacilityTab orisCode={info[0].value} />
+            <SelectedFacilityTab  orisCode={info[0].value}/>
           </div>
         ),
       },

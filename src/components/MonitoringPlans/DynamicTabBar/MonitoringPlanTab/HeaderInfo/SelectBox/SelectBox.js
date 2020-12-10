@@ -13,8 +13,6 @@ const SelectBox = ({ caption, options, selectKey,mpHandler }) => {
                     <option key={info[selectKey]} value={info[selectKey]} >{info[selectKey]} </option>
                     )
                 })}
-
-
         </select>
       </div>
     </div>

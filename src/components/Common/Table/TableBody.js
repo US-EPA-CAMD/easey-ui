@@ -37,9 +37,9 @@ const TableBody = ({
     if (!selectedRowHandler) return;
 
     if (!dataSelector) {
-      if (viewDataHandler) {
-        viewDataHandler(data);
-      }
+      // if (viewDataHandler) {
+      //   viewDataHandler(data);
+      // }
       return selectedRowHandler(data[0].value);
     }
     data.forEach((element) => {

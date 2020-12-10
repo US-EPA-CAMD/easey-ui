@@ -1,6 +1,6 @@
 import React from "react";
-import "./MethodSub.css";
-const MethodSub = ({ title }) => {
+import "./Method.css";
+const Method = ({ title }) => {
   return (
     <div className="methodHeader">
       <div className="methodTitle">
@@ -11,4 +11,4 @@ const MethodSub = ({ title }) => {
   );
 };
 
-export default MethodSub;
+export default Method;
