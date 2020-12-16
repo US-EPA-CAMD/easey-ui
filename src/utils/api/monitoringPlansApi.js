@@ -4,6 +4,8 @@ import { handleResponse, handleError } from "./apiUtils";
 import config from "../../config";
 
 export async function getMonitoringPlans(orisCode) {
+  const url = `${config.services.monitorPlans.uri}/monitor-plans?orisCode=${orisCode}`;
+  console.log('this is url ',url);
   return axios
     .get(`${config.services.monitorPlans.uri}/monitor-plans?orisCode=${orisCode}`)
     .then(handleResponse)

@@ -1,15 +1,14 @@
 import React, { useEffect, useMemo } from "react";
 import { connect } from "react-redux";
-import { loadFacilities } from "../../../../store/actions/facilities";
-import * as fs from "../../../../utils/selectors/facilities";
-import DataTableRender from "./DataTableRender";
-import SelectedFacilityTab from "../MonitoringPlanTab/MonitoringPlanTab";
+import { loadFacilities } from "../../../../../../store/actions/facilities";
+import * as fs from "../../../../../../utils/selectors/facilities";
+import DataTableMethodRender from "./DataTableMethodRender";
 
-export const DataTable = ({
+export const DataTableMethod = ({
   facilities,
   loadFacilitiesData,
   loading,
-  addTabs,
+
 }) => {
   useEffect(() => {
     if (facilities.length === 0) {
@@ -47,25 +46,13 @@ export const DataTable = ({
     }
   }, [loading, facilities]);
 
-  const selectedRowHandler = (info) => {
-    addTabs([
-      {
-        title: info[1].value,
-        component: (
-          <div className="selectedTabsBox">
-            <SelectedFacilityTab  orisCode={info[0].value}/>
-          </div>
-        ),
-      },
-    ]);
-  };
 
   return (
     <div className="tabsBox">
-      <DataTableRender
+      <DataTableMethodRender
         columns={columns}
         data={data}
-        selectedRowHandler={selectedRowHandler}
+        // selectedRowHandler={selectedRowHandler}
       />
     </div>
   );
@@ -84,4 +71,4 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(DataTable);
+export default connect(mapStateToProps, mapDispatchToProps)(DataTableMethod);
