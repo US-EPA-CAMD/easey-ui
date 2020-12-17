@@ -1,37 +1,51 @@
 import React, { useEffect, useMemo } from "react";
 import { connect } from "react-redux";
-import { loadFacilities } from "../../../../../../store/actions/facilities";
-import * as fs from "../../../../../../utils/selectors/facilities";
+import { loadMonitoringMethods } from "../../../../../../store/actions/monitoringMethods";
+import * as fs from "../../../../../../utils/selectors/monitoringPlanMethods";
 import DataTableMethodRender from "./DataTableMethodRender";
 
 export const DataTableMethod = ({
-  facilities,
-  loadFacilitiesData,
+  monitoringMethods,
+  loadMonitoringMethodsData,
   loading,
 
 }) => {
   useEffect(() => {
-    if (facilities.length === 0) {
-      loadFacilitiesData();
+    if (monitoringMethods.length === 0) {
+      loadMonitoringMethodsData();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
   const columns = useMemo(
     () => [
       {
-        Header: "Oris Code",
+        Header: "Parameter",
         accessor: "col1",
         width: "240px",
       },
       {
-        Header: "Facility Name",
+        Header: "Methodology",
         accessor: "col2",
+        width: "210px",
+      },
+      {
+        Header: "Substitude Data Approach",
+        accessor: "col3",
         width: "610px",
       },
       {
-        Header: "State",
-        accessor: "col3",
+        Header: "Bypass Approach",
+        accessor: "col4",
+        width: "210px",
+      },
+      {
+        Header: "Begin Date and Time",
+        accessor: "col5",
+        width: "210px",
+      },
+      {
+        Header: "End Date and Time",
+        accessor: "col6",
         width: "210px",
       },
     ],
@@ -39,12 +53,22 @@ export const DataTableMethod = ({
   );
 
   const data = useMemo(() => {
-    if (facilities.length > 0 || loading === false) {
-      return fs.getTableRecords(facilities);
+    if (monitoringMethods.length > 0 || loading === false) {
+      return fs.getMonitoringPlansMethodsTableRecords(monitoringMethods);
     } else {
       return [{ col2: "Loading list of facilities..." }];
     }
-  }, [loading, facilities]);
+  }, [loading, monitoringMethods]);
+
+
+  
+  // const data = useMemo(() => {
+  //   if ( loading === false) {
+  //     return monitoringMethods;
+  //   } else {
+  //     return [{ col2: "Loading list of facilities..." }];
+  //   }
+  // }, [loading]);
 
 
   return (
@@ -60,14 +84,14 @@ export const DataTableMethod = ({
 
 const mapStateToProps = (state) => {
   return {
-    facilities: state.facilities,
-    loading: state.apiCallsInProgress.facilities,
+    monitoringMethods: state.monitoringMethods,
+    loading: state.apiCallsInProgress.monitoringMethods,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    loadFacilitiesData: () => dispatch(loadFacilities()),
+    loadMonitoringMethodsData: () => dispatch(loadMonitoringMethods()),
   };
 };
 
