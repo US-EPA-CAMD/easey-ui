@@ -2,19 +2,17 @@ export function getMonitoringPlansMethodsTableRecords(totalData) {
 
     const data = totalData;
     const records = [];
-    console.log('this is total data', totalData)
     data.forEach((el) => {
       records.push({
         
-        col1: el.parameter,
-        col2: el.methodology,
-        col3: el.subsitituteDataApproach,
-        col4: el.byPassApproach,
-        col5: el.beginDate,
-        col6: el.endTime,
+        col1: el.parameterCode,
+        col2: el.methodCode,
+        col3: el.subDataCode,
+        col4: el.byPassApproachCode,
+        col5: el.addDate,
+        col6: el.endDate,
       });
     });
-    
     return records;
   }
   

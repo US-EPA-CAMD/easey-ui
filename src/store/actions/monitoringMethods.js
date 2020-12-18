@@ -15,7 +15,7 @@ export function loadMonitoringMethods(locationId) {
         dispatch(beginMonitoringMethodsApiCall());
         return mpApi
         .getMonitoringMethods(locationId)
-        .then((res) => {
+        .then((res) => {         
             dispatch(loadMonitoringMethodsSuccess(res.data));
         })
         .catch((err) => {

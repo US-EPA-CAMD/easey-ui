@@ -8,14 +8,15 @@ export const DataTableMethod = ({
   monitoringMethods,
   loadMonitoringMethodsData,
   loading,
+  locationSelect
 
 }) => {
   useEffect(() => {
-    if (monitoringMethods.length === 0) {
-      loadMonitoringMethodsData();
+    if (monitoringMethods.length === 0 || loading == false) {
+      loadMonitoringMethodsData(locationSelect);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [locationSelect]);
   const columns = useMemo(
     () => [
       {
@@ -61,18 +62,8 @@ export const DataTableMethod = ({
   }, [loading, monitoringMethods]);
 
 
-  
-  // const data = useMemo(() => {
-  //   if ( loading === false) {
-  //     return monitoringMethods;
-  //   } else {
-  //     return [{ col2: "Loading list of facilities..." }];
-  //   }
-  // }, [loading]);
-
-
   return (
-    <div className="tabsBox">
+    <div className="methodTable">
       <DataTableMethodRender
         columns={columns}
         data={data}
@@ -84,14 +75,14 @@ export const DataTableMethod = ({
 
 const mapStateToProps = (state) => {
   return {
-    monitoringMethods: state.monitoringMethods,
+    monitoringMethods: state.monitoringMethods.methods,
     loading: state.apiCallsInProgress.monitoringMethods,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    loadMonitoringMethodsData: () => dispatch(loadMonitoringMethods()),
+    loadMonitoringMethodsData: (monitoringPlanLocationSelect) => dispatch(loadMonitoringMethods(monitoringPlanLocationSelect)),
   };
 };
 
