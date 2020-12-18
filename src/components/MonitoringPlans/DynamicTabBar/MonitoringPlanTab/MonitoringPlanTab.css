@@ -7,3 +7,6 @@
 .usa-accordion__button{
     background-color:white;
 }
+.usa-accordion__content{
+padding: 0 !important;
+}

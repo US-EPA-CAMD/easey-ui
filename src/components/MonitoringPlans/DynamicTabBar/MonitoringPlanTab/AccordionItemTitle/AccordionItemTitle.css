@@ -1,6 +1,7 @@
 
 .methodTitle{
-    display: inline-block;
+    display: inline-block; 
+    justify-content:center;
 }
 .rectBTN {
 
@@ -10,9 +11,7 @@
     padding: 10px 20px;
     text-align: center;
     text-decoration: none;
-    margin: 4px 2px;
     cursor: pointer;
-
     outline:none;
     height: 10px;
     display :flex;
@@ -20,4 +19,3 @@
     float:right;
     font-weight:bold;
   }
-  

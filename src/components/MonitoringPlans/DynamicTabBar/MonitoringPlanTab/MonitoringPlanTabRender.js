@@ -27,7 +27,7 @@ const MonitoringPlanTabRender = ({ facility, monitoringPlans }) => {
   const methodItems = [
     {
       // title in the comp name should change when selectbox handler is changed as well
-      title: <AccordionItemTitle title="Method" />,
+      title: <AccordionItemTitle title="Methods" />,
       expanded: true,
       id: "5",
       content: <DataTableMethod locationSelect={locationSelect} />,
