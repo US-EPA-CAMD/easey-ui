@@ -12,7 +12,7 @@ export const DataTableMethod = ({
 
 }) => {
   useEffect(() => {
-    if (monitoringMethods.length === 0 || loading == false) {
+    if (monitoringMethods.length === 0 || loading === false) {
       loadMonitoringMethodsData(locationSelect);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps

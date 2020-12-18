@@ -17,7 +17,6 @@ const SelectBox = ({ caption, options, selectKey, selectionHandler }) => {
     setSelectionState(0);
   }, [options]);
 
-  
   return (
     <div>
       <div className="mpSelect">

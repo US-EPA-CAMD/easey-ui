@@ -1,14 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import HeaderInfo from "./HeaderInfo/HeaderInfo";
 import AccordionItemTitle from "./AccordionItemTitle/AccordionItemTitle";
 import "./MonitoringPlanTab.css";
 import { Accordion } from "@trussworks/react-uswds";
 import DataTableMethod from "./Sections/Methods/DataTableMethod";
 const MonitoringPlanTabRender = ({ facility, monitoringPlans }) => {
-  const [
-    locationSelect,
-    setLocationSelect,
-  ] = useState(0);
+  const [locationSelect, setLocationSelect] = useState(0);
 
   const sections = [
     { name: "Monitoring Methods" },
@@ -33,11 +30,7 @@ const MonitoringPlanTabRender = ({ facility, monitoringPlans }) => {
       title: <AccordionItemTitle title="Method" />,
       expanded: true,
       id: "5",
-      content: (
-        <DataTableMethod
-        locationSelect={locationSelect}
-        />
-      ),
+      content: <DataTableMethod locationSelect={locationSelect} />,
       handleToggle: true,
     },
   ];
@@ -49,7 +42,6 @@ const MonitoringPlanTabRender = ({ facility, monitoringPlans }) => {
       expanded: false,
       id: "7",
       // content: ,
-      
     },
   ];
 
