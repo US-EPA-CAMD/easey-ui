@@ -58,6 +58,7 @@ export const DataTable = ({
         ),
       },
     ]);
+    console.log(info,'selected');
   };
 
   return (
