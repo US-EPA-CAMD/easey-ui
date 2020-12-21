@@ -1,11 +1,12 @@
 import * as fs from "./monitoringPlanMethods";
 
 describe("testing fetch wrapper monitoring plan data selectors", () => {
-    let selectedMonitoringPlan;
-    let viewMonitoringPlan;
-  
+  let selectedMonitoringPlan;
+  let viewMonitoringPlan;
+
   beforeAll(() => {
-    selectedMonitoringPlan = [{
+    selectedMonitoringPlan = [
+      {
         beginDate: "2019-07-01",
         beginHour: "0",
         bypassApproachCode: null,
@@ -15,19 +16,23 @@ describe("testing fetch wrapper monitoring plan data selectors", () => {
         methodCode: "AD",
         parameterCode: "HI",
         subDataCode: "SPTS",
-            
-    }];
+      },
+    ];
 
-        viewMonitoringPlan = [{
+    viewMonitoringPlan = [
+      {
         col1: "HI",
         col2: "AD",
         col3: "SPTS",
         col4: null,
         col5: "07/01/2019 0",
         col6: " ",
-        }];
-    });
-    test("selected monitoring plan data table ", () => {
-        expect(fs.getMonitoringPlansMethodsTableRecords(selectedMonitoringPlan)).toEqual(viewMonitoringPlan);
-      });
+      },
+    ];
+  });
+  test("selected monitoring plan data table ", () => {
+    expect(
+      fs.getMonitoringPlansMethodsTableRecords(selectedMonitoringPlan)
+    ).toEqual(viewMonitoringPlan);
+  });
 });

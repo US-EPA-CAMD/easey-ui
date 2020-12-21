@@ -2,9 +2,13 @@ export function getMonitoringPlansMethodsTableRecords(totalData) {
   const data = totalData;
   const records = [];
   data.forEach((el) => {
-    const beginDate = el.beginDate ? formateStringToDate(el.beginDate.toString()) : "";
+    const beginDate = el.beginDate
+      ? formateStringToDate(el.beginDate.toString())
+      : "";
     const beginHour = el.beginHour ? el.beginHour.toString() : "";
-    const endDate = el.endDate ? formateStringToDate(el.endDate.toString()) : "";
+    const endDate = el.endDate
+      ? formateStringToDate(el.endDate.toString())
+      : "";
     const endHour = el.endHour ? el.endHour.toString() : "";
     records.push({
       col1: el.parameterCode,
@@ -17,7 +21,7 @@ export function getMonitoringPlansMethodsTableRecords(totalData) {
   });
   return records;
 }
-// year - month - day to  month / day/ year 
+// year - month - day to  month / day/ year
 function formateStringToDate(date) {
   var parts = date.split("-");
   var output = parts[1] + "/" + parts[2] + "/" + parts[0];
