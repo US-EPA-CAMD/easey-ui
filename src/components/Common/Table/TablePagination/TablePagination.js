@@ -1,6 +1,6 @@
 import React from "react";
 import "./TablePagination.css";
-import { Button, Label } from "@trussworks/react-uswds";
+import { Label } from "@trussworks/react-uswds";
 const TablePagination = ({
   canPreviousPage,
   canNextPage,

@@ -3,8 +3,7 @@ import UswdsTable from "../UswdsTable";
 import {
   render,
   fireEvent,
-  waitForElement,
-  screen,
+
 } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import "@testing-library/jest-dom/extend-expect";
@@ -651,7 +650,7 @@ describe("testing generic uswds table component with pagination", () => {
   });
 
   test("selects 2nd page and tests total rows that should show  ", () => {
-    const { container, getByTestId } = render(
+    const { container } = render(
       <UswdsTableTest grouping={true} paginate />
     );
     const secondPage = container.querySelectorAll("li button");
