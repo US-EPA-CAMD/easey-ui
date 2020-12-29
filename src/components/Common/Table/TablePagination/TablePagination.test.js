@@ -640,7 +640,7 @@ describe("testing generic uswds table component with pagination", () => {
     );
     userEvent.selectOptions(getByTestId("select-option"), ["250"]);
     const paginationBar = container.querySelectorAll("ul li");
-    const paginationExpection = 3;
+    const paginationExpection = 4;
     expect(paginationBar.length).toEqual(paginationExpection);
   });
 
@@ -648,15 +648,6 @@ describe("testing generic uswds table component with pagination", () => {
     const { container } = render(<UswdsTableTest grouping={true} paginate />);
     const tableRecords = container.querySelectorAll("tbody tr");
     expect(tableRecords.length).toEqual(100);
-  });
-
-  test("selects 250 option and tests total rows => 109  ", () => {
-    const { container, getByTestId } = render(
-      <UswdsTableTest grouping={true} paginate />
-    );
-    userEvent.selectOptions(getByTestId("select-option"), ["250"]);
-    const tableRecords = container.querySelectorAll("tbody tr");
-    expect(tableRecords.length).toEqual(data.length);
   });
 
   test("selects 2nd page and tests total rows that should show  ", () => {
