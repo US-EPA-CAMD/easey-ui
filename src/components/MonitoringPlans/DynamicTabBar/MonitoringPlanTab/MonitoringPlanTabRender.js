@@ -4,6 +4,7 @@ import AccordionItemTitle from "./AccordionItemTitle/AccordionItemTitle";
 import "./MonitoringPlanTab.css";
 import { Accordion } from "@trussworks/react-uswds";
 import DataTableMethod from "./Sections/Methods/DataTableMethod";
+import DataTableMats from "./Sections/MATS/DataTableMats";
 const MonitoringPlanTabRender = ({ facility, monitoringPlans }) => {
   const [locationSelect, setLocationSelect] = useState(0);
 
@@ -24,6 +25,7 @@ const MonitoringPlanTabRender = ({ facility, monitoringPlans }) => {
     setLocationSelect(location);
   };
 
+  const flag = true;
   const methodItems = [
     {
       // title in the comp name should change when selectbox handler is changed as well
@@ -34,16 +36,21 @@ const MonitoringPlanTabRender = ({ facility, monitoringPlans }) => {
       handleToggle: true,
     },
   ];
-
-  const supItems = [
-    {
+  const supItems = [];
+  if (flag) {
+    supItems.push({
       // title in the comp name should change when selectbox handler is changed as well
       title: <AccordionItemTitle title="Supplemental Methods" />,
-      expanded: false,
+      expanded: true,
       id: "7",
+      // content: <DataTableMats locationSelect={locationSelect} />,
+      content: <DataTableMethod locationSelect={locationSelect} />,
+      handleToggle: true,
       // content: ,
-    },
-  ];
+    });
+
+    methodItems[0].expanded = false;
+  }
 
   return (
     <div className="selectedMPTab">
@@ -58,7 +65,7 @@ const MonitoringPlanTabRender = ({ facility, monitoringPlans }) => {
       <Accordion bordered={false} items={methodItems} className="accordions" />
       <hr width="100%" align="center" />
       {/* <AccordionItemTitle title="Supplemental Method" /> */}
-      <Accordion bordered={true} items={supItems} className="accordions" />
+      {flag ? <Accordion bordered={true} items={supItems} className="accordions" /> :'' }
       <hr width="100%" align="center" />
     </div>
   );
