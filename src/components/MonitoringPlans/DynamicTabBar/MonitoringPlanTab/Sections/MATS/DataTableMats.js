@@ -22,22 +22,22 @@ export const DataTableMats = ({
       {
         Header: "Parameter",
         accessor: "col1",
-        width: "240px",
+        width: Math.round(window.innerWidth * 0.2)
       },
       {
         Header: "Methodology",
         accessor: "col2",
-        width: "210px",
+        width: Math.round(window.innerWidth * 0.2)
       },
       {
         Header: "Begin Date and Time",
         accessor: "col3",
-        width: "210px",
+        width: Math.round(window.innerWidth * 0.2)
       },
       {
         Header: "End Date and Time",
         accessor: "col4",
-        width: "210px",
+        width: Math.round(window.innerWidth * 0.2)
       },
     ],
     []
