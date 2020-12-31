@@ -44,9 +44,6 @@ export const DataTableMats = ({
   );
 
   const data = useMemo(() => {
-    if(monitoringMatsMethods == -1  && loading === true){
-      return -1;
-    }
     if (monitoringMatsMethods.length > 0 || loading === false) {
       return fs.getMonitoringPlansMatsMethodsTableRecords(monitoringMatsMethods);
     } else {

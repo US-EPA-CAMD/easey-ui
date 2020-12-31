@@ -67,14 +67,15 @@ export const DataTableMethod = ({
     }
   }, [loading, monitoringMethods]);
 
-  useEffect(() => {
+  useMemo(() => {
     if (matsTableHandler) {
-      if (monitoringMatsMethods === -1) {
+      if (monitoringMatsMethods.length < 1) {
         matsTableHandler(false);
       } else {
         matsTableHandler(true);
       }
     }
+
   }, [monitoringMatsMethods]);
 
   return (

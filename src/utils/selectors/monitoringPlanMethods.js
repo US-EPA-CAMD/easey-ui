@@ -1,7 +1,6 @@
 export function getMonitoringPlansMethodsTableRecords(totalData) {
   const data = totalData;
   const records = [];
-  console.log('this is data',totalData);
   data.forEach((el) => {
     const beginDate = el.beginDate
       ? formateStringToDate(el.beginDate.toString())
@@ -30,8 +29,7 @@ function formateStringToDate(date) {
 }
 
 export function getMonitoringPlansMatsMethodsTableRecords(data) {
-// console.log('this is mats', totalData);
-// const data = totalData;
+
 const records = [];
 data.forEach((el) => {
   const beginDate = el.beginDate
@@ -43,8 +41,8 @@ data.forEach((el) => {
     : "";
   const endHour = el.endHour ? el.endHour.toString() : "";
   records.push({
-    col1: el.parameterCode,
-    col2: el.methodCode,
+    col1: el.matsMethodParameterCode,
+    col2: el.matsMethodCode,
     col3: `${beginDate} ${beginHour}`,
     col4: `${endDate} ${endHour}`,
   });
