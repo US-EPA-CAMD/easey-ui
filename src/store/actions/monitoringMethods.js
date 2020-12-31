@@ -31,16 +31,23 @@ export function loadMonitoringMatsMethodsSuccess(monitoringMatsMethods) {
   };
 }
 
+export function loadMonitoringMatsMethodsFailed(monitoringMatsMethods) {
+  return {
+    type: types.LOAD_MONITORING_MATSMETHODS_FAILED,
+    monitoringMatsMethods,
+  };
+}
 export function loadMonitoringMatsMethods(locationId) {
   return (dispatch) => {
-    dispatch(beginMonitoringMatsMethodsApiCall());
+
     return mpApi
       .getMonitoringMatsMethods(locationId)
       .then((res) => {
         dispatch(loadMonitoringMatsMethodsSuccess(res.data));
       })
       .catch((err) => {
-        log(err);
+        dispatch(loadMonitoringMatsMethodsFailed(0));
+
       });
   };
 }

@@ -29,7 +29,26 @@ function formateStringToDate(date) {
   return output;
 }
 
-export function getMonitoringPlansMatsMethodsTableRecords(totalData) {
-console.log('this is mats', totalData);
-
+export function getMonitoringPlansMatsMethodsTableRecords(data) {
+// console.log('this is mats', totalData);
+// const data = totalData;
+const records = [];
+data.forEach((el) => {
+  const beginDate = el.beginDate
+    ? formateStringToDate(el.beginDate.toString())
+    : "";
+  const beginHour = el.beginHour ? el.beginHour.toString() : "";
+  const endDate = el.endDate
+    ? formateStringToDate(el.endDate.toString())
+    : "";
+  const endHour = el.endHour ? el.endHour.toString() : "";
+  records.push({
+    col1: el.parameterCode,
+    col2: el.methodCode,
+    col3: `${beginDate} ${beginHour}`,
+    col4: `${endDate} ${endHour}`,
+  });
+});
+return records;
 }
+

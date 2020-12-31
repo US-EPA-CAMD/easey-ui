@@ -2,9 +2,8 @@ import React, { useEffect, useMemo } from "react";
 import { connect } from "react-redux";
 import { loadMonitoringMatsMethods } from "../../../../../../store/actions/monitoringMethods";
 import * as fs from "../../../../../../utils/selectors/monitoringPlanMethods";
-import DataTableMatsRender from "./DataTableMatsRender";
 
-export const DataTableMats = ({
+export const MatsCheck = ({
   monitoringMatsMethods,
   loadMonitoringMatsMethodsData,
   loading,
@@ -17,31 +16,7 @@ export const DataTableMats = ({
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [locationSelect]);
-  const columns = useMemo(
-    () => [
-      {
-        Header: "Parameter",
-        accessor: "col1",
-        width: "240px",
-      },
-      {
-        Header: "Methodology",
-        accessor: "col2",
-        width: "210px",
-      },
-      {
-        Header: "Begin Date and Time",
-        accessor: "col3",
-        width: "210px",
-      },
-      {
-        Header: "End Date and Time",
-        accessor: "col4",
-        width: "210px",
-      },
-    ],
-    []
-  );
+ 
 
   const data = useMemo(() => {
     if(monitoringMatsMethods == -1  && loading === true){
@@ -53,17 +28,6 @@ export const DataTableMats = ({
       return [{ col2: "Loading list of Supplemental Methods" }];
     }
   }, [loading, monitoringMatsMethods]);
-
-
-  return (
-    <div className="methodTable">
-      <DataTableMatsRender
-        columns={columns}
-        data={data}
-        // selectedRowHandler={selectedRowHandler}
-      />
-    </div>
-  );
 };
 
 const mapStateToProps = (state) => {
@@ -79,4 +43,4 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(DataTableMats);
+export default connect(mapStateToProps, mapDispatchToProps)(MatsCheck);

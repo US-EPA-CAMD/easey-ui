@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import HeaderInfo from "./HeaderInfo/HeaderInfo";
 import AccordionItemTitle from "./AccordionItemTitle/AccordionItemTitle";
 import "./MonitoringPlanTab.css";
@@ -7,7 +7,7 @@ import DataTableMethod from "./Sections/Methods/DataTableMethod";
 import DataTableMats from "./Sections/MATS/DataTableMats";
 const MonitoringPlanTabRender = ({ facility, monitoringPlans }) => {
   const [locationSelect, setLocationSelect] = useState(0);
-
+  const [matsTableFlag, setMatsTableFlag] = useState(false);
   const sections = [
     { name: "Monitoring Methods" },
     { name: "Location Attributes" },
@@ -25,6 +25,34 @@ const MonitoringPlanTabRender = ({ facility, monitoringPlans }) => {
     setLocationSelect(location);
   };
 
+  const matsTableHandler = (flag) => {
+    setMatsTableFlag(flag);
+    console.log(flag);
+  };
+
+  const supItems = [];
+  let matsAccordion = "";
+  useEffect(() => {
+    console.log("this is is in main page", matsTableFlag);
+    if (matsTableFlag) {
+      console.log('testing')
+      const matsItems = {
+        // title in the comp name should change when selectbox handler is changed as well
+        title: <AccordionItemTitle title="Supplemental Methods" />,
+        expanded: true,
+        id: "7",
+        // content: <DataTableMats locationSelect={locationSelect} />,
+        content: <DataTableMethod locationSelect={locationSelect} />,
+        handleToggle: true,
+        // content: ,
+      };
+      supItems.push(matsItems);
+      methodItems[0].expanded = false;
+      matsAccordion = (
+        <Accordion bordered={true} items={supItems} className="accordions" />
+      );
+    }
+  }, [matsTableFlag]);
   const flag = true;
   const methodItems = [
     {
@@ -32,25 +60,30 @@ const MonitoringPlanTabRender = ({ facility, monitoringPlans }) => {
       title: <AccordionItemTitle title="Methods" />,
       expanded: true,
       id: "5",
-      content: <DataTableMethod locationSelect={locationSelect} />,
+      content: (
+        <DataTableMethod
+          matsTableHandler={matsTableHandler}
+          locationSelect={locationSelect}
+        />
+      ),
       handleToggle: true,
     },
   ];
-  const supItems = [];
-  if (flag) {
-    supItems.push({
-      // title in the comp name should change when selectbox handler is changed as well
-      title: <AccordionItemTitle title="Supplemental Methods" />,
-      expanded: true,
-      id: "7",
-      // content: <DataTableMats locationSelect={locationSelect} />,
-      content: <DataTableMethod locationSelect={locationSelect} />,
-      handleToggle: true,
-      // content: ,
-    });
 
-    methodItems[0].expanded = false;
-  }
+  // if (matsTableFlag) {
+  //   // supItems.push({
+  //   //   // title in the comp name should change when selectbox handler is changed as well
+  //   //   title: <AccordionItemTitle title="Supplemental Methods" />,
+  //   //   expanded: true,
+  //   //   id: "7",
+  //   //   // content: <DataTableMats locationSelect={locationSelect} />,
+  //   //   // content: <DataTableMethod locationSelect={locationSelect} />,
+  //   //   handleToggle: true,
+  //   //   // content: ,
+  //   // });
+  //   supItems.push(matsAccordion);
+  //   methodItems[0].expanded = false;
+  // }
 
   return (
     <div className="selectedMPTab">
@@ -65,7 +98,8 @@ const MonitoringPlanTabRender = ({ facility, monitoringPlans }) => {
       <Accordion bordered={false} items={methodItems} className="accordions" />
       <hr width="100%" align="center" />
       {/* <AccordionItemTitle title="Supplemental Method" /> */}
-      {flag ? <Accordion bordered={true} items={supItems} className="accordions" /> :'' }
+      {/* {matsTableFlag ? <Accordion bordered={true} items={supItems} className="accordions" /> :'' } */}
+      {matsAccordion}
       <hr width="100%" align="center" />
     </div>
   );
