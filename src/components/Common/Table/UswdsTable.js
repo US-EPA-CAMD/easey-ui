@@ -119,8 +119,9 @@ const UswdsTable = ({
 
   return (
     <div className="container">
-      <div className="filterAndSearch">
+      <div className="tableHead">
         <h2 className='tableTitle'> {title}</h2>
+        <div className="filterAndSearch">
         {(paginate) ? (
           <span className="filter">
             <TablePaginationFilter
@@ -134,17 +135,7 @@ const UswdsTable = ({
         ) : (
           ""
         )}
-        {/* {(title && !(paginate)) ? (
-          <span className="filter">
-            <TablePaginationFilter
-              title={title}
-            />
-          </span>
-        ) : (
-          ""
-        )} */}
-
-
+        
         {search ? (
           <div className="search">
             <TableSearch title={title} setGlobalFilter={setGlobalFilter} />
@@ -152,6 +143,7 @@ const UswdsTable = ({
         ) : (
           ""
         )}
+      </div>
       </div>
       <table className={variant} {...getTableProps()}>
         <TableHeader headerGroups={headerGroups} viewDataColumn={viewDataColumn} />
