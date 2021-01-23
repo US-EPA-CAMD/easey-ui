@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testExecutions version="1">
+  <file path="C:\Projects\US-EPA-CAMD\easey-ui\src\store\actions\monitoringMethods.test.js">
+    <testCase name="Async Actions Load monitoring-methods Thunk should create BEGIN_MONITORING_METHODS_API_CALL and LOAD_MONITORING_METHODS_SUCCESS when loading monitoring methods" duration="6"/>
+  </file>
+  <file path="C:\Projects\US-EPA-CAMD\easey-ui\src\store\actions\facilities.test.js">
+    <testCase name="Async Actions Load Facilities Thunk should create BEGIN_FACILITIES_API_CALL and LOAD_FACILITIES_SUCCESS when loading facilities" duration="7"/>
+    <testCase name="load facilities success should create a LOAD FACILITIES SUCCESS action" duration="0"/>
+  </file>
+  <file path="C:\Projects\US-EPA-CAMD\easey-ui\src\store\reducers\monitoringMethods.test.js">
+    <testCase name="Monitoring Methods Reducer State Update should update state with list of monitoring methods when passed LOAD_MONITORING_METHODS_SUCCESS" duration="3"/>
+    <testCase name="Monitoring Methods Reducer State Update should update state with list of monitoring mats methods when passed LOAD_MONITORING_MATSMETHODS_SUCCESS" duration="0"/>
+  </file>
+  <file path="C:\Projects\US-EPA-CAMD\easey-ui\src\components\Common\Table\UswdsTable.test.js">
+    <testCase name="testing generic uswds table component table header renders all columns" duration="53"/>
+    <testCase name="testing generic uswds table component table header supports column groupings" duration="12"/>
+    <testCase name="testing generic uswds table component table body renders all rows" duration="19"/>
+    <testCase name="testing generic uswds table component table is sorted by id in asc by default " duration="9"/>
+    <testCase name="testing generic uswds table component first table column header is clicked and sorts by dsc " duration="23"/>
+  </file>
+  <file path="C:\Projects\US-EPA-CAMD\easey-ui\src\components\Facilities\Units\Units.test.js">
+    <testCase name="testing Units data table component by default renders filtered records based on status as operating only" duration="130"/>
+    <testCase name="testing Units data table component renders all table records when checkbox is unchecked " duration="52"/>
+    <testCase name="testing Units data table component renders unit detail if units table is populated " duration="30"/>
+  </file>
+  <file path="C:\Projects\US-EPA-CAMD\easey-ui\src\components\Common\NotFound\NotFound.test.js">
+    <testCase name="&lt;NotFound/&gt; should take user to a &quot;page not found&quot; with a link to return to home, returns 1 &lt;link&gt; element" duration="24"/>
+  </file>
+  <file path="C:\Projects\US-EPA-CAMD\easey-ui\src\components\Facilities\Location\Location.test.js">
+    <testCase name="testing Location component by default the zoom option is set to the selected facility" duration="101"/>
+    <testCase name="testing Location component click radio button second option to render map marker for all facilities with-in a state" duration="94"/>
+  </file>
+  <file path="C:\Projects\US-EPA-CAMD\easey-ui\src\components\Common\Footer\Footer.test.js">
+    <testCase name="&lt;Footer/&gt; every page should have a footer with 4 columns of menu items" duration="7"/>
+  </file>
+  <file path="C:\Projects\US-EPA-CAMD\easey-ui\src\components\Facilities\DataTableRender.test.js">
+    <testCase name="demo table renders without crashing" duration="34"/>
+  </file>
+  <file path="C:\Projects\US-EPA-CAMD\easey-ui\src\components\Common\Header\Header.test.js">
+    <testCase name="&lt;Header/&gt; every page should have a nav bar" duration="8"/>
+    <testCase name="&lt;Header/&gt; nav bar should have 3 components/tabs" duration="2"/>
+    <testCase name="&lt;Header/&gt; government banner at top " duration="2"/>
+  </file>
+  <file path="C:\Projects\US-EPA-CAMD\easey-ui\src\components\Common\Tabs\Tabs.test.js">
+    <testCase name="testing a reusable Tabs component renders all tabs" duration="65"/>
+    <testCase name="testing a reusable Tabs component renders the specified initial tabpane content " duration="4"/>
+    <testCase name="testing a reusable Tabs component renders the user selected tab" duration="40"/>
+  </file>
+  <file path="C:\Projects\US-EPA-CAMD\easey-ui\src\components\Common\Table\TablePagination\TablePagination.test.js">
+    <testCase name="testing generic uswds table component with pagination paginate tabs are enabled" duration="194"/>
+    <testCase name="testing generic uswds table component with pagination pagination is disabled " duration="165"/>
+    <testCase name="testing generic uswds table component with pagination PAgination bar with previous, 1, 2, next tab" duration="144"/>
+    <testCase name="testing generic uswds table component with pagination selects 250 option and tests total pages, total tabs should be previous, 1, next  " duration="150"/>
+    <testCase name="testing generic uswds table component with pagination test total rows by default is 100 " duration="146"/>
+    <testCase name="testing generic uswds table component with pagination selects 2nd page and tests total rows that should show  " duration="136"/>
+  </file>
+  <file path="C:\Projects\US-EPA-CAMD\easey-ui\src\components\Common\Tabs\DynamicTabs.test.js">
+    <testCase name="testing a reusable Dynamic Tabs component renders the inital tab and its content" duration="84"/>
+    <testCase name="testing a reusable Dynamic Tabs component renders other tabs on a click event of Add Tab from with-in first tab component" duration="28"/>
+  </file>
+  <file path="C:\Projects\US-EPA-CAMD\easey-ui\src\components\Facilities\DataTable.test.js">
+    <testCase name="testing redux connected data-table component renders all records" duration="45"/>
+  </file>
+  <file path="C:\Projects\US-EPA-CAMD\easey-ui\src\components\Common\Table\TablePaginationFilter\TablePaginationFilter.test.js">
+    <testCase name="testing generic uswds table component paginate filter is enabled" duration="22"/>
+  </file>
+  <file path="C:\Projects\US-EPA-CAMD\easey-ui\src\components\MonitoringPlans\DynamicTabBar\MonitoringPlanTab\Sections\Methods\DataTableMethodRender.test.js">
+    <testCase name="demo table renders without crashing" duration="22"/>
+  </file>
+  <file path="C:\Projects\US-EPA-CAMD\easey-ui\src\components\MonitoringPlans\DynamicTabBar\MonitoringPlanTab\Sections\MATS\DataTableMatsRender.test.js">
+    <testCase name="demo table renders without crashing" duration="48"/>
+  </file>
+  <file path="C:\Projects\US-EPA-CAMD\easey-ui\src\components\Home\HomeTitle.test.js">
+    <testCase name="testing montiring plans viewer Home page title component renders page title" duration="12"/>
+  </file>
+  <file path="C:\Projects\US-EPA-CAMD\easey-ui\src\components\Facilities\Contacts\ContactsData.test.js">
+    <testCase name="testing monitoring plan data table component renders how many contacts appear" duration="14"/>
+    <testCase name="testing monitoring plan data table component counts how many columns are rendered based on total contacts " duration="5"/>
+    <testCase name="testing monitoring plan data table component renders each title box based on roles" duration="5"/>
+  </file>
+  <file path="C:\Projects\US-EPA-CAMD\easey-ui\src\components\MonitoringPlans\DynamicTabBar\SelectFacilitiesTab\DataTableRender.test.js">
+    <testCase name="demo table renders without crashing" duration="37"/>
+  </file>
+  <file path="C:\Projects\US-EPA-CAMD\easey-ui\src\components\Home\HomeOverview.test.js">
+    <testCase name="testing montiring plans viewer Home overview component renders all paragrphs of overview content" duration="10"/>
+  </file>
+  <file path="C:\Projects\US-EPA-CAMD\easey-ui\src\store\actions\monitoringPlans.test.js">
+    <testCase name="Async Actions Load monitoring-plans Thunk should create BEGIN_MONITORING_PLANS_API_CALL and LOAD_MONITORING_PLANS_SUCCESS when loading monitoring plans" duration="3"/>
+    <testCase name="load monitoring plans success should create a LOAD_MONITORING_PLANS_SUCCESS action" duration="0"/>
+  </file>
+  <file path="C:\Projects\US-EPA-CAMD\easey-ui\src\utils\selectors\facilities.test.js">
+    <testCase name="testing fetch wrapper facilities data selectors selected facility location should be" duration="0"/>
+    <testCase name="testing fetch wrapper facilities data selectors selected facility contacts length should have the value" duration="1"/>
+    <testCase name="testing fetch wrapper facilities data selectors selected facility contacts owner units should equal" duration="0"/>
+    <testCase name="testing fetch wrapper facilities data selectors selected facility units table records should be" duration="0"/>
+    <testCase name="testing fetch wrapper facilities data selectors selected units fuel data should equal" duration="0"/>
+    <testCase name="testing fetch wrapper facilities data selectors selected facility monitoring plans table recods should be" duration="1"/>
+  </file>
+  <file path="C:\Projects\US-EPA-CAMD\easey-ui\src\components\Common\Table\TableSearch\TableSearch.test.js">
+    <testCase name="testing generic uswds table component table renders search function" duration="42"/>
+    <testCase name="testing generic uswds table component table doesnt renders search function" duration="15"/>
+  </file>
+  <file path="C:\Projects\US-EPA-CAMD\easey-ui\src\store\reducers\facilities.test.js">
+    <testCase name="should update state with list of facilities when passed LOAD_FACILITIES_SUCCESS" duration="1"/>
+  </file>
+  <file path="C:\Projects\US-EPA-CAMD\easey-ui\src\utils\api\facilityApi.test.js">
+    <testCase name="Should fetch list of facilities from FACT API" duration="3"/>
+  </file>
+  <file path="C:\Projects\US-EPA-CAMD\easey-ui\src\utils\selectors\monitoringPlanMethods.test.js">
+    <testCase name="testing fetch wrapper monitoring plan data selectors selected monitoring plan data table " duration="1"/>
+  </file>
+  <file path="C:\Projects\US-EPA-CAMD\easey-ui\src\components\Facilities\MonitoringPlan\MonitoringPlanDataTable.test.js">
+    <testCase name="testing monitoring plan data table component by default renders filtered records based on status as active only" duration="83"/>
+    <testCase name="testing monitoring plan data table component renders all table records when checkbox is unchecked " duration="54"/>
+  </file>
+</testExecutions>
