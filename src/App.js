@@ -3,14 +3,16 @@ import { Route, Switch,Redirect } from 'react-router-dom';
 
 import Home from './components/Home/Home';
 import NotFound from './components/Common/NotFound/NotFound';
-
+import WideHeader from './components/Common/WideHeader/WideHeaderr';
 import Layout from './components/Common/Layout';
 import MonitoringPlanHome from './components/MonitoringPlans/MonitoringPlanHome';
 
 function App() {
   return (
 <div>
+  
     <Layout>
+      
     <Switch>
       <Redirect from="/home" to="/" />
       <Route path="/" exact component={Home} />
