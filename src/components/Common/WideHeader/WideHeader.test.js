@@ -15,7 +15,7 @@ describe("<WideHeader/>", () => {
     expect(wrapper.find('div.block-pane-official-website-header')).toHaveLength(1);
   });
   it("sandbox banner  ", () => {
-    expect(wrapper.find('div.topbanner')).toHaveLength(1);
+    expect(wrapper.find('div#topbanner')).toHaveLength(1);
   });
   it('one menu button ' , () => {
       expect(wrapper.find('.menuBTN')).toHaveLength(1);

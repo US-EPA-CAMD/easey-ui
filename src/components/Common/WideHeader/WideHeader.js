@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import {
   Button,
   MegaMenu,
-  Header, 
+  Header,
+  NavMenuButton,
   Title,
   Search,
   NavDropDownButton,
@@ -107,13 +108,13 @@ const WideHeader = () => {
           <p>An official website of the United States government.</p>
         </div>
       </div>
-      <div className="topbanner">
-        <p>
-          EPA Sandbox Environment: The content on this page is not production
-          data and this site is being used for <strong>testing</strong> purposes
-          only.
-        </p>
-      </div>
+      <div id="topbanner">
+          <p>
+            EPA Sandbox Environment: The content on this page is not production
+            data and this site is being used for <strong>testing</strong>{" "}
+            purposes only.
+          </p>
+        </div>
       <Header basic={true}>
         <div className="usa-nav-container">
           <div className="usa-navbar">

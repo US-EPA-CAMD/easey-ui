@@ -3,7 +3,7 @@ import { Route, Switch,Redirect } from 'react-router-dom';
 
 import Home from './components/Home/Home';
 import NotFound from './components/Common/NotFound/NotFound';
-import WideHeader from './components/Common/WideHeader/WideHeaderr';
+
 import Layout from './components/Common/Layout';
 import MonitoringPlanHome from './components/MonitoringPlans/MonitoringPlanHome';
 
