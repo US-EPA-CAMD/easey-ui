@@ -6546,7 +6546,6 @@ button.usa-combo-box__toggle-list:focus {
   color: #005ea2;
   text-decoration: underline;
 }
-/* comment */
 @media all and (max-width: 363.99em) {
   .usa-nav__submenu {
     list-style-type: none;
