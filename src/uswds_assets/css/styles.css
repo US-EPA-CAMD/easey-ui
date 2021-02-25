@@ -549,7 +549,7 @@ var {
   border: 0;
   border-radius: 0;
   box-shadow: none;
-  padding: 0;
+  /* padding: 0; */
   text-align: left;
   background-image: url(../../../node_modules/uswds/dist/img/minus.svg),
     linear-gradient(transparent, transparent);
@@ -4145,7 +4145,7 @@ button.usa-combo-box__toggle-list:focus {
   border: 0;
   border-radius: 0;
   box-shadow: none;
-  padding: 0;
+  /* padding: 0; */
   text-align: left;
   background-image: url(../../../node_modules/uswds/dist/img/minus.svg),
     linear-gradient(transparent, transparent);
@@ -4358,13 +4358,13 @@ button.usa-combo-box__toggle-list:focus {
   padding: 0.25rem 1rem 1rem 0.5rem;
   width: 100%;
 }
-@media all and (min-width: 64em) {
+@media all and (min-width: 364em) {
   .usa-banner__content {
     padding-left: 2rem;
     padding-right: 2rem;
   }
 }
-@media all and (min-width: 40em) {
+@media all and (min-width: 340em) {
   .usa-banner__content {
     padding-bottom: 1.5rem;
     padding-top: 1.5rem;
@@ -4379,7 +4379,7 @@ button.usa-combo-box__toggle-list:focus {
   max-width: 64ex;
   padding-top: 1rem;
 }
-@media all and (min-width: 40em) {
+@media all and (min-width: 340em) {
   .usa-banner__guidance {
     padding-top: 0;
   }
@@ -4400,15 +4400,15 @@ button.usa-combo-box__toggle-list:focus {
   display: flex;
   flex-wrap: wrap;
   align-items: flex-start;
-  padding-right: 0;
+  /* padding-right: 0; */
 }
-@media all and (min-width: 64em) {
+@media all and (min-width: 364em) {
   .usa-banner__inner {
     padding-left: 2rem;
     padding-right: 2rem;
   }
 }
-@media all and (min-width: 40em) {
+@media all and (min-width: 340em) {
   .usa-banner__inner {
     align-items: center;
   }
@@ -4421,7 +4421,7 @@ button.usa-combo-box__toggle-list:focus {
   min-height: 3rem;
   position: relative;
 }
-@media all and (min-width: 40em) {
+@media all and (min-width: 340em) {
   .usa-banner__header {
     padding-bottom: 0.25rem;
     padding-top: 0.25rem;
@@ -4475,7 +4475,7 @@ button.usa-combo-box__toggle-list:focus {
 .usa-banner__header-action:hover {
   color: #0b4778;
 }
-@media all and (min-width: 40em) {
+@media all and (min-width: 340em) {
   .usa-banner__header-action {
     display: none;
   }
@@ -4485,7 +4485,7 @@ button.usa-combo-box__toggle-list:focus {
   margin-right: 0.5rem;
   width: 1rem;
 }
-@media all and (min-width: 40em) {
+@media all and (min-width: 340em) {
   .usa-banner__header-flag {
     margin-right: 0.5rem;
     padding-top: 0;
@@ -4494,7 +4494,7 @@ button.usa-combo-box__toggle-list:focus {
 .usa-banner__header--expanded {
   padding-right: 3.5rem;
 }
-@media all and (min-width: 40em) {
+@media all and (min-width: 340em) {
   .usa-banner__header--expanded {
     background-color: transparent;
     display: block;
@@ -4507,7 +4507,7 @@ button.usa-combo-box__toggle-list:focus {
 .usa-banner__header--expanded .usa-banner__inner {
   margin-left: 0;
 }
-@media all and (min-width: 40em) {
+@media all and (min-width: 340em) {
   .usa-banner__header--expanded .usa-banner__inner {
     margin-left: auto;
   }
@@ -4623,7 +4623,7 @@ button.usa-combo-box__toggle-list:focus {
 .usa-banner__button[aria-expanded="true"] {
   background-image: none;
 }
-@media all and (max-width: 39.99em) {
+@media all and (max-width: 339.99em) {
   .usa-banner__button[aria-expanded="true"]::after {
     background: url(../../../node_modules/uswds/dist/img/close-alt.svg)
       no-repeat center/1rem 1rem;
@@ -4662,7 +4662,7 @@ button.usa-combo-box__toggle-list:focus {
     right: 0;
   }
 }
-@media all and (min-width: 40em) {
+@media all and (min-width: 340em) {
   .usa-banner__button[aria-expanded="true"] {
     height: auto;
     padding: 0;
@@ -4702,7 +4702,7 @@ button.usa-combo-box__toggle-list:focus {
   left: -999em;
   text-decoration: underline;
 }
-@media all and (min-width: 40em) {
+@media all and (min-width: 340em) {
   .usa-banner__button-text {
     position: static;
     display: inline;
@@ -4721,7 +4721,7 @@ button.usa-combo-box__toggle-list:focus {
   padding-left: 0;
   padding-right: 0;
 }
-@media all and (min-width: 30em) {
+@media all and (min-width: 330em) {
   .usa-breadcrumb {
     padding-bottom: 1rem;
     padding-top: 1rem;
@@ -4736,10 +4736,10 @@ button.usa-combo-box__toggle-list:focus {
   }
 }
 .usa-breadcrumb__list {
-  margin-bottom: 0;
-  margin-top: 0;
+  /* margin-bottom: 0; */
+  /* margin-top: 0; */
   list-style-type: none;
-  padding-left: 0;
+  /* padding-left: 0; */
   display: block;
   margin: -0.25rem;
   padding: 0.25rem;
@@ -5301,7 +5301,7 @@ button.usa-combo-box__toggle-list:focus {
 }
 .usa-checklist__item {
   text-indent: -2.5rem;
-  margin-top: 0;
+  /* margin-top: 0; */
   margin-bottom: 0;
   margin-top: 0.5rem;
 }
@@ -5351,8 +5351,8 @@ button.usa-combo-box__toggle-list:focus {
   max-width: 64rem;
   padding-left: 1rem;
   padding-right: 1rem;
-  padding-left: 0;
-  padding-right: 0;
+  /* padding-left: 0; */
+  /* padding-right: 0; */
   border-bottom: 1px solid #a9aeb1;
 }
 @media all and (min-width: 64em) {
@@ -5889,7 +5889,7 @@ button.usa-combo-box__toggle-list:focus {
     margin-left: 1rem;
   }
 }
-@media all and (min-width: 64em) {
+@media all and (min-width: 364em) {
   .usa-logo {
     margin-top: 2rem;
     margin-bottom: 1rem;
@@ -6258,7 +6258,7 @@ button.usa-combo-box__toggle-list:focus {
   }
 }
 .usa-navbar {
-  height: 3rem;
+  height: 4.5rem;
 }
 @media all and (max-width: 363.99em) {
   .usa-navbar {
@@ -6319,7 +6319,7 @@ button.usa-combo-box__toggle-list:focus {
 @media all and (max-width: 363.99em) {
   .usa-nav__primary {
     margin-bottom: 0;
-    margin-top: 0;
+    /* margin-top: 0; */
     list-style-type: none;
     padding-left: 0;
     margin-top: 1.5rem;
@@ -6421,7 +6421,7 @@ button.usa-combo-box__toggle-list:focus {
   border: 0;
   border-radius: 0;
   margin: 0;
-  padding: 0;
+  /* padding: 0; */
   text-align: left;
   color: #565c65;
   font-weight: 400;
@@ -6511,7 +6511,7 @@ button.usa-combo-box__toggle-list:focus {
 }
 .usa-nav__secondary-links {
   margin-bottom: 0;
-  margin-top: 0;
+  /* margin-top: 0; */
   list-style-type: none;
   padding-left: 0;
   line-height: 1.3;
@@ -6586,10 +6586,10 @@ button.usa-combo-box__toggle-list:focus {
     margin-bottom: 0;
     margin-top: 0;
     list-style-type: none;
-    padding-left: 0;
+    /* padding-left: 0; */
     background-color: #162e51;
     width: 15rem;
-    padding: 1rem;
+    padding: 1rem 1rem 0 1rem;
     position: absolute;
     z-index: 400;
   }
@@ -6597,7 +6597,7 @@ button.usa-combo-box__toggle-list:focus {
 .usa-nav__submenu[aria-hidden="true"] {
   display: none;
 }
-@media all and (min-width: 64em) {
+@media all and (min-width: 364em) {
   .usa-nav__submenu .usa-nav__submenu-item + * {
     margin-top: 0.75rem;
   }
@@ -6641,7 +6641,7 @@ button.usa-combo-box__toggle-list:focus {
   border-radius: 0;
   box-shadow: none;
   font-weight: 400;
-  margin: 0;
+  /* margin: 0; */
   padding: 0;
   height: 3rem;
   width: 3rem;

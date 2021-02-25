@@ -3,7 +3,6 @@ import {
   Button,
   MegaMenu,
   Header,
-  NavMenuButton,
   Title,
   Search,
   NavDropDownButton,
@@ -128,13 +127,15 @@ const WideHeader = () => {
           </div>
           <div className="test">
             <PrimaryNav
-              items={testItemsMegaMenu}
+            //   items={testItemsMegaMenu}
+            items ={[]}
               mobileExpanded={expanded}
               onToggleMobileNav={onClick}
             >
               <Search size="small" onSubmit={""} />
             </PrimaryNav>
           </div>
+          {/* <div>test</div> */}
         </div>
       </Header>
     </div>
