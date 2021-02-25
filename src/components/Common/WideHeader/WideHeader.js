@@ -11,6 +11,8 @@ import {
 } from "@trussworks/react-uswds";
 import "./WideHeader.css";
 
+import environmentalTopicsMenu from './menuTopics'
+
 const WideHeader = () => {
   const [expanded, setExpanded] = useState(false);
   const onClick = (): void => setExpanded((prvExpanded) => !prvExpanded);
@@ -181,7 +183,7 @@ const WideHeader = () => {
       >
         <div className="sitewide-alert__content">
           {" "}
-          <p>An official website of the United States government.</p>
+          An official website of the United States government.
         </div>
       </div>
       <div id="topbanner">
