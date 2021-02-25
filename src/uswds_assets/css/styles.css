@@ -6597,13 +6597,21 @@ button.usa-combo-box__toggle-list:focus {
 .usa-nav__submenu[aria-hidden="true"] {
   display: none;
 }
+<<<<<<< HEAD
 @media all and (min-width: 364em) {
+=======
+@media all and (min-width: 64em) {
+>>>>>>> 1349f524f6f7cb3d95225822b325b4fd4864f29d
   .usa-nav__submenu .usa-nav__submenu-item + * {
     margin-top: 0.75rem;
   }
   .usa-nav__submenu .usa-nav__submenu-item a {
+<<<<<<< HEAD
     /* color: #fff; */
     color:black;
+=======
+    color: #fff;
+>>>>>>> 1349f524f6f7cb3d95225822b325b4fd4864f29d
     padding: 0;
     line-height: 1.3;
   }
