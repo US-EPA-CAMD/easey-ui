@@ -5889,7 +5889,7 @@ button.usa-combo-box__toggle-list:focus {
     margin-left: 1rem;
   }
 }
-@media all and (min-width: 364em) {
+@media all and (max-width: 364em) {
   .usa-logo {
     margin-top: 2rem;
     margin-bottom: 1rem;
@@ -6597,7 +6597,7 @@ button.usa-combo-box__toggle-list:focus {
 .usa-nav__submenu[aria-hidden="true"] {
   display: none;
 }
-@media all and (min-width: 364em) {
+@media all and (min-width: 64em) {
   .usa-nav__submenu .usa-nav__submenu-item + * {
     margin-top: 0.75rem;
   }
