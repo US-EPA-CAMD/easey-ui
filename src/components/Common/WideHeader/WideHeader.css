@@ -30,7 +30,8 @@
   width: 20%;
 }
 .usa-nav__primary button {
-  font: bold 15px/22px "Merriweather";
+  font: bold 15px/22px "Merriweather" !important;
   letter-spacing: 0px;
   color: #0071bc;
+  font-family: Helvetica, Arial, Verdana, Tahoma, sans-serif;
 }
