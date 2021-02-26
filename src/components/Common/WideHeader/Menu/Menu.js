@@ -29,12 +29,12 @@ const Menu = (props) => {
   );
 
   const menuToggle = (index, value) => {
-    let newOpenMenu = [...open];
+    const newOpenMenu = [...open];
     newOpenMenu[index] = !value;
     setOpen(newOpenMenu);
   };
 
-  const megaSideMenu = menu.map((subMenu, index) => {
+  return menu.map((subMenu, index) => {
     return (
       <>
         <NavDropDownButton
@@ -55,8 +55,6 @@ const Menu = (props) => {
       </>
     );
   });
-
-  return megaSideMenu;
 };
 
 export default Menu;
