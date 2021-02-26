@@ -22,7 +22,7 @@ const WideHeader = () => {
     lawsAndRegulationsTopics,
     aboutEPATopics,
   ]);
-  
+
   return (
     <div>
       <div className={`usa-overlay ${expanded ? "is-visible" : ""}`}></div>
