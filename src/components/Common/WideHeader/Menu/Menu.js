@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
 import { MegaMenu, NavDropDownButton, Link } from "@trussworks/react-uswds";
 
 const Menu = (props) => {
   const subMenuCreation = (arrayTopics) => {
-    let title = arrayTopics[0].title;
-    let subMenu = arrayTopics
-      .filter((val, ind) => ind != 0)
+    const title = arrayTopics[0].title;
+    return arrayTopics
+      .filter((val, ind) => ind !== 0)
       .map((value, index) => {
         return (
           <Link href={value.link} target="_blank" key={index} title={title}>
@@ -13,19 +13,16 @@ const Menu = (props) => {
           </Link>
         );
       });
-    return subMenu;
   };
 
   const menuCreation = () => {
-    let mainMegaMenu = props.map((val, index) => {
+    return props.map((val, index) => {
       return subMenuCreation(val);
     });
-
-    return mainMegaMenu;
   };
   const menu = menuCreation();
 
-  const [open, setOpen] = useState(
+  const [open, setOpen] = React.useState(
     props.map(() => {
       return false;
     })
