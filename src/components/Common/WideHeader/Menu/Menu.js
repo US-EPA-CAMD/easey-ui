@@ -29,7 +29,9 @@ const Menu = (props) => {
   );
 
   const menuToggle = (index, value) => {
-    const newOpenMenu = [...open];
+    const newOpenMenu =  props.map(() => {
+        return false;
+      });
     newOpenMenu[index] = !value;
     setOpen(newOpenMenu);
   };
