@@ -3,7 +3,6 @@ import {
   Button,
   Header,
   Title,
-  Search,
   PrimaryNav,
 } from "@trussworks/react-uswds";
 import "./WideHeader.css";
@@ -24,15 +23,6 @@ const WideHeader = () => {
     aboutEPATopics,
   ]);
 
-  const onSearch = (test) =>{
-    test.stopPropagation();
-    var w = window.open();
-    w.document.title = "New window";
-    console.log('this is test,test',test)
-    w.document.location.href = "http://search.epa.gov/epasearch/?querytext="+test.target.value; //how to assign the url to the newly opened window
-    // $(w.document.body).html(stored);
-    return false;
-  }
   return (
     <div>
       <div className={`usa-overlay ${expanded ? "is-visible" : ""}`}></div>
@@ -69,14 +59,6 @@ const WideHeader = () => {
               mobileExpanded={expanded}
               onToggleMobileNav={onClick}
             >
-              {/* <Search
-                size="small"
-                // onClick={(event) => onSearch(event)}
-                // onChange={(event) =>{ console.log(event.target.value)}}
-                className="menuSearch"
-                placeholder="Search EPA.gov"
-                inputName="test"
-              /> */}
               <MenuSearch/>
             </PrimaryNav>
           </div>
