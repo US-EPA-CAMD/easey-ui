@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./MenuSearch.css";
-import { Button, Form, Label } from "@trussworks/react-uswds";
+import { Button, Form } from "@trussworks/react-uswds";
 const MenuSearch = () => {
   const [searchState, setSearchState] = useState("");
 
@@ -9,9 +9,10 @@ const MenuSearch = () => {
   };
 
   const onSearch = () => {
-    var w = window.open();
-    w.document.title = "New window";
-    w.document.location.href = "http://search.epa.gov/epasearch/?querytext="+searchState; //how to assign the url to the newly opened window
+    window.open(
+      "http://search.epa.gov/epasearch/?querytext=" + searchState,
+      "_blank"
+    );
     return false;
   };
 
@@ -19,21 +20,23 @@ const MenuSearch = () => {
     <div>
       <div className="usa-search" role="search">
         <Form
-          children={<div> 
-            <label data-testid="label" class="usa-sr-only" for="search-field">Search</label>
-            <input
-              id="search-field"
-              name="input-search"
-              data-testid="input-search"
-              className="usa-input"
-              type="search"
-              value={searchState}
-              placeholder={"Search EPA.gov"}
-              onChange={(e) => {
-                searchHandler(e.target.value);
-              }}
-            />
-            
+          children={
+            <div>
+              <label data-testid="label" class="usa-sr-only" for="search-field">
+                Search
+              </label>
+              <input
+                id="search-field"
+                name="input-search"
+                data-testid="input-search"
+                className="usa-input"
+                type="search"
+                value={searchState}
+                placeholder={"Search EPA.gov"}
+                onChange={(e) => {
+                  searchHandler(e.target.value);
+                }}
+              />
             </div>
           }
         ></Form>
