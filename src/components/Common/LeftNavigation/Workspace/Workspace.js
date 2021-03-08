@@ -50,14 +50,14 @@ const Workspace = () => {
   };
   const workSpace = (
     <>
-      <div className="test">
+      <div className="workspaceMenu">
         <NavDropDownButton
           onToggle={(): void => {
             testing(open);
           }}
           menuId="MenuDropDown"
           isOpen={open}
-          label={<div className="workspace"> Workspace</div>}
+          label={<div className="workspaceLabel"> Workspace</div>}
           isCurrent={open}
         />
         <MegaMenu key="1" items={[subMenu]} isOpen={open} id={"MenuDropDown"} />
@@ -66,7 +66,7 @@ const Workspace = () => {
   );
 
   return (
-    <div className="dropDownWorkspace">
+    <div className="workspaceDrop">
       <div className="iconLine iconDiv">
         <HiDesktopComputer size={32} style={{ fill: "white" }} />
       </div>

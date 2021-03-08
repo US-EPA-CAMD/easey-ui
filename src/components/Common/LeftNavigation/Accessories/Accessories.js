@@ -1,10 +1,13 @@
 import React from "react";
 import "./Accessories.css";
 // import { Link } from "@trussworks/react-uswds";
-import { BsFillGrid3X3GapFill } from "react-icons/bs";
-import { BsFillGearFill, BsFillPersonFill } from "react-icons/bs";
+import {
+  BsFillGearFill,
+  BsFillPersonFill,
+  BsFillGrid3X3GapFill,
+} from "react-icons/bs";
 import { Link } from "react-router-dom";
-import { IoIosHelpCircle } from 'react-icons/io';
+import { IoIosHelpCircle } from "react-icons/io";
 const Accessories = () => {
   return (
     <div className="accessoriesLinks">
@@ -17,7 +20,6 @@ const Accessories = () => {
         <Link to="./apps" rel=" CAMD Apps" title="Go to the  CAMD Apps page">
           CAMD Apps
         </Link>
-        
       </div>
       <div className="accessoryLink">
         <BsFillPersonFill style={{ fill: "white" }} />
@@ -27,7 +29,6 @@ const Accessories = () => {
         <Link to="./profile" rel="Profile" title="Go to the Profile page">
           Profile
         </Link>
-        
       </div>
       <div className="accessoryLink">
         <BsFillGearFill style={{ fill: "white" }} />
@@ -41,7 +42,6 @@ const Accessories = () => {
         >
           Account Management
         </Link>
-        
       </div>
       <div className="accessoryLink">
         <IoIosHelpCircle style={{ fill: "white" }} />
@@ -51,7 +51,6 @@ const Accessories = () => {
         <Link to="./help" rel="help" title="Go to the help page">
           {"Help & Contact"}
         </Link>
-        
       </div>
     </div>
   );
