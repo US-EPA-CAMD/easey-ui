@@ -1,6 +1,6 @@
 
 .pagination{
-  float:right;
+  float:left;
 }
 .totalDisplay{
   display: inline-block;
@@ -25,4 +25,10 @@ color:white;
 }
 .page-item-next:hover,.page-item-previous:hover{
   text-decoration: underline;
+}
+.row div.totalDisplay.col{
+  width:20% !important;
+}
+.row div.paginationTabs.col{
+  width:80%;
 }

@@ -1,0 +1,11 @@
+.navTitle{
+    /* justify-content:left; */
+    display:flex;
+    color:white;
+    align-items: center;
+    
+}
+.navTitle h4{
+padding:0;
+padding-left:5px;
+}

@@ -1,7 +1,7 @@
 .tableHead {
   position: relative;
   padding-top: 20px;
-  overflow: hidden;
+  overflow: auto;
   text-align: right;
   left:0;
 }
@@ -24,4 +24,8 @@
   padding: 0px;
   position: absolute;
   bottom: 0;
+}
+.container{
+  margin-left:10px;
+  max-width: 1500px;
 }

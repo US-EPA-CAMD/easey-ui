@@ -1,0 +1,27 @@
+.column {
+  float: left;
+  min-width: 150px;
+  position: relative;
+  min-height: 100vh;
+
+  height: auto;
+}
+.column2 {
+    /* float:right; */
+  padding-left: 50px;
+  padding-top: 10px;
+  /* overflow: auto; */
+  height: auto;
+  min-height: 100vh;
+  min-width: 1000px;
+  width: 80%;
+  max-width: 2000px;
+  margin-right:0;
+}
+.row {
+  overflow: auto;
+  min-width: 1700px;
+  max-width:2000px;
+  /* overflow-x:auto; */
+  /* max-height:100vh; */
+}

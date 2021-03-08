@@ -1,0 +1,50 @@
+.usa-accordion__button {
+  background-color: gray !important;
+  align-items: left !important;
+  padding-left: 5px;
+  color: white;
+}
+.usa-accordion__button[aria-expanded="true"] {
+  background-image: url(../../../../../node_modules/uswds/dist/img/angle-arrow-up-white.svg),
+    linear-gradient(transparent, transparent) !important;
+}
+
+.usa-accordion__button[aria-expanded="false"] {
+  background-image: url(../../../../../node_modules/uswds/dist/img/angle-arrow-down-white.svg),
+    linear-gradient(transparent, transparent) !important;
+}
+.dropDownWorkspace {
+  display: flex;
+}
+.iconLine {
+  float: left;
+}
+.iconDiv {
+  height: 54px;
+  display: flex;
+  align-items: center;
+}
+.usa-link {
+  color: white;
+  text-decoration: none !important;
+}
+.usa-link:active,
+.usa-prose > a:active {
+  color: white;
+   text-decoration: underline;
+}
+.test a.usa-link {
+  /* float: left; */
+  padding-left: 0;
+}
+.usa-link:visited,
+.usa-prose > a:visited {
+  color: white;
+}
+.usa-nav__submenu-item {
+  color: white;
+  border-top: 0px;
+}
+.workspace {
+    text-decoration: underline;
+}

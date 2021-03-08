@@ -1,0 +1,10 @@
+.accessoryLink a.usa-link{
+    color:white !important;
+    text-decoration: none;
+}
+
+.accessoriesLinks{
+    /* padding:50px; */
+    width: fit-content;
+background-color: gray;
+}
