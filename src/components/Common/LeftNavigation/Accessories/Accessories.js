@@ -2,10 +2,9 @@ import React from "react";
 import "./Accessories.css";
 // import { Link } from "@trussworks/react-uswds";
 import { BsFillGrid3X3GapFill } from "react-icons/bs";
-import { BsGear, BsPerson } from "react-icons/bs";
-import { VscQuestion } from "react-icons/vsc";
+import { BsFillGearFill, BsFillPersonFill } from "react-icons/bs";
 import { Link } from "react-router-dom";
-// import { IoPersonOutline } from 'react-icons/io';
+import { IoIosHelpCircle } from 'react-icons/io';
 const Accessories = () => {
   return (
     <div className="accessoriesLinks">
@@ -21,7 +20,7 @@ const Accessories = () => {
         
       </div>
       <div className="accessoryLink">
-        <BsPerson style={{ fill: "white" }} />
+        <BsFillPersonFill style={{ fill: "white" }} />
         {/* <Link href="profile"  key={1}>
           Profile
         </Link> */}
@@ -31,7 +30,7 @@ const Accessories = () => {
         
       </div>
       <div className="accessoryLink">
-        <BsGear style={{ fill: "white" }} />
+        <BsFillGearFill style={{ fill: "white" }} />
         {/* <Link href="account_manage" key={1}>
           Account Management
         </Link> */}
@@ -45,7 +44,7 @@ const Accessories = () => {
         
       </div>
       <div className="accessoryLink">
-        <VscQuestion style={{ fill: "white" }} />
+        <IoIosHelpCircle style={{ fill: "white" }} />
         {/* <Link href="help"  key={1}>
           {"Help & Contact"}
         </Link> */}
