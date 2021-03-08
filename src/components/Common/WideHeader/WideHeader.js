@@ -1,11 +1,7 @@
 import React, { useState } from "react";
-import {
-  Button,
-  Header,
-  Title,
-  PrimaryNav,
-} from "@trussworks/react-uswds";
+import { Button, Header, Title, PrimaryNav } from "@trussworks/react-uswds";
 import "./WideHeader.css";
+import { Link } from "react-router-dom";
 import Menu from "./Menu/Menu";
 import {
   environmentalTopics,
@@ -47,7 +43,9 @@ const WideHeader = () => {
           <div className="usa-navbar">
             <Title>
               {" "}
-              <img src={require("./title.png")} className="photo" />
+              <Link to="./" rel="home" title="Go to the home page">
+                <img src={require("./title.png")} className="photo" />
+              </Link>
             </Title>
             <Button className="menuBTN" onClick={onClick} label="Menu">
               Menu{" "}
@@ -59,7 +57,7 @@ const WideHeader = () => {
               mobileExpanded={expanded}
               onToggleMobileNav={onClick}
             >
-              <MenuSearch/>
+              <MenuSearch />
             </PrimaryNav>
           </div>
         </div>

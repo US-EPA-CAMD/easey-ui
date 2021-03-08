@@ -33,7 +33,7 @@
   color: white;
    text-decoration: underline;
 }
-.test a.usa-link {
+.test a {
   /* float: left; */
   padding-left: 0;
 }
@@ -47,4 +47,7 @@
 }
 .workspace {
     text-decoration: underline;
+}
+li.usa-nav__submenu-item a{
+    color: white;
 }

@@ -1,29 +1,47 @@
 import {
   NavDropDownButton,
   MegaMenu,
-  Link
+  //   Link
 } from "@trussworks/react-uswds";
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import "./Workspace.css";
 import { HiDesktopComputer } from "react-icons/hi";
 const Workspace = () => {
   const [open, setOpen] = useState(false);
   const subMenu = [
+    // <Link
+    //   href="monitoring-plans"
+    //   key={"monitoring-plans"}
+    //   title={"monitoring-plans"}
+    // >
+    //    - Monitoring Plans
+    // </Link>,
+    // <Link
+    //   href="qa_certifications"
+    //   key={"qa_certifications"}
+    //   title={"qa_certifications"}
+    // >
+    //   {"- QA & Certifications"}
+    // </Link>,
+    //  <Link href="emissions" key={"Emissions"} title={"Emissions"}>
+    //   - Emissions
+    // </Link>,
     <Link
-      href="monitoring-plans"
-      key={"monitoring-plans"}
-      title={"monitoring-plans"}
+      to="./monitoring-plans"
+      rel="Monitoring Plans"
+      title="Go to the Monitoring Plans page"
     >
-       - Monitoring Plans
+      - Monitoring Plans
     </Link>,
     <Link
-      href="qa_certifications"
-      key={"qa_certifications"}
-      title={"qa_certifications"}
+      to="./qa_certifications"
+      rel={"QA & Certifications"}
+      title={"Go to the QA & Certifications page"}
     >
       {"- QA & Certifications"}
     </Link>,
-     <Link href="emissions" key={"Emissions"} title={"Emissions"}>
+    <Link to="./emissions" rel="Emissions" title="Go to the Emissions page">
       - Emissions
     </Link>,
   ];
@@ -50,7 +68,7 @@ const Workspace = () => {
   return (
     <div className="dropDownWorkspace">
       <div className="iconLine iconDiv">
-        <HiDesktopComputer size={32} style={{ fill: "white" }}/>
+        <HiDesktopComputer size={32} style={{ fill: "white" }} />
       </div>
       <div className="test">{workSpace}</div>
     </div>
