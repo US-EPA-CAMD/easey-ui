@@ -17,7 +17,7 @@ const MenuSearch = () => {
   };
 
   return (
-    <div>
+    <div className="menuSearch">
       <div className="usa-search" role="search">
         <Form
           children={

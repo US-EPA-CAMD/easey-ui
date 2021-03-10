@@ -13,27 +13,17 @@ const Layout = (props) => {
       <div className="topHeader">
         <WideHeader />
       </div>
-      <div className="row">
-         <div className="column1">
+      <div className="contentrow">
+        <div className="sideNav">
           <LeftNavigation />
         </div>
 
-        <div className="column2">
-            {childrenWithProps}
-            </div>
+        <div className="mainContent">{childrenWithProps}</div>
       </div>
       <div className="bottomFooter">
-        <Footer />
-        {" "}
+        <Footer />{" "}
       </div>
     </div>
-
-    //     <div>
-    //     <WideHeader />
-    //         {childrenWithProps}
-
-    //     <Footer />
-    // </div>
   );
 };
 

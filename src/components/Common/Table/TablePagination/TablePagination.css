@@ -1,10 +1,7 @@
 
 .pagination{
-  float:left;
-}
-.totalDisplay{
-  display: inline-block;
-  font-style: italic;
+  /* float:left; */
+  /* display: flex; */
 }
 .page-link{
   border:0;
@@ -26,9 +23,12 @@ color:white;
 .page-item-next:hover,.page-item-previous:hover{
   text-decoration: underline;
 }
-.row div.totalDisplay.col{
-  width:20% !important;
+div.totalDisplay{
+  width:fit-content;
+  font-style: italic;
+  float:left;
 }
-.row div.paginationTabs.col{
-  width:80%;
+div.paginationTabs{
+  width:fit-content;
+  float:right;
 }

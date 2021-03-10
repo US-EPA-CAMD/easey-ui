@@ -5,7 +5,7 @@ const Title = () => {
   return (
     <div className="navTitle">
       <RiDashboardFill size={32} style={{ fill: "white" }} />
-      <h4> EASEY-In Dashboard</h4>
+      <h5> EASEY-In Dashboard</h5>
     </div>
   );
 };

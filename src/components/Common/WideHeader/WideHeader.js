@@ -51,7 +51,7 @@ const WideHeader = () => {
               Menu
             </Button>
           </div>
-          <div>
+          <div className="mainMenu">
             <PrimaryNav
               items={mainMenu}
               mobileExpanded={expanded}

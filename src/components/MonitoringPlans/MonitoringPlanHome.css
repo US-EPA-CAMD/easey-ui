@@ -2,18 +2,14 @@
   align-items: center;
   margin: 0;
   padding: 0;
-  /* display: block; */
-  /* position: relative; */
   background-color: #fff;
   color: #212121;
-  width: 100%;
-  min-width: 800px;
-  padding-top: 20px;
+margin-left:20px;
+  padding-top: 50px;
   padding-bottom: 60px;
-  max-width: 1520px;
+  max-width: 100%;
+  /* min-width: 700px; */
   margin-right: 0;
-
-  /* overflow change */
   overflow: auto;
 }
 .title {
@@ -23,7 +19,7 @@
   color: gray;
 }
 .tabsBox,
-.selectedTabsBox {
+.tabContent .selectedTabsBox {
   color: gray;
   border: solid 1px;
   width: 100%;

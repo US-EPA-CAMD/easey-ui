@@ -1,26 +1,36 @@
 div.row.column1 {
   float: left;
-  min-width: 5px;
-  width:5px;
-  max-width: 1px;
+  min-width: 50vw;
+  /* width:5px; */
+  /* max-width: 1px; */
   position: relative;
   min-height: 100vh;
 
   height: auto;
 }
-.column2 {
+.mainContent {
   padding-left: 10px;
   padding-top: 10px;
 
   height: auto;
   min-height: 100vh;
-  min-width: 1000px;
-  width: 80%;
-  max-width: 2000px;
-  margin-right: 0;
+  min-width: 700px;
+  width: 90%;
+  max-width: 100%;
+  margin-right: 0px;
+  padding-right: 20px;
 }
 .row {
   overflow: auto;
-  min-width: 1700px;
+  min-width: 1400px;
   max-width: 2000px;
+}
+.contentrow{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+}
+.sideNav{
+  display:flex;
+  flex-direction: column;
 }
