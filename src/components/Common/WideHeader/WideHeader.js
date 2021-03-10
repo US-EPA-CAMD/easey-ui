@@ -13,6 +13,8 @@ import {
   aboutEPATopics,
 } from "./Menu/menuTopics";
 import MenuSearch from "./MenuSearch/MenuSearch";
+import config from '../../../config'
+
 const WideHeader = () => {
   const [expanded, setExpanded] = useState(false);
   const onClick = (): void => setExpanded((prvExpanded) => !prvExpanded);
@@ -37,8 +39,8 @@ const WideHeader = () => {
       </div>
       <div id="topbanner">
         <p>
-          EPA Sandbox Environment: The content on this page is not production
-          data and this site is being used for <strong>testing</strong> purposes
+          EPA {config.app.env} Environment: The content on this page is not production
+          data and this site is being used for <strong>development</strong> and/or <strong>testing</strong> purposes
           only.
         </p>
       </div>

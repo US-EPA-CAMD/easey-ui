@@ -1,0 +1,4 @@
+name: ui-portal
+host: easey-dev.app.cloud.gov
+environment: development
+memory: 1024M
