@@ -50,6 +50,7 @@ const Menu = (props) => {
           onToggle={(): void => {
             menuToggle(index, open[index]);
           }}
+          data-testid="NavDropDownButton"
           menuId={subMenu[index].props.title + "MenuDropDown"}
           isOpen={open[index]}
           label={
