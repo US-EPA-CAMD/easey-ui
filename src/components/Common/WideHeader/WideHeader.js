@@ -48,10 +48,10 @@ const WideHeader = () => {
               </Link>
             </Title>
             <Button className="menuBTN" onClick={onClick} label="Menu">
-              Menu{" "}
+              Menu
             </Button>
           </div>
-          <div className="test">
+          <div>
             <PrimaryNav
               items={mainMenu}
               mobileExpanded={expanded}

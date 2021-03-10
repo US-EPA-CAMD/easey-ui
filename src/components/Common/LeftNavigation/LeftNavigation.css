@@ -1,22 +1,17 @@
-.leftNavigation{
-    background-color:gray;
-    align-items: center;
-    justify-content:center;
-   /* height:max-content; */
-   /* width: 100px; */
-   /* background: yellow; */
-   /* height: 150px; */
-   height:100%;
-   /* padding: .5rem; */
-   width:100%;
-   position: relative;
-   padding-left: 50px;
-   padding-top:50px;
-   padding-right: 35px;
+.leftNavigation {
+  background-color: gray;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+  position: relative;
+  padding-left: 50px;
+  padding-top: 50px;
+  padding-right: 15px;
 }
 
-.bottomPart{
-    bottom:0;
-    position:absolute;
-     padding-bottom:20px;
+.bottomPart {
+  bottom: 0;
+  position: absolute;
+  padding-bottom: 20px;
 }

@@ -8,7 +8,12 @@ const Menu = (props) => {
       .filter((val, ind) => ind !== 0)
       .map((value, index) => {
         return (
-          <Link href={value.link} target="_blank" key={index} title={title}>
+          <Link
+            href={value.link}
+            target="_blank"
+            key={index + title}
+            title={title}
+          >
             {value.name}
           </Link>
         );
@@ -53,7 +58,7 @@ const Menu = (props) => {
               href={props[index][0].link}
               onClick={(e) => titleClick(e)}
               target="_blank"
-              key={index}
+              key={"btn" + index}
             >
               {" "}
               {subMenu[index].props.title}
@@ -62,7 +67,7 @@ const Menu = (props) => {
           isCurrent={open[index]}
         />
         <MegaMenu
-          key={index}
+          key={"menu" + index}
           items={[subMenu]}
           isOpen={open[index]}
           id={subMenu[index].props.title + "MenuDropDown"}

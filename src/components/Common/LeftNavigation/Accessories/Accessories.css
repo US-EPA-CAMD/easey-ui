@@ -1,13 +1,12 @@
-.accessoryLink a.usa-link{
-    color:white !important;
-    text-decoration: none;
+.accessoryLink a.usa-link {
+  color: white !important;
+  text-decoration: none;
 }
 
-.accessoriesLinks{
-    /* padding:50px; */
-    width: fit-content;
-background-color: gray;
+.accessoriesLinks {
+  width: fit-content;
+  background-color: gray;
 }
-.accessoryLink a{
-    color:white !important;
+.accessoryLink a {
+  color: white !important;
 }

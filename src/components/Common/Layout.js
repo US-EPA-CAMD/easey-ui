@@ -14,7 +14,7 @@ const Layout = (props) => {
         <WideHeader />
       </div>
       <div className="row">
-         <div className="column">
+         <div className="column1">
           <LeftNavigation />
         </div>
 

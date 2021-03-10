@@ -13,7 +13,7 @@
   background-image: url(../../../../../node_modules/uswds/dist/img/angle-arrow-down-white.svg),
     linear-gradient(transparent, transparent) !important;
 }
-.workspaceDrop {
+.workspaceDropp {
   display: flex;
 }
 .iconLine {
@@ -24,30 +24,14 @@
   display: flex;
   align-items: center;
 }
-/* .usa-link {
-  color: white;
-  text-decoration: none !important;
-} */
-/* .usa-link:active,
-.usa-prose > a:active {
-  color: white;
-   text-decoration: underline;
-} */
-.test a {
-  /* float: left; */
+
+.workspaceDropDown a {
   padding-left: 0;
 }
-/* .usa-link:visited,
-.usa-prose > a:visited {
-  color: white;
-} */
-/* .usa-nav__submenu-item {
-  color: white;
-  border-top: 0px;
-} */
+
 .workspaceLabel {
-    text-decoration: underline;
+  text-decoration: underline;
 }
-li.usa-nav__submenu-item a{
-    color: white;
+li.usa-nav__submenu-item a {
+  color: white;
 }

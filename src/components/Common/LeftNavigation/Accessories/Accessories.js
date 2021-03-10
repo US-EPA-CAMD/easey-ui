@@ -1,6 +1,5 @@
 import React from "react";
 import "./Accessories.css";
-// import { Link } from "@trussworks/react-uswds";
 import {
   BsFillGearFill,
   BsFillPersonFill,
@@ -14,27 +13,18 @@ const Accessories = () => {
       <div className="accessoryLink">
         {" "}
         <BsFillGrid3X3GapFill style={{ fill: "white" }} />
-        {/* <Link href="apps"  key={1}>
-          CAMD Apps
-        </Link> */}
         <Link to="./apps" rel=" CAMD Apps" title="Go to the  CAMD Apps page">
           CAMD Apps
         </Link>
       </div>
       <div className="accessoryLink">
         <BsFillPersonFill style={{ fill: "white" }} />
-        {/* <Link href="profile"  key={1}>
-          Profile
-        </Link> */}
         <Link to="./profile" rel="Profile" title="Go to the Profile page">
           Profile
         </Link>
       </div>
       <div className="accessoryLink">
         <BsFillGearFill style={{ fill: "white" }} />
-        {/* <Link href="account_manage" key={1}>
-          Account Management
-        </Link> */}
         <Link
           to="./account_manage"
           rel=" Account Management"
@@ -45,9 +35,6 @@ const Accessories = () => {
       </div>
       <div className="accessoryLink">
         <IoIosHelpCircle style={{ fill: "white" }} />
-        {/* <Link href="help"  key={1}>
-          {"Help & Contact"}
-        </Link> */}
         <Link to="./help" rel="help" title="Go to the help page">
           {"Help & Contact"}
         </Link>

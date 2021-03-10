@@ -1,13 +1,15 @@
-div.row.column {
+div.row.column1 {
   float: left;
-  min-width: 150px;
+  min-width: 5px;
+  width:5px;
+  max-width: 1px;
   position: relative;
   min-height: 100vh;
 
   height: auto;
 }
 .column2 {
-  padding-left: 50px;
+  padding-left: 10px;
   padding-top: 10px;
 
   height: auto;

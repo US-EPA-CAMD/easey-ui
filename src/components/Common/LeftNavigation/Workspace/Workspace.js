@@ -1,8 +1,4 @@
-import {
-  NavDropDownButton,
-  MegaMenu,
-  //   Link
-} from "@trussworks/react-uswds";
+import { NavDropDownButton, MegaMenu } from "@trussworks/react-uswds";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "./Workspace.css";
@@ -10,23 +6,6 @@ import { HiDesktopComputer } from "react-icons/hi";
 const Workspace = () => {
   const [open, setOpen] = useState(false);
   const subMenu = [
-    // <Link
-    //   href="monitoring-plans"
-    //   key={"monitoring-plans"}
-    //   title={"monitoring-plans"}
-    // >
-    //    - Monitoring Plans
-    // </Link>,
-    // <Link
-    //   href="qa_certifications"
-    //   key={"qa_certifications"}
-    //   title={"qa_certifications"}
-    // >
-    //   {"- QA & Certifications"}
-    // </Link>,
-    //  <Link href="emissions" key={"Emissions"} title={"Emissions"}>
-    //   - Emissions
-    // </Link>,
     <Link
       to="./monitoring-plans"
       rel="Monitoring Plans"
@@ -60,17 +39,17 @@ const Workspace = () => {
           label={<div className="workspaceLabel"> Workspace</div>}
           isCurrent={open}
         />
-        <MegaMenu key="1" items={[subMenu]} isOpen={open} id={"MenuDropDown"} />
+        <MegaMenu key="workspace" items={[subMenu]} isOpen={open} id={"MenuDropDown"} />
       </div>
     </>
   );
 
   return (
-    <div className="workspaceDrop">
+    <div className="workspaceDropp">
       <div className="iconLine iconDiv">
         <HiDesktopComputer size={32} style={{ fill: "white" }} />
       </div>
-      <div className="test">{workSpace}</div>
+      <div className="workspaceDropDown">{workSpace}</div>
     </div>
   );
 };
