@@ -12,7 +12,6 @@ const HeaderInfo = ({
   showInactive,
   hasActiveConfigs
 }) => {
-
   const [configurations, setConfigurations] = useState(showInactive? monitoringPlans:
     getActiveConfigurations(monitoringPlans));
 

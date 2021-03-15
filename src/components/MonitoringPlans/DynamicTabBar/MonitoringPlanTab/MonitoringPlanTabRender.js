@@ -35,7 +35,7 @@ export const MonitoringPlanTabRender = ({ facility, monitoringPlans, hasActiveCo
 
   };
 
-  let supItems = [];
+  const supItems = [];
 
   const methodItems = [
     {
