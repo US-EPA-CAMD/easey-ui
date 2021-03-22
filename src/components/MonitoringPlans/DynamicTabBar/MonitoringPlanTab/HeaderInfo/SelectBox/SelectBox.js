@@ -2,16 +2,17 @@ import React, { useState,useEffect } from "react";
 import "./SelectBox.css";
 import {getActiveConfigurations, getInActiveConfigurations} from "../../../../../../utils/selectors/monitoringConfigurations";
 
-const SelectBox = ({ caption, options, selectKey, selectionHandler, showInactive=false }) => {
+const SelectBox = ({ caption, options, selectKey, selectionHandler, showInactive=false, initialSelection}) => {
 
+ 
   function getIndex(name) {
     return options.findIndex(obj => obj[selectKey] === name);
   }
-  const [selectionState, setSelectionState] = useState(0);
+  const [selectionState, setSelectionState] = useState(initialSelection? initialSelection:0);
 
-  const handleChange = (val) => {
+  const handleChange = (val) => {setSelectionState(getIndex(val.target.value));
     selectionHandler(getIndex(val.target.value));
-    setSelectionState(getIndex(val.target.value));
+    
   };
 
   const populateOptions = (optionsList) =>{
@@ -23,12 +24,9 @@ const SelectBox = ({ caption, options, selectKey, selectionHandler, showInactive
       );
     })
   }
-
   useEffect(() => {
-    selectionHandler(0);
-    setSelectionState(0);
-  }, [options]);
-
+    selectionHandler(initialSelection? initialSelection:0);
+  }, []);  
   return (
     <div>
       <div className="mpSelect">
@@ -37,8 +35,9 @@ const SelectBox = ({ caption, options, selectKey, selectionHandler, showInactive
         <select
         role="select"
         data-testid="select"
+        id={caption}
           onChange={(e) => handleChange(e)}
-          value={(options[selectionState] !== undefined) ?options[selectionState][selectKey]:options[0][selectKey]}
+          value={((options[selectionState] !== undefined) ?options[selectionState][selectKey]:options[0][selectKey])}
         >
           {showInactive && caption==="Configurations" &&  getActiveConfigurations(options).length > 0 && (
               <optgroup label="Active" role="optGroup">
