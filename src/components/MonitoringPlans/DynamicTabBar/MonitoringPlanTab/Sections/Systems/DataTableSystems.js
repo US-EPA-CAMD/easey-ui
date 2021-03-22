@@ -60,7 +60,7 @@ export const DataTableSystems = ({
     if (monitoringSystems.length > 0 || loading === false) {
       return fs.getMonitoringPlansSystemsTableRecords(monitoringSystems);
     } else {
-      return [{ col2: "Loading list of Supplemental Methods" }];
+      return [{ col2: "Loading list of Systems" }];
     }
   }, [loading, monitoringSystems]);
 

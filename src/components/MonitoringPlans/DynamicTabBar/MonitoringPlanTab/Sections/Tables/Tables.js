@@ -1,7 +1,12 @@
-import React from 'react'
+import React,{useState, useEffect} from 'react'
 import { Accordion } from "@trussworks/react-uswds";
 const Tables = ({sectionSelect,methodItems,supItems,matsTableFlag,systemsItems}) => {
 
+    const [expanded,setExpanded] = useState(false);
+    useEffect(() => {
+        setExpanded(true);
+
+    }, [sectionSelect])
     const sections = {
         "Monitoring Methods": (
           <div>
@@ -23,8 +28,10 @@ const Tables = ({sectionSelect,methodItems,supItems,matsTableFlag,systemsItems})
         "Monitoring Systems": (
           <div>
             <hr width="100%" align="center" />
+            
             <Accordion
               bordered={false}
+              expanded={expanded}
               items={systemsItems}
               className="accordions"
             />
@@ -36,6 +43,7 @@ const Tables = ({sectionSelect,methodItems,supItems,matsTableFlag,systemsItems})
       };
     return (
         <div>
+            {console.log(sections[sectionSelect], 't his is accordion')}
             {sections[sectionSelect]}
         </div>
     )

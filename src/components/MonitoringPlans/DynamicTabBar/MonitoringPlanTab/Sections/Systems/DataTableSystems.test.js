@@ -3,54 +3,95 @@ import { render, screen } from "@testing-library/react";
 import { DataTableSystems } from "./DataTableSystems";
 
 //testing redux connected component to mimic props passed as argument
-function componentRenderer(showActiveOnly) {
+function componentRenderer() {
   const props = {
-    monitoringMethods: [
+    monitoringSystems:[
       {
-        id: "CAMD-F4C326C9D8044324B83603C2FC0154B2",
-        parameter: "co2",
-        methodology: "ad",
-        subsitituteDataApproach: "spts",
-        byPassApproach: "null",
-        beginDate: "1995-01-01 00",
-        endTime: "1995-01-01 00",
-        active: false
+        "id": "CAMD-9FC097418E8D4A7D8841478FDFA6C46A",
+        "monLocId": "3",
+        "systemType": "SO2",
+        "systemDesignationCode": "P",
+        "systemIdentifier": "ABF",
+        "fuelCode": "NFS",
+        "beginDate": "1993-10-01",
+        "endDate": null,
+        "beginHour": "0",
+        "endHour": null
       },
       {
-        id: "CAMD-F4C326C9D8044324B83603C2FC0154B2",
-        parameter: "co2",
-        methodology: "ad",
-        subsitituteDataApproach: "spts",
-        byPassApproach: "null",
-        beginDate: "1995-01-01 00",
-        endTime: "",
-        active: true
+        "id": "CAMD-735700562C644DBC9F1FCA3AD06DA8EE",
+        "monLocId": "3",
+        "systemType": "NOX",
+        "systemDesignationCode": "P",
+        "systemIdentifier": "ABG",
+        "fuelCode": "NFS",
+        "beginDate": "1993-10-01",
+        "endDate": null,
+        "beginHour": "0",
+        "endHour": null
       },
       {
-        id: "CAMD-F4C326C9D8044324B83603C2FC0154B2",
-        parameter: "co2",
-        methodology: "ad",
-        subsitituteDataApproach: "spts",
-        byPassApproach: "null",
-        beginDate: "1995-01-01 00",
-        endTime: "1995-01-01 00",
-        active: false
+        "id": "CAMD-F4FD3AEEC8684A33A5963FA4D0E46790",
+        "monLocId": "3",
+        "systemType": "CO2",
+        "systemDesignationCode": "P",
+        "systemIdentifier": "ABH",
+        "fuelCode": "NFS",
+        "beginDate": "1993-10-01",
+        "endDate": null,
+        "beginHour": "0",
+        "endHour": null
       },
+      {
+        "id": "CAMD-BD2F8ADCD3A940029CF8136B52829B0A",
+        "monLocId": "3",
+        "systemType": "FLOW",
+        "systemDesignationCode": "P",
+        "systemIdentifier": "ABJ",
+        "fuelCode": "NFS",
+        "beginDate": "1993-10-01",
+        "endDate": null,
+        "beginHour": "0",
+        "endHour": null
+      },
+      {
+        "id": "CAMD-F79348595AFD46849C2503F8717250C8",
+        "monLocId": "3",
+        "systemType": "OP",
+        "systemDesignationCode": "P",
+        "systemIdentifier": "ABK",
+        "fuelCode": "NFS",
+        "beginDate": "1993-10-01",
+        "endDate": null,
+        "beginHour": "0",
+        "endHour": null
+      },
+      {
+        "id": "CAMD-A3CE0C952BD44CB2878908537200979A",
+        "monLocId": "3",
+        "systemType": "OP",
+        "systemDesignationCode": "B",
+        "systemIdentifier": "ASK",
+        "fuelCode": "NFS",
+        "beginDate": "1993-10-01",
+        "endDate": "2004-12-31",
+        "beginHour": "0",
+        "endHour": "23"
+      }
     ],
-    loadMonitoringMethodsData: jest.fn(),
-    loadMonitoringMatsMethodsData: jest.fn(),
+    loadMonitoringSystemsData: jest.fn(),
+
     loading: false,
-    showActiveOnly: showActiveOnly
+
   };
   return render(<DataTableSystems {...props} />);
 }
 function componentRendererNoData(args) {
   const defualtProps = {
-    monitoringMethods: [],
-    loadMonitoringMethodsData: jest.fn(),
-    loadMonitoringMatsMethodsData: jest.fn(),
+    monitoringSystems: [],
+    loadMonitoringSystemsData: jest.fn(),
     loading: true,
-    showActiveOnly: true
+
   };
 
   const props = { ...defualtProps, ...args };
@@ -58,18 +99,13 @@ function componentRendererNoData(args) {
 }
 
 test("should render only active monitoring methods by default", () => {
-  const { container } = componentRenderer(true);
+  const { container } = componentRenderer();
   const records = container.querySelectorAll("tbody tr");
-  expect(records.length).toEqual(1);
+  expect(records.length).toEqual(6);
 });
 
-test("should render both active and inactive monitoring methods when showActive only property is false", () => {
-  const { container } = componentRenderer(false);
-  const records = container.querySelectorAll("tbody tr");
-  expect(records.length).toEqual(3);
-});
 
 test("testing redux connected data-table component renders no records", () => {
   const { container } = componentRendererNoData();
-  expect(screen.getByText("Loading list of Methods")).toBeInTheDocument();
+  expect(screen.getByText("Loading list of Systems")).toBeInTheDocument();
 });
