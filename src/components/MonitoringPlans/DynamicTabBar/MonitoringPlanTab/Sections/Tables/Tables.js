@@ -32,10 +32,9 @@ const Tables = ({
     "Monitoring Systems": (
       <div>
         <hr width="100%" align="center" />
-
         <Accordion
           bordered={false}
-          expanded={expanded}
+          expanded={true}
           items={systemsItems}
           className="accordions"
         />
