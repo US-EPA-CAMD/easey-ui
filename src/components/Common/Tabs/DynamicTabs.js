@@ -32,7 +32,8 @@ export const DynamicTabs = ({
       newTabs.forEach((t) => {
         if(!tabs.some(facility => facility.title === t.title)){
           tabs.push(t);
-          addFacility({name: t.title,location:5,sections:"Monitoring Plan" });
+          addFacility(t.title);
+          // addFacility({name: t.title,location:5,sections:"Monitoring Plan" });
         }
       });
       setTabs([...tabs]);

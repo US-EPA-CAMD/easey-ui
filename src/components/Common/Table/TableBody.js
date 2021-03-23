@@ -88,7 +88,6 @@ const TableBody = ({
                     className="tableButton"
                     // onClick={() => handleDataSelector(row.cells)}
                   >
-                    {" "}
                     <img
                       src={require("./images/openTab.jpg")}
                       className={

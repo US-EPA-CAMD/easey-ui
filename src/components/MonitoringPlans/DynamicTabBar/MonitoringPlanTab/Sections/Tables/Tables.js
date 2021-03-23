@@ -20,13 +20,20 @@ const Tables = ({
           items={methodItems}
           className="accordions"
         />
-        <hr width="100%" align="center" />
+
         {matsTableFlag ? (
-          <Accordion bordered={true} items={supItems} className="accordions" />
+          <>
+            <hr width="100%" align="center" />
+            <Accordion
+              bordered={true}
+              items={supItems}
+              className="accordions"
+            />
+          </>
         ) : (
           ""
         )}
-        <hr width="100%" align="center" />
+        {/* <hr width="100%" align="center" /> */}
       </div>
     ),
     "Monitoring Systems": (
@@ -38,9 +45,9 @@ const Tables = ({
           items={systemsItems}
           className="accordions"
         />
-        <hr width="100%" align="center" />
+        {/* <hr width="100%" align="center" /> */}
 
-        <hr width="100%" align="center" />
+        {/* <hr width="100%" align="center" /> */}
       </div>
     ),
   };
