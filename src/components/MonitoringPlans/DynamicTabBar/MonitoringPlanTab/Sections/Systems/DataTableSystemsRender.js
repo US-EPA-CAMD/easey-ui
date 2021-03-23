@@ -13,6 +13,7 @@ const DataTableSystemsRender = ({ columns, data, selectedRowHandler }) => {
         // showEntries={[10, 250, 500]}
         // search
         viewDataColumn
+        // openTabColumn={[]}
         selectedRowHandler={selectedRowHandler}
       />
     </div>

@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import "./TableBody.css";
+import { GoPencil } from "react-icons/go";
 const TableBody = ({
   getTableBodyProps,
   rows,
@@ -8,7 +9,7 @@ const TableBody = ({
   selectedRowHandler,
   defaultSelect,
   viewDataColumn,
-  openTabColumn
+  openTabColumn,
 }) => {
   // just turns on react-table row selected to handle future css
   const defaultSelector = () => {
@@ -72,7 +73,7 @@ const TableBody = ({
                 );
               })}
               {/* additional cell for viewing ( not related to incoming data) */}
-              {openTabColumn ? (
+              {openTabColumn && !viewDataColumn ? (
                 <td
                   width={row.cells[0].column.width}
                   className={`${
@@ -113,8 +114,8 @@ const TableBody = ({
                     // onClick={() => handleDataSelector(row.cells)}
                   >
                     {" "}
-                    <img src={require("./images/openTab.jpg")} />
-                    Open
+                    <GoPencil />
+                    View
                   </button>
                 </td>
               ) : null}

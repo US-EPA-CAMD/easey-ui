@@ -1,52 +1,51 @@
-import React,{useState, useEffect} from 'react'
+import React, { useState, useEffect } from "react";
 import { Accordion } from "@trussworks/react-uswds";
-const Tables = ({sectionSelect,methodItems,supItems,matsTableFlag,systemsItems}) => {
+const Tables = ({
+  sectionSelect,
+  methodItems,
+  supItems,
+  matsTableFlag,
+  systemsItems,
+}) => {
+  const [expanded, setExpanded] = useState(false);
+  useEffect(() => {
+    setExpanded(true);
+  }, [sectionSelect]);
+  const sections = {
+    "Monitoring Methods": (
+      <div>
+        <hr width="100%" align="center" />
+        <Accordion
+          bordered={false}
+          items={methodItems}
+          className="accordions"
+        />
+        <hr width="100%" align="center" />
+        {matsTableFlag ? (
+          <Accordion bordered={true} items={supItems} className="accordions" />
+        ) : (
+          ""
+        )}
+        <hr width="100%" align="center" />
+      </div>
+    ),
+    "Monitoring Systems": (
+      <div>
+        <hr width="100%" align="center" />
 
-    const [expanded,setExpanded] = useState(false);
-    useEffect(() => {
-        setExpanded(true);
+        <Accordion
+          bordered={false}
+          expanded={expanded}
+          items={systemsItems}
+          className="accordions"
+        />
+        <hr width="100%" align="center" />
 
-    }, [sectionSelect])
-    const sections = {
-        "Monitoring Methods": (
-          <div>
-            <hr width="100%" align="center" />
-            <Accordion
-              bordered={false}
-              items={methodItems}
-              className="accordions"
-            />
-            <hr width="100%" align="center" />
-            {matsTableFlag ? (
-              <Accordion bordered={true} items={supItems} className="accordions" />
-            ) : (
-              ""
-            )}
-            <hr width="100%" align="center" />
-          </div>
-        ),
-        "Monitoring Systems": (
-          <div>
-            <hr width="100%" align="center" />
-            
-            <Accordion
-              bordered={false}
-              expanded={expanded}
-              items={systemsItems}
-              className="accordions"
-            />
-            <hr width="100%" align="center" />
+        <hr width="100%" align="center" />
+      </div>
+    ),
+  };
+  return <div>{sections[sectionSelect]}</div>;
+};
 
-            <hr width="100%" align="center" />
-          </div>
-        ),
-      };
-    return (
-        <div>
-            {console.log(sections[sectionSelect], 't his is accordion')}
-            {sections[sectionSelect]}
-        </div>
-    )
-}
-
-export default Tables
+export default Tables;
