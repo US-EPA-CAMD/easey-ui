@@ -1,18 +1,17 @@
-import React,{useState} from "react";
+import React, { useState } from "react";
 import UswdsTable from "../../../../../Common/Table/UswdsTable";
 import "./DataTableSystemsRender.css";
-import Modal from './Modal/Modal'
+import Modal from "./Modal/Modal";
 const DataTableSystemsRender = ({ columns, data, selectedRowHandler }) => {
   const [show, setShow] = useState(false);
 
   const closeModalHandler = () => setShow(false);
   const openModal = (value) => {
     setShow(value);
-  }
+  };
   return (
-   
     <div className="tableContainerWS">
-       <div className={`usa-overlay ${show ? "is-visible" : ""}`}></div>
+      <div className={`usa-overlay ${show ? "is-visible" : ""}`}></div>
       <UswdsTable
         columns={columns}
         data={data}
@@ -23,7 +22,7 @@ const DataTableSystemsRender = ({ columns, data, selectedRowHandler }) => {
         viewDataColumn
         // openTabColumn={[]}
         selectedRowHandler={selectedRowHandler}
-        openModal = {openModal}
+        openModal={openModal}
       />
       <Modal show={show} close={closeModalHandler} />
     </div>

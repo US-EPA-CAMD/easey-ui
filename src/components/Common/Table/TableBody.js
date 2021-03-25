@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import "./TableBody.css";
 import { GoPencil } from "react-icons/go";
-import Modal from "../../MonitoringPlans/DynamicTabBar/MonitoringPlanTab/Sections/Systems/Modal/Modal";
 const TableBody = ({
   getTableBodyProps,
   rows,

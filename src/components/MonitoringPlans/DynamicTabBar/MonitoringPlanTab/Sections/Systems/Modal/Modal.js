@@ -58,7 +58,7 @@ const Modal = ({ show, close, children }) => {
               opacity: show ? "1" : "0",
             }}
           >
-            <div className="modal-header"> 
+            <div className="modal-header">
               <span
                 tabindex="0"
                 onClick={close}
@@ -70,7 +70,6 @@ const Modal = ({ show, close, children }) => {
               >
                 <i className="fa fa-times fa-sm"></i>
               </span>
-             
             </div>
             <div className="modal-content">
               <div className="modal-body"></div>
