@@ -17,11 +17,11 @@
   color: gray;
   padding: 1rem;
 
-float:right;
+  float: right;
   border-bottom: 0 none;
 }
-span.close-modal-btn{
-    padding:0 !important;
+span.close-modal-btn {
+  padding: 0 !important;
 }
 .modal-header span {
   position: relative;
@@ -41,22 +41,20 @@ span.close-modal-btn{
   height: 500px;
   border: 0 none;
   padding-top: 0;
+  padding-bottom: 15px;
 }
 
 .modal-body {
   margin-bottom: 1rem;
   margin-top: 0;
+  font-size: 1rem;
+  background: #f1f1f1;
+  color: #333;
 }
 
 .modal-body h4 {
   font-size: 1.8rem;
   color: #f1f1f1;
-}
-
-.modal-body {
-  font-size: 1rem;
-  background: #f1f1f1;
-  color: #333;
 }
 
 .modal-footer button {
@@ -73,14 +71,10 @@ span.close-modal-btn{
   background: #f1f1f1;
 }
 
-.modal-content {
-  padding-bottom: 15px;
-}
 .cancelBTN {
   color: gray;
   background-color: Transparent;
   width: fit-content;
-  border: 0px;
   height: 30px;
   padding-left: 30px !important;
   padding-right: 30px !important;

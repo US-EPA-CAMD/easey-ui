@@ -38,7 +38,7 @@ const Modal = ({ show, close, children }) => {
         setTabs(focusableModalElements.length - 1);
       }
       currentElement.focus();
-      e.preventDefault();
+      return e.preventDefault();
     }
   };
 
