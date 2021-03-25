@@ -1,6 +1,7 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "./TableBody.css";
 import { GoPencil } from "react-icons/go";
+import Modal from "../../MonitoringPlans/DynamicTabBar/MonitoringPlanTab/Sections/Systems/Modal/Modal";
 const TableBody = ({
   getTableBodyProps,
   rows,
@@ -10,6 +11,7 @@ const TableBody = ({
   defaultSelect,
   viewDataColumn,
   openTabColumn,
+  openModal,
 }) => {
   // just turns on react-table row selected to handle future css
   const defaultSelector = () => {
@@ -42,6 +44,7 @@ const TableBody = ({
       console.log("enter was pressed");
     }
   };
+
   return (
     <tbody {...getTableBodyProps()}>
       {(page.length > 0 &&
@@ -107,14 +110,11 @@ const TableBody = ({
                     row.isSelected ? "selected hovered" : "hovered"
                   }`}
                 >
-                  {" "}
                   <button
-                    className="tableButton"
-                    // onClick={() => handleDataSelector(row.cells)}
+                    onClick={() => openModal(true)}
+                    className=" tableButton"
                   >
-                    {" "}
-                    <GoPencil />
-                    View
+                    <GoPencil /> View
                   </button>
                 </td>
               ) : null}
