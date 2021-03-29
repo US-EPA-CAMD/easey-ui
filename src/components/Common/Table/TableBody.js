@@ -82,7 +82,7 @@ const TableBody = ({
                     row.isSelected ? "selected hovered" : "hovered"
                   }`}
                 >
-                  {" "}
+                 
                   <button
                     disabled={
                       openTabColumn.includes(row.cells[1].value) ? true : false

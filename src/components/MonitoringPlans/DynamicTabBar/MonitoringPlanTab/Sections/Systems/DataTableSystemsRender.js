@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import UswdsTable from "../../../../../Common/Table/UswdsTable";
 import "./DataTableSystemsRender.css";
-import Modal from "./Modal/Modal";
+import Modal from "../../../../../Common/Modal/Modal";
 const DataTableSystemsRender = ({ columns, data, selectedRowHandler }) => {
   const [show, setShow] = useState(false);
 
@@ -9,6 +9,8 @@ const DataTableSystemsRender = ({ columns, data, selectedRowHandler }) => {
   const openModal = (value) => {
     setShow(value);
   };
+
+  const root = document.getElementById("portal")
   return (
     <div className="tableContainerWS">
       <div className={`usa-overlay ${show ? "is-visible" : ""}`}></div>
@@ -24,7 +26,7 @@ const DataTableSystemsRender = ({ columns, data, selectedRowHandler }) => {
         selectedRowHandler={selectedRowHandler}
         openModal={openModal}
       />
-      <Modal show={show} close={closeModalHandler} />
+      {show ? <Modal show={show} close={closeModalHandler} />: ''}
     </div>
   );
 };

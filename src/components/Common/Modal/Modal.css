@@ -11,9 +11,12 @@
   box-shadow: 0px -2px 22px -6px rgba(60, 55, 61, 0.37),
     -10px 10px 22px -6px rgba(60, 55, 61, 0.37);
 }
-
+.modal-color{
+    background: #f1f1f1;
+    background: #E4E2E0;
+}
 .modal-header {
-  background: #f1f1f1;
+  
   color: gray;
   padding: 1rem;
 
@@ -37,7 +40,7 @@ span.close-modal-btn {
 
 .modal-content {
   padding: 1.5rem 1rem;
-  background: #f1f1f1;
+
   height: 500px;
   border: 0 none;
   padding-top: 0;
@@ -48,13 +51,11 @@ span.close-modal-btn {
   margin-bottom: 1rem;
   margin-top: 0;
   font-size: 1rem;
-  background: #f1f1f1;
   color: #333;
 }
 
 .modal-body h4 {
   font-size: 1.8rem;
-  color: #f1f1f1;
 }
 
 .modal-footer button {
@@ -68,7 +69,6 @@ span.close-modal-btn {
   padding-bottom: 0 !important;
   padding-left: 0 !important;
   padding-right: 0 !important;
-  background: #f1f1f1;
 }
 
 .cancelBTN {
