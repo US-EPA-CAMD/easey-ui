@@ -1,16 +1,82 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import UswdsTable from "../../../../../Common/Table/UswdsTable";
 import "./DataTableSystemsRender.css";
 import Modal from "../../../../../Common/Modal/Modal";
-const DataTableSystemsRender = ({ columns, data, selectedRowHandler }) => {
+import Details from "../Systems/Details/Details";
+const DataTableSystemsRender = ({ columns, data }) => {
   const [show, setShow] = useState(false);
 
   const closeModalHandler = () => setShow(false);
-  const openModal = (value) => {
+
+  const [modalData, setModalData] = useState([
+    { value: 1 },
+    { value: 1 },
+    { value: 1 },
+    { value: 1 },
+  ]);
+  let modalState1 = [{ value: 1 }, { value: 1 }, { value: 1 }, { value: 1 }];
+  const [selected, setSelected] = useState([]);
+  const selectedRowHandler = (selection) => {
+    // setSelected(selection);
+    // const test1 = [];
+    // selected.map((info) => {
+    //   const state = {
+    //     header: info.column.Header,
+    //     value: info.value,
+    //   };
+    //   test1.push(state);
+    // });
+    // setModalData(test1);
+  };
+
+  const openModal = (value, selection) => {
+    setSelected(selection);
+    // const test1 = [];
+    // selected.map((info) => {
+    //   const state = {
+    //     header: info.column.Header,
+    //     value: info.value,
+    //   };
+    //   test1.push(state);
+    // });
+    // setModalData(test1);
     setShow(value);
   };
 
-  const root = document.getElementById("portal")
+  useEffect(() => {
+    const test1 = [];
+    selected.map((info) => {
+      const state = {
+        header: info.column.Header,
+        value: info.value,
+      };
+      test1.push(state);
+    });
+    setModalData(test1);
+  }, [show]);
+  const modalPop = (
+    <div>
+      <Modal
+        show={show}
+        close={closeModalHandler}
+        children={<Details viewOnly={true} modalData={modalData} />}
+      />
+    </div>
+  );
+  // useEffect(() => {    const test1 = [];
+  //   selected.map((info) => {
+  //     const state = {
+  //       header: info.column.Header,
+  //       value: info.value,
+  //     };
+  //     test1.push(state);
+  //   });
+  //   setModalData(test1);
+  //   console.log(test1);
+
+  //   console.log("this is render data,", data);
+  // }, [selected])
+  const root = document.getElementById("portal");
   return (
     <div className="tableContainerWS">
       <div className={`usa-overlay ${show ? "is-visible" : ""}`}></div>
@@ -26,7 +92,15 @@ const DataTableSystemsRender = ({ columns, data, selectedRowHandler }) => {
         selectedRowHandler={selectedRowHandler}
         openModal={openModal}
       />
-      {show ? <Modal show={show} close={closeModalHandler} />: ''}
+      {show ? (
+        <Modal
+          show={show}
+          close={closeModalHandler}
+          children={<Details viewOnly={true} modalData={modalData} />}
+        />
+      ) : (
+        ""
+      )}
     </div>
   );
 };

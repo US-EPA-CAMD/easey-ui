@@ -1,0 +1,18 @@
+
+  .dateLabels > .usa-label {
+    margin : 0;
+  }
+  .modalColumnDate {
+    float: left;
+    width: 90%;
+    height: fit-content; /* Should be removed. Only for demonstration */
+    margin-top: 0;
+    /* display: inline-block */
+  }
+  .modalColumnRightDate {
+    float: left;
+    width: 10%;
+    height: fit-content; /* Should be removed. Only for demonstration */
+    margin-top: 0;
+    /* display: inline-block */
+  }

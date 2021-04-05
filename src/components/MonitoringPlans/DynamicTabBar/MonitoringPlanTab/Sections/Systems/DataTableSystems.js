@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo } from "react";
+import React, { useEffect, useMemo,useState } from "react";
 import { connect } from "react-redux";
 import { loadMonitoringSystems } from "../../../../../../store/actions/monitoringSystems";
 import * as fs from "../../../../../../utils/selectors/monitoringPlanSystems";
@@ -15,6 +15,7 @@ export const DataTableSystems = ({
       loadMonitoringSystemsData(locationSelect);
     }
   }, [locationSelect]);
+
   const columns = useMemo(
     () => [
       {
@@ -69,7 +70,6 @@ export const DataTableSystems = ({
       <DataTableSystemsRender
         columns={columns}
         data={data}
-        // selectedRowHandler={selectedRowHandler}
       />
     </div>
   );
