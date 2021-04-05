@@ -5,6 +5,7 @@ import {
   FormGroup,
   Form,
   TextInput,
+  DatePicker,
 } from "@trussworks/react-uswds";
 
 import "./Details.css";
@@ -15,22 +16,48 @@ import { types, fuels, designations } from "./SystemDescriptions";
 import DateTime from "./DateTime/DateTime";
 const Details = ({ modalData, viewOnly }) => {
   console.log("this is modata details", modalData);
-  // const [startDate, setStartDate] = useState(null);
+  const [startDate, setStartDate] = useState(null);
   const [endDate, setEndDate] = useState(null);
-  // const [startHour, setStartHour] = useState(null);
+  const [startHour, setStartHour] = useState(null);
   const [endHour, setEndHour] = useState(null);
   const [modalState, setModalSet] = useState([]);
-  let startDate = null;
-  let startHour = null;
+  // let startDate = null;
+  // let startHour = null;
   // input.split(/[ ,]+/);
 
   const startDateHandler = (date) => {
     // setStartDate(date);
   };
-  const endDateHandler = (date) => {
-    setEndDate(date);
-  };
-
+  // const endDateHandler = (date) => {
+  //   setEndDate(date);
+  // };
+  const timeOptions = [
+    { time: null },
+    { time: 0 },
+    { time: 1 },
+    { time: 2 },
+    { time: 3 },
+    { time: 4 },
+    { time: 5 },
+    { time: 6 },
+    { time: 7 },
+    { time: 8 },
+    { time: 9 },
+    { time: 10 },
+    { time: 11 },
+    { time: 12 },
+    { time: 13 },
+    { time: 14 },
+    { time: 15 },
+    { time: 16 },
+    { time: 17 },
+    { time: 18 },
+    { time: 19 },
+    { time: 20 },
+    { time: 21 },
+    { time: 22 },
+    { time: 23 },
+  ];
   useEffect(() => {
     console.log(modalData);
     if (modalData.length > 1) {
@@ -43,20 +70,28 @@ const Details = ({ modalData, viewOnly }) => {
         modalData[5].value,
       ]);
       const startDateString = modalData[4].value.split(/[ ,]+/);
+
       // setStartDate(new Date(startDateString[0]));
       // setStartHour(startDateString[1]);
-      startDate = new Date(startDateString[0]);
-      startHour = startDateString[1];
+      // startDate = startDateString[0];
+      // startHour = startDateString[1];
+
+      const [day, month, year] = startDateString[0].split("/");
+      setStartDate(`${year}-${day}-${month}`);
+      setStartHour(startDateString[1]);
       console.log("this is hour", startDate);
       if (modalData[5] !== "") {
         const endDateString = modalData[5].value.split(/[ ,]+/);
-        setEndDate(new Date(endDateString[0]));
+        const [eday, emonth, eyear] = endDateString[0].split("/");
+        setEndDate(`${eyear}-${eday}-${emonth}`);
+        setEndHour(endDateString[1]);
+
         setEndHour(endDateString[1]);
       }
     }
     console.log("this is testing the new state modal", modalState, modalData);
   }, [modalData]);
-
+  console.log("this is hour", startDate);
   return (
     <div>
       {
@@ -69,7 +104,10 @@ const Details = ({ modalData, viewOnly }) => {
             <div className="modalRow">
               <div className="modalColumn">
                 <FormGroup className="dateLabels">
-                  <Label htmlFor="otherInput" hint={<span className="requiredItalics"> (Required)</span>}>
+                  <Label
+                    htmlFor="otherInput"
+                    hint={<span className="requiredItalics"> (Required)</span>}
+                  >
                     System ID{" "}
                   </Label>
                   <TextInput
@@ -77,7 +115,7 @@ const Details = ({ modalData, viewOnly }) => {
                     id="otherInput"
                     name="otherInput"
                     type="text"
-                    // disabled={viewOnly}
+                    disabled={viewOnly}
                     defaultValue={modalData.length >= 1 ? modalState[0] : ""}
                   />
                 </FormGroup>
@@ -100,7 +138,7 @@ const Details = ({ modalData, viewOnly }) => {
                   options={types}
                   initialSelection={modalData.length >= 1 ? modalState[1] : ""}
                   selectKey="code"
-                  // viewOnly={viewOnly}
+                  viewOnly={viewOnly}
                   required
                 />
               </div>
@@ -110,26 +148,82 @@ const Details = ({ modalData, viewOnly }) => {
                   options={fuels}
                   initialSelection={modalData.length >= 1 ? modalState[3] : ""}
                   selectKey="code"
-                  // viewOnly={viewOnly}
+                  viewOnly={viewOnly}
                   required
                 />
               </div>
             </div>
             <div className="modalRow">
               <div className="modalColumn">
-                <DateTime time={startDate} hour={startHour} start />
+                <div className="dateLabels">
+                  <Label id="dateStart">Start Date and Time (Required)</Label>
+
+                  <div className="modalColumnDate dateLabels">
+                    <div className="usa-hint" id="dateStart">
+                      mm/dd/yyyy
+                    </div>
+                    {startDate !== null ? (
+                      <DatePicker
+                        id="dateStart"
+                        name="dateStart"
+                        disabled={viewOnly}
+                        defaultValue={startDate}
+                      />
+                    ) : (
+                      ""
+                    )}
+                  </div>
+                  <div className="modalColumnDateRight">
+                    {startHour !== null ? (
+                      <SelectBox
+                        caption="hh"
+                        options={timeOptions}
+                        initialSelection={startHour}
+                        selectKey="time"
+                        viewOnly={viewOnly}
+                        // required={required}
+                      />
+                    ) : (
+                      ""
+                    )}
+                  </div>
+                </div>
               </div>
               <div className="modalColumnRight">
-                {/* <DateTime
-                  time={modalState[6] ? modalState[6] : null}
-                  hour={modalState[7] ? modalState[7] : ''}
-                  start={false}
-                /> */}
+                <div className="dateLabels">
+                  <Label id="dateEnd">End Date and Time</Label>
+
+                  <div className="modalColumnDate dateLabels">
+                    <div className="usa-hint" id="dateEnd">
+                      mm/dd/yyyy
+                    </div>
+                    {endDate !== null ? (
+                      <DatePicker
+                        id="dateEnd"
+                        name="dateEnd"
+                        disabled={viewOnly}
+                        defaultValue={endDate}
+                      />
+                    ) : (
+                      ""
+                    )}
+                  </div>
+                  <div className="modalColumnDateRight">
+                    {endHour !== null ? (
+                      <SelectBox
+                        caption="hh"
+                        options={timeOptions}
+                        initialSelection={endHour}
+                        selectKey="time"
+                        viewOnly={viewOnly}
+                        // required={required}
+                      />
+                    ) : (
+                      ""
+                    )}
+                  </div>
+                </div>
               </div>
-              {/* <div className="modalRow">
-                <div className="modalColumn"></div>
-                <div className="modalColumnRight"> </div>
-              </div> */}
             </div>
           </Form>
         </div>

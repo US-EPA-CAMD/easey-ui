@@ -29,8 +29,8 @@
 
 @media (min-width: 768px) and (max-width: 3991px) {
   .modalDetails > .usa-form {
-    min-width: 620px !important;
-    max-width: 500px !important;
+    max-width: 620px !important;
+    min-width: 500px !important;
   }
 }
 .usa-label {
@@ -39,4 +39,25 @@
 }
 .requiredItalics{
   font-style: italic !important;
+}
+/* #dateStart>.usa-input {
+  width:100%;
+} */
+.dateLabels > .usa-label {
+  margin : 0;
+}
+.modalColumnDate {
+  float: left;
+  width: 70% !important;
+  height: fit-content; /* Should be removed. Only for demonstration */
+  margin-top: 0;
+  /* display: inline-block */
+}
+.modalColumnDateRight {
+  margin-left:10px;
+  float: left;
+  width: 25%;
+  height: fit-content; /* Should be removed. Only for demonstration */
+  margin-top: 0;
+  /* display: inline-block */
 }

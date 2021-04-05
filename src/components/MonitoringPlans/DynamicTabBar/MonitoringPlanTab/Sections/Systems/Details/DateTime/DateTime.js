@@ -6,7 +6,16 @@ import SelectBox from "../SelectBox/SelectBox";
 import "./DateTime.css";
 const DateTime = ({ time, hour, required, start }) => {
   const [startDate, setStartDate] = useState(time);
+console.log('time',time);
 
+let [day, month, year] = [];
+
+useEffect(() => {
+  if(time != null){
+    [day, month, year] =  time.split('/');}
+    console.log([day,month,year])
+    setStartDate(`${year}-${day}-${month}`)
+}, [time])
   return (
     <div className="dateLabels">
       <Label id={start ? "Start" : "End"} >
@@ -16,7 +25,7 @@ const DateTime = ({ time, hour, required, start }) => {
       <div className="modalColumnDate dateLabels">
         <Label id="date-label">mm/dd/yyyy</Label>
         {/* <div className="datePicker"> */}
-        <DatePicker id="birthdate" name="birthdate" defaultValue="1988-05-16" />
+        <DatePicker id="birthdate" name="birthdate" defaultValue={startDate} />
           {/* <FaCalendarAlt size={32} className="datePickerCal" /> */}
         {/* </div> */}
       </div>
@@ -59,4 +68,4 @@ const DateTime = ({ time, hour, required, start }) => {
   );
 };
 
-export default DateTime;
+export default React.memo(DateTime);
