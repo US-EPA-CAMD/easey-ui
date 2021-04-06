@@ -3,8 +3,8 @@ import UswdsTable from "../../../../../Common/Table/UswdsTable";
 import "./DataTableSystemsRender.css";
 import Modal from "../../../../../Common/Modal/Modal";
 import Details from "../Systems/Details/Details";
-const DataTableSystemsRender = ({ columns, data ,testShow}) => {
-  const [show, setShow] = useState(testShow? testShow :false);
+const DataTableSystemsRender = ({ columns, data, testShow }) => {
+  const [show, setShow] = useState(testShow ? testShow : false);
 
   const closeModalHandler = () => setShow(false);
 
@@ -25,15 +25,14 @@ const DataTableSystemsRender = ({ columns, data ,testShow}) => {
   };
 
   useEffect(() => {
-    const test1 = [];
-    selected.map((info) => {
-      const state = {
-        header: info.column.Header,
-        value: info.value,
-      };
-      test1.push(state);
-    });
-    setModalData(test1);
+    setModalData(
+      selected.map((info) => {
+        return {
+          header: info.column.Header,
+          value: info.value,
+        };
+      })
+    );
   }, [show]);
   const modalPop = (
     <div>
