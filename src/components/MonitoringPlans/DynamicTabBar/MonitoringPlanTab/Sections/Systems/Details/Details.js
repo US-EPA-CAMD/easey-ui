@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect,useState } from "react";
 import {
-  Button,
   Label,
   FormGroup,
   Form,
@@ -13,24 +12,15 @@ import "./Details.css";
 import SelectBox from "./SelectBox/SelectBox";
 import { types, fuels, designations } from "./SystemDescriptions";
 
-import DateTime from "./DateTime/DateTime";
 const Details = ({ modalData, viewOnly }) => {
-  console.log("this is modata details", modalData);
-  const [startDate, setStartDate] = useState(null);
-  const [endDate, setEndDate] = useState(null);
-  const [startHour, setStartHour] = useState(null);
-  const [endHour, setEndHour] = useState(null);
+  const [startDate, setStartDate] = React.useState(null);
+  const [endDate, setEndDate] = React.useState(null);
+  const [startHour, setStartHour] = React.useState(null);
+  const [endHour, setEndHour] = React.useState(null);
   const [modalState, setModalSet] = useState([]);
-  // let startDate = null;
-  // let startHour = null;
-  // input.split(/[ ,]+/);
 
-  const startDateHandler = (date) => {
-    // setStartDate(date);
-  };
-  // const endDateHandler = (date) => {
-  //   setEndDate(date);
-  // };
+
+  // console.log(modalData, 'data')
   const timeOptions = [
     { time: null },
     { time: 0 },
@@ -59,7 +49,6 @@ const Details = ({ modalData, viewOnly }) => {
     { time: 23 },
   ];
   useEffect(() => {
-    console.log(modalData);
     if (modalData.length > 1) {
       setModalSet([
         modalData[0].value,
@@ -70,28 +59,18 @@ const Details = ({ modalData, viewOnly }) => {
         modalData[5].value,
       ]);
       const startDateString = modalData[4].value.split(/[ ,]+/);
-
-      // setStartDate(new Date(startDateString[0]));
-      // setStartHour(startDateString[1]);
-      // startDate = startDateString[0];
-      // startHour = startDateString[1];
-
       const [day, month, year] = startDateString[0].split("/");
       setStartDate(`${year}-${day}-${month}`);
       setStartHour(startDateString[1]);
-      console.log("this is hour", startDate);
+
       if (modalData[5] !== "") {
         const endDateString = modalData[5].value.split(/[ ,]+/);
         const [eday, emonth, eyear] = endDateString[0].split("/");
         setEndDate(`${eyear}-${eday}-${emonth}`);
         setEndHour(endDateString[1]);
-
-        setEndHour(endDateString[1]);
       }
     }
-    console.log("this is testing the new state modal", modalState, modalData);
   }, [modalData]);
-  console.log("this is hour", startDate);
   return (
     <div>
       {

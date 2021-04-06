@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo,useState } from "react";
+import React, { useEffect, useMemo } from "react";
 import { connect } from "react-redux";
 import { loadMonitoringSystems } from "../../../../../../store/actions/monitoringSystems";
 import * as fs from "../../../../../../utils/selectors/monitoringPlanSystems";
@@ -67,10 +67,7 @@ export const DataTableSystems = ({
 
   return (
     <div className="methodTable">
-      <DataTableSystemsRender
-        columns={columns}
-        data={data}
-      />
+      <DataTableSystemsRender columns={columns} data={data} />
     </div>
   );
 };

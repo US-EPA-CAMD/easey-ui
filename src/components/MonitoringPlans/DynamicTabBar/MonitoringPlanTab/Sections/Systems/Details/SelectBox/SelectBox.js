@@ -1,20 +1,15 @@
 import React, { useState } from "react";
 import { Label, Dropdown, FormGroup } from "@trussworks/react-uswds";
 
-import "./SelectBox.css"
+import "./SelectBox.css";
 const SelectBox = ({
   caption,
   options,
   selectKey,
-  selectionHandler,
   initialSelection,
   viewOnly,
-  required
+  required,
 }) => {
-  function getIndex(name) {
-    return options.findIndex((obj) => obj[selectKey] === name);
-  }
-  //   }
   const [selectionState, setSelectionState] = useState(
     initialSelection ? initialSelection : null
   );
@@ -36,19 +31,26 @@ const SelectBox = ({
     <div>
       <div className="">
         <FormGroup className="formLabeling">
-          <Label hint={ required? <span className="requiredItalics"> (Required)</span>: ""}>
+          <Label
+            hint={
+              required ? (
+                <span className="requiredItalics"> (Required)</span>
+              ) : (
+                ""
+              )
+            }
+          >
             {caption}
           </Label>
           <Dropdown
-          aria-label={caption + ' dropdown'}
+            aria-label={caption + " dropdown"}
             className="modalDrop"
             name={caption}
             // weird bug without this
             value={selectionState !== null ? selectionState : initialSelection}
             disabled={viewOnly}
             role="select"
-
-            id={caption}
+            id={caption + initialSelection}
             onChange={(e) => handleChange(e)}
           >
             {populateOptions(options)}

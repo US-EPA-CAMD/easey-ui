@@ -3,8 +3,8 @@ import UswdsTable from "../../../../../Common/Table/UswdsTable";
 import "./DataTableSystemsRender.css";
 import Modal from "../../../../../Common/Modal/Modal";
 import Details from "../Systems/Details/Details";
-const DataTableSystemsRender = ({ columns, data }) => {
-  const [show, setShow] = useState(false);
+const DataTableSystemsRender = ({ columns, data ,testShow}) => {
+  const [show, setShow] = useState(testShow? testShow :false);
 
   const closeModalHandler = () => setShow(false);
 
@@ -13,33 +13,14 @@ const DataTableSystemsRender = ({ columns, data }) => {
     { value: 1 },
     { value: 1 },
     { value: 1 },
+    { value: "05/04/2009 0" },
+    { value: "05/04/2009 0" },
   ]);
-  let modalState1 = [{ value: 1 }, { value: 1 }, { value: 1 }, { value: 1 }];
   const [selected, setSelected] = useState([]);
-  const selectedRowHandler = (selection) => {
-    // setSelected(selection);
-    // const test1 = [];
-    // selected.map((info) => {
-    //   const state = {
-    //     header: info.column.Header,
-    //     value: info.value,
-    //   };
-    //   test1.push(state);
-    // });
-    // setModalData(test1);
-  };
+  const selectedRowHandler = (selection) => {};
 
   const openModal = (value, selection) => {
     setSelected(selection);
-    // const test1 = [];
-    // selected.map((info) => {
-    //   const state = {
-    //     header: info.column.Header,
-    //     value: info.value,
-    //   };
-    //   test1.push(state);
-    // });
-    // setModalData(test1);
     setShow(value);
   };
 
@@ -63,19 +44,6 @@ const DataTableSystemsRender = ({ columns, data }) => {
       />
     </div>
   );
-  // useEffect(() => {    const test1 = [];
-  //   selected.map((info) => {
-  //     const state = {
-  //       header: info.column.Header,
-  //       value: info.value,
-  //     };
-  //     test1.push(state);
-  //   });
-  //   setModalData(test1);
-  //   console.log(test1);
-
-  //   console.log("this is render data,", data);
-  // }, [selected])
   const root = document.getElementById("portal");
   return (
     <div className="tableContainerWS">
