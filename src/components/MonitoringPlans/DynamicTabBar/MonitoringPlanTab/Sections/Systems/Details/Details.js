@@ -78,7 +78,7 @@ const Details = ({ modalData, viewOnly }) => {
           <h2>
             Monitoring Systems: {modalData.length >= 1 ? modalState[0] : ""}{" "}
           </h2>
-          <Form onSubmit={function noRefCheck() {}}>
+          <Form>
             {" "}
             <div className="modalRow">
               <div className="modalColumn">

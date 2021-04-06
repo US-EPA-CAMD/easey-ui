@@ -34,15 +34,7 @@ const DataTableSystemsRender = ({ columns, data, testShow }) => {
       })
     );
   }, [show]);
-  const modalPop = (
-    <div>
-      <Modal
-        show={show}
-        close={closeModalHandler}
-        children={<Details viewOnly={true} modalData={modalData} />}
-      />
-    </div>
-  );
+
   const root = document.getElementById("portal");
   return (
     <div className="tableContainerWS">
