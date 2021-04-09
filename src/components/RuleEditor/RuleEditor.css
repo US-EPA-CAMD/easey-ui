@@ -1,0 +1,29 @@
+label {
+  font-weight: bold;
+}
+
+#txtCheckDesc {
+  height: 5rem;
+  max-width: 100%;
+}
+
+.align-bottom {
+  position: absolute;
+  bottom: 0;
+}
+
+.rule-type-container {
+  display: flex;
+}
+
+.rule-type {
+  margin-right: 20px;
+}
+
+.btnDelete {
+  background-color: maroon;
+}
+
+.btnDelete:hover {
+  background-color: rgb(153, 10, 10);
+}
