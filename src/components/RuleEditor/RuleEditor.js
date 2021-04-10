@@ -30,11 +30,11 @@ const RuleEditor = () => {
     typeCode: EXECUTION,
     categoryCode: '',
     priority: 1,
-    xml: '',
     json: '',
     isNew: false,
     isActive: false,
     isErrorSupressable: false,
+    editorId: ruleEditorId
   };
 
   const [ruleList, setRuleList] = useState([]);
@@ -49,14 +49,14 @@ const RuleEditor = () => {
   useEffect(() => {
     axios.get(`${config.services.rules.uri}/processes`)
       .then(response => {
-        setProcessList([...response.data])
+        setProcessList(response.data)
       });
   }, []);
 
   useEffect(() => {
     axios.get(`${config.services.rules.uri}/editor-modes`)
       .then(response => {
-        setTypesList([...response.data]);
+        setTypesList(response.data);
       })
   }, []);
 
@@ -114,7 +114,7 @@ const RuleEditor = () => {
     const rule = ruleList.find(item => item.id === event.target.value);
 
     if (rule !== undefined) {
-      setSelectedRule(rule);
+      setSelectedRule({...rule});
     }
     else {
       setSelectedRule({...emptyRule});
@@ -137,52 +137,56 @@ const RuleEditor = () => {
   };
 
   const onDeleteRuleHandler = () => {
+    axios.delete(`${config.services.rules.uri}/rules/${selectedRule.id}`)
+    .then(() => {
+      const ruleEditor = window.$rule.Context.getControl(ruleEditorId);
+      ruleEditor.deleted(selectedRule.id);
+      ruleEditor.clear();
+
+      const newList = [...ruleList];
+      const index = newList.findIndex(item => item.id === selectedRule.id);
+      newList.splice(index, 1);
+
+      setRuleList([...newList]);
+      setSelectedRule({...emptyRule});
+    })    
   };
 
   const onSaveRuleHandler = () => {
+    let method = 'POST';
+    let url = `${config.services.rules.uri}/rules`;
     const ruleEditor = window.$rule.Context.getControl(ruleEditorId);
 
-    const rule = {
-      code: selectedRule.code,
-      name: selectedRule.name,
-      description: selectedRule.description,
-      typeCode: selectedRule.typeCode,
-      categoryCode: selectedCatgeory,
-      priority: selectedRule.priority,
-      json: JSON.stringify(ruleEditor.extract()),
-      isErrorSupressable: selectedRule.isErrorSupressable,
-      isActive: selectedRule.isActive,
-      editorId: ruleEditorId
+    if (!selectedRule.isNew) {
+      method = 'PUT';
+      url = `${url}/${selectedRule.id}`;
     }
 
-    console.log(rule);
-
-    axios.post(`${config.services.rules.uri}/rules`, rule )
+    axios({method, url, data : {
+      ...selectedRule,
+      json: JSON.stringify(ruleEditor.extract())
+    }})
       .then(response => {
-        console.log(response.data);
+		    // if (result.isRuleEmpty)
+		    // else if (!result.isRuleValid)
+		    // this.ruleEditor.loadInvalids(result.clientInvalidData);
+        // else
         ruleEditor.saved(response.data.id);
-        setRuleList([...ruleList, {
-          ...selectedRule,
-          id: response.data.id,
-          definition: response.data.definition
-        }]);
-      })
-      .catch(error => console.log(error.message))
 
-		// if (result.isRuleEmpty)
-		// 	this.info = "The rule is empty";
-		// else if (!result.isRuleValid)
-		// {
-		// 	this.ruleEditor.loadInvalids(result.clientInvalidData);
-		// 	this.info = "The rule is not valid";
-		// }
-		// else
-		// {
-		// 	// Server returns rule ID using the Output property of ProcessingResult C# type.
-		// 	// The editor needs this ID if the saved rule was a new rule. Pass it to the editor.
-		// 	this.ruleEditor.saved(result.output);
-		// 	this.info = "The rule was saved successfully";
-		// }    
+        if (selectedRule.isNew) {
+          setRuleList([...ruleList, {
+            ...selectedRule,
+            id: response.data.id,
+            json: response.data.json
+          }]);
+        }
+        else {
+          const newList = [...ruleList];
+          const index = newList.findIndex(item => item.id === response.data.id);
+          newList.splice(index, 1, [{...selectedRule}]);
+          setRuleList([...newList]);
+        }
+      })
   };
 
   const onCheckRuleUpdateHandler = (event, field) => {
@@ -270,7 +274,7 @@ const RuleEditor = () => {
               aria-label="New Rule"
               disabled={selectedCatgeory === NONE}
               onClick={() => onNewRuleHandler()}>+</Button>
-            <Button type="button"
+            <Button type="button" className="btnSave"
               disabled={!canSave}
               onClick={() => onSaveRuleHandler()}>Save Rule</Button>
             <Button type="button" className="btnDelete"
@@ -319,13 +323,14 @@ const RuleEditor = () => {
               </FormGroup>
             </div>
             <div className="col">
-              <div className="align-bottom">
-                <Checkbox id="chkActive"
+              <div className="align-bottom display-flex">
+                <Checkbox className="margin-right-20"
+                  id="chkActive"
                   name="chkActive"
                   label="Active?"
                   checked={selectedRule.isActive}
                   onChange={event => onCheckRuleUpdateHandler(event, 'active')} />
-                <Checkbox
+                <Checkbox className="margin-right-20"
                   id="chkSupressable"
                   name="chkSupressable"
                   label="Supressable?"
@@ -349,10 +354,10 @@ const RuleEditor = () => {
           <div className="row">
             <div className="col">
               <Label>Rule Editor Modes</Label>
-              <Fieldset className="rule-type-container">
+              <Fieldset className="display-flex">
               {
                 typesList.map(item =>
-                  <Radio className="rule-type"
+                  <Radio className="margin-right-20"
                     id={`ruleType${item.code}`}
                     key={`ruleType${item.code}`}
                     name="check-rule-types"

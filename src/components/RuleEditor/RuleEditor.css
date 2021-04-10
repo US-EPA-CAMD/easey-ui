@@ -12,12 +12,20 @@ label {
   bottom: 0;
 }
 
-.rule-type-container {
+.display-flex {
   display: flex;
 }
 
-.rule-type {
+.margin-right-20 {
   margin-right: 20px;
+}
+
+.btnSave {
+  background-color: green;
+}
+
+.btnSave:hover {
+  background-color: rgb(5, 80, 5);
 }
 
 .btnDelete {
@@ -25,5 +33,5 @@ label {
 }
 
 .btnDelete:hover {
-  background-color: rgb(153, 10, 10);
+  background-color: rgb(150, 10, 10);
 }
