@@ -1,7 +1,8 @@
 import log from "loglevel";
 
 export async function handleResponse(response) {
-  if (response.status === 200) return response;
+  if (response.status === 200) {
+    return response;}
 }
 
 export function handleError(error) {
@@ -9,7 +10,7 @@ export function handleError(error) {
     // client received an error response (5xx, 4xx)
     log.error({
       error: error.response.data,
-      requestUrl: error.response.request.responseURL,
+      //requestUrl: error.response.request.responseURL,
       status: error.response.status,
       headers: error.response.headers,
     });

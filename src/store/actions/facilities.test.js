@@ -4,6 +4,7 @@ import axios from "axios";
 import thunk from "redux-thunk";
 import MockAdapter from "axios-mock-adapter";
 import configureMockStore from "redux-mock-store";
+import config from "../../config";
 
 // Test an async action
 const middleware = [thunk];
@@ -11,12 +12,60 @@ const mockStore = configureMockStore(middleware);
 
 // Mocked facilities returned data
 const facilities = [
-  { orisCode: 3, name: "Barry" },
-  { orisCode: 8, name: "Gorgas" },
-  { orisCode: 9, name: "Copper Station" },
+  [
+    {
+      orisCode: "3",
+      name: "Barry",
+      state: "Alabama",
+      epaRegion: "4",
+      county: "Mobile County",
+      links: [
+        {
+          rel: "self",
+          href: "/facilities/3",
+        },
+        {
+          rel: "monitor-plans",
+          href: "facilities/3/monitor-plans",
+        },
+      ],
+    },
+    {
+      orisCode: "5",
+      name: "Chickasaw",
+      state: "Alabama",
+      epaRegion: "4",
+      county: "Mobile County",
+      links: [
+        {
+          rel: "self",
+          href: "/facilities/5",
+        },
+        {
+          rel: "monitor-plans",
+          href: "facilities/5/monitor-plans",
+        },
+      ],
+    },
+    {
+      orisCode: "9",
+      name: "Copper Station",
+      state: "Texas",
+      epaRegion: "6",
+      county: "El Paso County",
+      links: [
+        {
+          rel: "self",
+          href: "/facilities/9",
+        },
+        {
+          rel: "monitor-plans",
+          href: "facilities/9/monitor-plans",
+        },
+      ],
+    },
+  ],
 ];
-const FACT_API_URL =
-  "https://api.epa.gov/FACT/1.0/facilities?api_key=05h6CAooxu0vZpfPnAgGzsbB4nCRqdWKCkfo95rG";
 
 describe("Async Actions", () => {
   const mock = new MockAdapter(axios);
@@ -26,9 +75,7 @@ describe("Async Actions", () => {
 
   describe("Load Facilities Thunk", () => {
     it("should create BEGIN_FACILITIES_API_CALL and LOAD_FACILITIES_SUCCESS when loading facilities", () => {
-      mock.onGet(FACT_API_URL).reply(200, {
-        data: facilities,
-      });
+      mock.onGet(`${config.services.facilities.uri}/facilities`).reply(200, facilities);
       const expectedActions = [
         { type: types.BEGIN_FACILITIES_API_CALL },
         { type: types.LOAD_FACILITIES_SUCCESS, facilities },

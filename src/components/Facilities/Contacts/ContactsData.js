@@ -6,8 +6,7 @@ const ContactsData = ({ facility }) => {
   const rolesSearch = ["Owner", "Operator"];
   const contacts = useMemo(() => {
     if (facility) {
-      const records = fs.getContacts(facility);
-      return records;
+      return fs.getContacts(facility);
     }
   }, [facility]);
 
@@ -15,6 +14,7 @@ const ContactsData = ({ facility }) => {
     if (facility) {
       return rolesSearch.map((role) => fs.getContactsRoleUnits(role, facility));
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [facility]);
   return <ContactsRender contactsRoles={contactsRoles} contacts={contacts} />;
 };

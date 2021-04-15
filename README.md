@@ -1,5 +1,5 @@
 # `EPA CAMD EASEY UI Portal`
-[![GitHub](https://img.shields.io/github/license/US-EPA-CAMD/easey-ui)](https://github.com/US-EPA-CAMD/easey-ui/blob/develop/LICENSE.md)
+[![GitHub](https://img.shields.io/github/license/US-EPA-CAMD/easey-ui)](https://github.com/US-EPA-CAMD/easey-ui/blob/develop/LICENSE)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=US-EPA-CAMD_easey-ui&metric=alert_status)](https://sonarcloud.io/dashboard?id=US-EPA-CAMD_easey-ui)
 [![Develop Branch Pipeline](https://github.com/US-EPA-CAMD/easey-ui/workflows/Develop%20Branch%20Workflow/badge.svg)](https://github.com/US-EPA-CAMD/easey-ui/actions)<br>
 Frontend UI portal for the EPA CAMD Business Systems EASEY Application
@@ -24,9 +24,7 @@ It correctly bundles React in production mode and optimizes the build for the be
 The build is minified and the filenames include the hashes.<br />
 Your app is ready to be deployed!
 
------------------------------------------------------------------------------------------
-
-# Environment Variables
+## Environment Variables
 Environment variables need to be prefixed by REACT_APP_ in order for the variables to be accessible on the process.env object in JavaScript.
 
 ### Specifying Environments
@@ -68,4 +66,8 @@ For example, running the start:staging command from above would load environment
 * .env.local
 * .env
 
-Reference - https://www.robertcooper.me/front-end-javascript-environment-variables
+[JavaScript environment variables reference](https://www.robertcooper.me/front-end-javascript-environment-variables)
+
+## License & Contributing
+​
+This project is licensed under the MIT License. We encourage you to read this project’s [License](LICENSE), [Contributing Guidelines](CONTRIBUTING.md), and [Code of Conduct](CODE_OF_CONDUCT.md).

@@ -39,8 +39,8 @@ const Home = () => {
       <div className="grid-row">
         <div className="grid-col-5">
           <DataTable
-            selectedRowHandler={(facilityId) => {
-              showSetOverview(facilityId);
+            selectedRowHandler={(facilityInfo) => {
+              showSetOverview(facilityInfo[0].value);
             }}
           />
         </div>
@@ -54,7 +54,7 @@ const Home = () => {
               className="contact-us"
             >
               Contact Us
-            </a>{" "}
+            </a>
             to ask a question, provide feedback, or report a problem.
           </p>
         </div>

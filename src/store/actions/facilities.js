@@ -16,10 +16,11 @@ export function loadFacilities() {
     return facilitiesApi
       .getAllFacilities()
       .then((res) => {
-        dispatch(loadFacilitiesSuccess(res.data.data));
+        dispatch(loadFacilitiesSuccess(res.data));
       })
       .catch((err) => {
         log(err);
       });
   };
 }
+

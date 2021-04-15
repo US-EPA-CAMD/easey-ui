@@ -1,15 +1,14 @@
 import React, { useState, useEffect } from "react";
 let editableCell = false;
 const setEditable = (value) => {
-    editableCell = value;
-}
+  editableCell = value;
+};
 const EditableCell = ({
   value: initialValue,
   row: { index },
   column: { id },
   updateData,
 }) => {
-    //const editableCell = true;
   const [value, setValue] = useState(initialValue);
 
   const onChange = (e) => {
@@ -27,8 +26,9 @@ const EditableCell = ({
   // returns a cell as input if the table is editable
   return editableCell ? (
     <input
+      className="editableCell"
       value={value || ""}
-      style={id == "col1" ? { width: "30px" } : { width: "90px" }}
+      style={id === "col1" ? { width: "30px" } : { width: "90px" }}
       onChange={onChange}
       onBlur={onBlur}
     />
@@ -37,4 +37,4 @@ const EditableCell = ({
   );
 };
 
-export { EditableCell,setEditable };
+export { EditableCell, setEditable };
