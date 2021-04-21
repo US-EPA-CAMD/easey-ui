@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import "./TableBody.css";
 import { GoPencil } from "react-icons/go";
 const TableBody = ({
@@ -35,13 +35,13 @@ const TableBody = ({
     row.isSelected = true;
   };
   const resetScrollInsideTable = (indexTable) => {
-    let tableBody = document.getElementsByClassName("tableData")[indexTable];
+    const tableBody = document.getElementsByClassName("tableData")[indexTable];
     tableBody.scrollTop = 0;
   };
   const resetBTNInsideTable = (indexTable) => {
-    let tableBody = document.getElementsByClassName("tableButton");
+    const tableBody = document.getElementsByClassName("tableButton");
     if (tableBody) {
-      for (let el of tableBody) {
+      for (const el of tableBody) {
         if (el.disabled) {
           continue;
         } else {
@@ -115,7 +115,8 @@ const TableBody = ({
                     }
                     className="tableButton"
                     onClick={() => handleDataSelector(row.cells)}
-                    aria-label={"Open " + row.cells[1].value + " facility"}
+                    aria-label={`Open ${row.cells[1].value} facility`}
+                    
                   >
                     <img
                       src={require("./images/openTab.jpg")}
@@ -124,7 +125,7 @@ const TableBody = ({
                           ? "hide"
                           : "show"
                       }
-                      alt={"Open " + row.cells[1].value + " facility"}
+                      alt={`Open ${row.cells[1].value} facility`}
                     />
                     Open
                   </button>
@@ -138,14 +139,17 @@ const TableBody = ({
                   }`}
                 >
                   <button
-                    aria-label={"View " + row.cells[1].value + " facility"}
+                    aria-label={`View ${row.cells[1].value} facility`}
                     onClick={() => {
                       openModal(true, row.cells);
                       handleDataSelector(row.cells);
                     }}
                     className=" tableButton"
                   >
-                    <GoPencil alt={"View " + row.cells[1].value + " facility"} /> View
+                    <GoPencil
+                      alt={`View ${row.cells[1].value} facility`}
+                    />{" "}
+                    View
                   </button>
                 </td>
               ) : null}

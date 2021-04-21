@@ -12,8 +12,9 @@ const TableHeader = ({ headerGroups, viewDataColumn, openTabColumn }) => (
               if (
                 column.sortable !== false &&
                 (event.key === "Enter" || event.key === " ")
-              )
+              ) {
                 column.toggleSortBy();
+              }
             }}
           >
             {/* need to make this dynamic. react is not recognizing the new update aria labels  */}
