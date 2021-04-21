@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "./TableBody.css";
 import { GoPencil } from "react-icons/go";
 const TableBody = ({
@@ -11,6 +11,8 @@ const TableBody = ({
   viewDataColumn,
   openTabColumn,
   openModal,
+  tabFocus,
+  resetTabFocusHandler,
 }) => {
   // just turns on react-table row selected to handle future css
   const defaultSelector = () => {
@@ -32,23 +34,46 @@ const TableBody = ({
     }
     row.isSelected = true;
   };
+  const resetScrollInsideTable = (indexTable) => {
+    let tableBody = document.getElementsByClassName("tableData")[indexTable];
+    tableBody.scrollTop = 0;
+  };
+  const resetBTNInsideTable = (indexTable) => {
+    let tableBody = document.getElementsByClassName("tableButton");
+    if (tableBody) {
+      for (let el of tableBody) {
+        if (el.disabled) {
+          continue;
+        } else {
+          el.focus();
+          break;
+        }
+      }
+    }
+  };
+  useEffect(() => {
+    resetScrollInsideTable(0);
+    if (tabFocus) {
+      resetBTNInsideTable();
+      resetTabFocusHandler(false);
+    }
+  }, [rows, tabFocus]);
   const handleDataSelector = (data) => {
     if (!selectedRowHandler) {
       return false;
     }
-    console.log('test')
     return selectedRowHandler(data);
   };
 
   return (
-    <tbody {...getTableBodyProps()}>
+    <tbody {...getTableBodyProps()} className="tableData">
       {(page.length > 0 &&
         page.map((row, i) => {
           prepareRow(row);
           return (
             <tr
               data-testid={"tableRow" + i}
-              tabIndex={1}
+              tabIndex={-1}
               key={row.id}
               {...row.getRowProps()}
               onClick={() => {
@@ -66,9 +91,13 @@ const TableBody = ({
                       row.isSelected ? "selected hovered" : "hovered"
                     }`}
                   >
-                    <span className={`${
-                       cell.column.Header ==="Component id"? "bold" :""
-                    }`}>{cell.render("Cell")} </span>
+                    <span
+                      className={`${
+                        cell.column.Header === "Component id" ? "bold" : ""
+                      }`}
+                    >
+                      {cell.render("Cell")}{" "}
+                    </span>
                   </td>
                 );
               })}
@@ -80,13 +109,13 @@ const TableBody = ({
                     row.isSelected ? "selected hovered" : "hovered"
                   }`}
                 >
-                 
                   <button
                     disabled={
                       openTabColumn.includes(row.cells[1].value) ? true : false
                     }
                     className="tableButton"
-                    // onClick={() => handleDataSelector(row.cells)}
+                    onClick={() => handleDataSelector(row.cells)}
+                    aria-label={"Open " + row.cells[1].value + " facility"}
                   >
                     <img
                       src={require("./images/openTab.jpg")}
@@ -95,6 +124,7 @@ const TableBody = ({
                           ? "hide"
                           : "show"
                       }
+                      alt={"Open " + row.cells[1].value + " facility"}
                     />
                     Open
                   </button>
@@ -108,12 +138,14 @@ const TableBody = ({
                   }`}
                 >
                   <button
+                    aria-label={"View " + row.cells[1].value + " facility"}
                     onClick={() => {
-                      openModal(true,row.cells);
-                      handleDataSelector(row.cells)}}
+                      openModal(true, row.cells);
+                      handleDataSelector(row.cells);
+                    }}
                     className=" tableButton"
                   >
-                    <GoPencil /> View
+                    <GoPencil alt={"View " + row.cells[1].value + " facility"} /> View
                   </button>
                 </td>
               ) : null}

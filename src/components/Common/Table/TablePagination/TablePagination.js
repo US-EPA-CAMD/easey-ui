@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./TablePagination.css";
 import { Label } from "@trussworks/react-uswds";
 const TablePagination = ({
@@ -13,6 +13,7 @@ const TablePagination = ({
   pageIndex,
   pageSize,
   paginationFiltering,
+  resetTabFocusHandler,
 }) => {
   const LEFT_PAGE = "LEFT";
   const RIGHT_PAGE = "RIGHT";
@@ -32,6 +33,36 @@ const TablePagination = ({
 
     return range;
   };
+  const previousBTN = React.useRef(null);
+  useEffect(() => {
+    let stateTest = false;
+    const changingPagination = (event) => {
+      if (event.keyCode === 13) {
+        stateTest = true;
+      }
+    };
+    const shiftPreviousTabFocus = (event) => {
+      if (
+        document.activeElement === previousBTN.current &&
+        stateTest === true
+      ) {
+        if (event.keyCode === 9) {
+          if (event.shiftKey) {
+            resetTabFocusHandler(true);
+            stateTest = false;
+          }
+        }
+      }
+    };
+
+    window.addEventListener("keydown", shiftPreviousTabFocus);
+    window.addEventListener("keydown", changingPagination);
+    return () => {
+      window.removeEventListener("keydown", shiftPreviousTabFocus);
+      window.addEventListener("keydown", changingPagination);
+    };
+  }, []);
+
   const fetchPageNumbers = () => {
     const totalPages = pageCount - 1;
     const currentPage = pageIndex;
@@ -170,7 +201,9 @@ const TablePagination = ({
             onClick={() => previousPage()}
             disabled={!canPreviousPage}
           >
-            <button className="page-link">{"Previous"}</button>
+            <button className="page-link" ref={previousBTN}>
+              {"Previous"}
+            </button>
           </li>
 
           {tabs()}
