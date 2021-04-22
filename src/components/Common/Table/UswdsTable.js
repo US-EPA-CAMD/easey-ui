@@ -57,21 +57,21 @@ const UswdsTable = ({
   const resetTabFocusHandler = (event) => {
     setTabFocus(event);
   };
-  const updateData = (rowIndex, columnId, value) => {
-    setEditableData((old) =>
-      old.map((row, index) => {
-        if (index === rowIndex) {
-          return {
-            ...old[rowIndex],
-            [columnId]: value,
-          };
-        }
-        return row;
-      })
-    );
-    // use below to retreive/manipulate updated data
-    data = editableData;
-  };
+  // const updateData = (rowIndex, columnId, value) => {
+  //   setEditableData((old) =>
+  //     old.map((row, index) => {
+  //       if (index === rowIndex) {
+  //         return {
+  //           ...old[rowIndex],
+  //           [columnId]: value,
+  //         };
+  //       }
+  //       return row;
+  //     })
+  //   );
+  //   // use below to retreive/manipulate updated data
+  //   data = editableData;
+  // };
 
   const defaultColumn = {
     Cell: EditableCell,
@@ -114,7 +114,7 @@ const UswdsTable = ({
         pageSize: paginate && showEntries ? showEntries[0] : 9999,
       },
       defaultColumn,
-      updateData,
+      // updateData,
     },
     useFilters,
     useGlobalFilter,

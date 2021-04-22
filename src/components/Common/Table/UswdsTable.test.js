@@ -17,6 +17,7 @@ describe("testing generic uswds table component", () => {
     paginate,
     editable = false,
     openTabColumn,
+    disabledColumnFiltersTest
   }) => {
     data = useMemo(
       () => [
@@ -84,6 +85,7 @@ describe("testing generic uswds table component", () => {
           data={data}
           paginate={paginate}
           showEntries={[3, 1]}
+          disabledColumnFilters={disabledColumnFiltersTest?disabledColumnFiltersTest:[]}
           search
           //viewDataColumn = {[]}
           selectedRowHandler={selectedRowHandler}
@@ -101,6 +103,7 @@ describe("testing generic uswds table component", () => {
           data={data}
           paginate={paginate}
           showEntries={[3, 1]}
+          disabledColumnFilters={disabledColumnFiltersTest?disabledColumnFiltersTest:[]}
           search
           viewDataColumn
           selectedRowHandler={selectedRowHandler}
@@ -115,8 +118,14 @@ describe("testing generic uswds table component", () => {
   };
 
 
-  test("table header renders all columnswith viewDataColumn", () => {
+  test("table header renders all columns", () => {
     const { container } = render(<UswdsTableTest grouping={false} />);
+    const headerColumns = container.querySelectorAll("thead tr th");
+    expect(headerColumns.length).toEqual(columns.length + 1);
+  });
+
+  test("table header renders all columns with a disabled column", () => {
+    const { container } = render(<UswdsTableTest grouping={false} disabledColumnFiltersTest ={[1]} />);
     const headerColumns = container.querySelectorAll("thead tr th");
     expect(headerColumns.length).toEqual(columns.length + 1);
   });

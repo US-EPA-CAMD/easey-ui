@@ -33,33 +33,25 @@ const TablePagination = ({
 
     return range;
   };
+  let stateTest = false;
   const previousBTN = React.useRef(null);
+  const changingPagination = (event) => {
+    if (event.keyCode === 13) {
+      stateTest = true;
+    }
+  };
+  if (document.activeElement === previousBTN.current && stateTest === true) {
+    if (event.keyCode === 9) {
+      if (event.shiftKey) {
+        resetTabFocusHandler(true);
+        stateTest = false;
+      }
+    }
+  }
   useEffect(() => {
-    let stateTest = false;
-    const changingPagination = (event) => {
-      if (event.keyCode === 13) {
-        stateTest = true;
-      }
-    };
-    const shiftPreviousTabFocus = (event) => {
-      if (
-        document.activeElement === previousBTN.current &&
-        stateTest === true
-      ) {
-        if (event.keyCode === 9) {
-          if (event.shiftKey) {
-            resetTabFocusHandler(true);
-            stateTest = false;
-          }
-        }
-      }
-    };
-
-    window.addEventListener("keydown", shiftPreviousTabFocus);
     window.addEventListener("keydown", changingPagination);
     return () => {
-      window.removeEventListener("keydown", shiftPreviousTabFocus);
-      window.addEventListener("keydown", changingPagination);
+      window.removeEventListener("keydown", changingPagination);
     };
   }, []);
 

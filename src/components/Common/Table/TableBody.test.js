@@ -3,6 +3,8 @@ import { render } from "@testing-library/react";
 import TableBody from "./TableBody";
 
 describe("testing rendering tablebody for some functions", () => {
+  const events = {};
+
   test("tests 508 functions in the tablebody", () => {
     const rows = [
       {
@@ -12,9 +14,24 @@ describe("testing rendering tablebody for some functions", () => {
         index: 0,
         depth: 0,
         cells: [
-          { column: { width: "50px" }, value: 3, getCellProps: jest.fn() ,render:jest.fn()},
-          { column: { width: "50px" }, value: 3, getCellProps: jest.fn() ,render:jest.fn()},
-          { column: { width: "50px" }, value: 3, getCellProps: jest.fn() ,render:jest.fn()},
+          {
+            column: { width: "50px" },
+            value: 3,
+            getCellProps: jest.fn(),
+            render: jest.fn(),
+          },
+          {
+            column: { width: "50px" },
+            value: 3,
+            getCellProps: jest.fn(),
+            render: jest.fn(),
+          },
+          {
+            column: { width: "50px" },
+            value: 3,
+            getCellProps: jest.fn(),
+            render: jest.fn(),
+          },
         ],
         values: { col1: "Hello", col2: "World", col3: "Again" },
         originalSubRows: [],
@@ -29,9 +46,24 @@ describe("testing rendering tablebody for some functions", () => {
         index: 1,
         depth: 0,
         cells: [
-          { column: { width: "50px" }, value: 3, getCellProps: jest.fn(),render:jest.fn() },
-          { column: { width: "50px" }, value: 3, getCellProps: jest.fn() ,render:jest.fn()},
-          { column: { width: "50px" }, value: 3, getCellProps: jest.fn(),render:jest.fn() },
+          {
+            column: { width: "50px" },
+            value: 3,
+            getCellProps: jest.fn(),
+            render: jest.fn(),
+          },
+          {
+            column: { width: "50px" },
+            value: 3,
+            getCellProps: jest.fn(),
+            render: jest.fn(),
+          },
+          {
+            column: { width: "50px" },
+            value: 3,
+            getCellProps: jest.fn(),
+            render: jest.fn(),
+          },
         ],
         values: { col1: "react", col2: "table", col3: "rocks" },
         originalSubRows: [],
@@ -48,9 +80,24 @@ describe("testing rendering tablebody for some functions", () => {
         index: 0,
         depth: 0,
         cells: [
-          { column: { width: "50px" }, value: 3, getCellProps: jest.fn(),render:jest.fn() },
-          { column: { width: "50px" }, value: 3, getCellProps: jest.fn() ,render:jest.fn()},
-          { column: { width: "50px" }, value: 3, getCellProps: jest.fn() ,render:jest.fn()},
+          {
+            column: { width: "50px" },
+            value: 3,
+            getCellProps: jest.fn(),
+            render: jest.fn(),
+          },
+          {
+            column: { width: "50px" },
+            value: 3,
+            getCellProps: jest.fn(),
+            render: jest.fn(),
+          },
+          {
+            column: { width: "50px" },
+            value: 3,
+            getCellProps: jest.fn(),
+            render: jest.fn(),
+          },
         ],
         values: { col1: "Hello3", col2: "World4", col3: "Again5" },
         originalSubRows: [],
@@ -65,9 +112,24 @@ describe("testing rendering tablebody for some functions", () => {
         index: 1,
         depth: 0,
         cells: [
-          { column: { width: "50px" }, value: 3, getCellProps: jest.fn() ,render:jest.fn()},
-          { column: { width: "50px" }, value: 3, getCellProps: jest.fn(),render:jest.fn() },
-          { column: { width: "50px" }, value: 3, getCellProps: jest.fn() ,render:jest.fn()},
+          {
+            column: { width: "50px" },
+            value: 3,
+            getCellProps: jest.fn(),
+            render: jest.fn(),
+          },
+          {
+            column: { width: "50px" },
+            value: 3,
+            getCellProps: jest.fn(),
+            render: jest.fn(),
+          },
+          {
+            column: { width: "50px" },
+            value: 3,
+            getCellProps: jest.fn(),
+            render: jest.fn(),
+          },
         ],
         values: { col1: "react1", col2: "table2", col3: "rocks2" },
         originalSubRows: [],
@@ -107,7 +169,7 @@ describe("testing rendering tablebody for some functions", () => {
       />
     );
     const BTNS = container.querySelectorAll("button");
-// BTNS[0].disabled=true;
+    // BTNS[0].disabled=true;
     expect(BTNS).not.toBeUndefined();
   });
 });
