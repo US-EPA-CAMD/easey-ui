@@ -40,17 +40,22 @@ const TablePagination = ({
       stateTest = true;
     }
   };
-  if (document.activeElement === previousBTN.current && stateTest === true) {
-    if (event.keyCode === 9) {
-      if (event.shiftKey) {
-        resetTabFocusHandler(true);
-        stateTest = false;
+
+  const shiftPreviousTabFocus = (event) => {
+    if (document.activeElement === previousBTN.current && stateTest === true) {
+      if (event.keyCode === 9) {
+        if (event.shiftKey) {
+          resetTabFocusHandler(true);
+          stateTest = false;
+        }
       }
     }
-  }
+  };
   useEffect(() => {
+    window.addEventListener("keydown", shiftPreviousTabFocus);
     window.addEventListener("keydown", changingPagination);
     return () => {
+      window.removeEventListener("keydown", shiftPreviousTabFocus);
       window.removeEventListener("keydown", changingPagination);
     };
   }, []);
