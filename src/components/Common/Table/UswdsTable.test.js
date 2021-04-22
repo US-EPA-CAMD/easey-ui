@@ -91,6 +91,7 @@ describe("testing generic uswds table component", () => {
           editable={editable}
           openTabColumn={[]}
           header
+          openModal = {jest.fn()}
         />
       );
     } else {
@@ -106,10 +107,13 @@ describe("testing generic uswds table component", () => {
           defaultSelect={true}
           editable={editable}
           header
+          viewDataColumn={[]}
+          openModal = {jest.fn()}
         />
       );
     }
   };
+
 
   test("table header renders all columnswith viewDataColumn", () => {
     const { container } = render(<UswdsTableTest grouping={false} />);
@@ -154,6 +158,14 @@ describe("testing generic uswds table component", () => {
     expect(tableRecords[0].innerHTML.split(" ")[0]).toEqual(data[2].col1);
   });
 
+  test("testing header with enter btn press  ", () => {
+    const { container } = render(<UswdsTableTest grouping={false} />);
+    const sortIMGS = container.querySelectorAll("thead tr th span");
+    fireEvent.keyPress(sortIMGS[1], { key: "Enter", code: 13, charCode: 13 });
+    fireEvent.keyPress(sortIMGS[1], { key: "Tab", code: 9, charCode: 9 });
+    expect(sortIMGS).not.toBeUndefined();
+  });
+
   test("table should be editable ", () => {
     const { container } = render(
       <UswdsTableTest grouping={false} editable={true} />
@@ -162,5 +174,18 @@ describe("testing generic uswds table component", () => {
     expect(firstRowCells.length).not.toBeNull();
     // fireEvent.change(firstRowCells[0], { target: { value: 'BERRY' } });
     // expect(firstRowCells[0].value).toBe("BERRY");
+  });
+
+  test("tests open btns ", () => {
+    const { container } = render(<UswdsTableTest grouping={false} openTabColumn />);
+    const openBTNS = container.querySelectorAll("tr td button");
+    fireEvent.click(openBTNS[0]);
+    expect(openBTNS).not.toBeUndefined();
+  });
+  test("tests view btns ", () => {
+    const { container } = render(<UswdsTableTest grouping={false} />);
+    const openBTNS = container.querySelectorAll("tr td button");
+    fireEvent.click(openBTNS[0]);
+    expect(openBTNS).not.toBeUndefined();
   });
 });

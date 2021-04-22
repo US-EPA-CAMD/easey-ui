@@ -9,10 +9,7 @@ const TableHeader = ({ headerGroups, viewDataColumn, openTabColumn }) => (
             width={column.width}
             {...column.getHeaderProps(column.getSortByToggleProps())}
             onKeyPress={(event) => {
-              if (
-                column.sortable !== false &&
-                (event.key === "Enter" || event.key === " ")
-              ) {
+              if (column.sortable !== false && event.key === "Enter") {
                 column.toggleSortBy();
               }
             }}

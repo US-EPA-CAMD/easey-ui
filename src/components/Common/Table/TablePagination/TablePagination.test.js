@@ -608,7 +608,7 @@ describe("testing generic uswds table component with pagination", () => {
         columns={grouping ? columnsGrouping : columns}
         data={data}
         paginate={paginate}
-        showEntries={[100, 250, 500]}
+        showEntries={[10, 25, 50]}
       />
     );
   };
@@ -630,7 +630,7 @@ describe("testing generic uswds table component with pagination", () => {
   test("PAgination bar with previous, 1, 2, next tab", () => {
     const { container } = render(<UswdsTableTest grouping={false} paginate />);
     const paginationBar = container.querySelectorAll("ul li");
-    expect(paginationBar.length).toEqual(4);
+    expect(paginationBar.length).toEqual(7);
   });
 
   test("selects 250 option and tests total pages, total tabs should be previous, 1, next  ", () => {
@@ -639,14 +639,14 @@ describe("testing generic uswds table component with pagination", () => {
     );
     userEvent.selectOptions(getByTestId("select-option"), ["250"]);
     const paginationBar = container.querySelectorAll("ul li");
-    const paginationExpection = 4;
+    const paginationExpection = 7;
     expect(paginationBar.length).toEqual(paginationExpection);
   });
 
   test("test total rows by default is 100 ", () => {
     const { container } = render(<UswdsTableTest grouping={true} paginate />);
     const tableRecords = container.querySelectorAll("tbody tr");
-    expect(tableRecords.length).toEqual(100);
+    expect(tableRecords.length).toEqual(10);
   });
 
   test("selects 2nd page and tests total rows that should show  ", () => {
@@ -654,14 +654,28 @@ describe("testing generic uswds table component with pagination", () => {
       <UswdsTableTest grouping={true} paginate />
     );
     const nodeList = container.querySelectorAll("li button");
+    console.log(nodeList[4],'test')
+    nodeList[3].focus();
+    fireEvent.keyPress(nodeList[3], { key: "Enter", code: 13, charCode: 13 });
     fireEvent.click(nodeList[2]);
+    
+    fireEvent.click(nodeList[nodeList.length-1]);
+    fireEvent.click(nodeList[nodeList.length-1]);
+    fireEvent.click(nodeList[nodeList.length-1]);
+    fireEvent.click(nodeList[nodeList.length-1]);
+    fireEvent.click(nodeList[nodeList.length-1]);
+    fireEvent.click(nodeList[nodeList.length-1]);
+    fireEvent.click(nodeList[nodeList.length-1]);
+    fireEvent.click(nodeList[0]);
+    fireEvent.click(nodeList[0]);
+    fireEvent.click(nodeList[0]);
     const tableRecords = container.querySelectorAll("tbody tr");
-    expect(tableRecords.length).toEqual(data.length - 100);
+    expect(tableRecords.length ).toEqual(10);
     fireEvent.click(nodeList[0]);
     const updatedRecords = container.querySelectorAll("tbody tr");
-    expect(updatedRecords.length).toEqual(100);
+    expect(updatedRecords.length).toEqual(10);
     fireEvent.click(nodeList[nodeList.length-1]);
     const updatedRecords2 = container.querySelectorAll("tbody tr");
-    expect(updatedRecords2.length).toEqual(data.length - 100);
+    expect(updatedRecords2.length).toEqual(10);
   });
 });

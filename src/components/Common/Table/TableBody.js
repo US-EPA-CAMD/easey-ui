@@ -14,6 +14,7 @@ const TableBody = ({
   tabFocus,
   resetTabFocusHandler,
 }) => {
+
   // just turns on react-table row selected to handle future css
   const defaultSelector = () => {
     const selected = page.find((r) => r.isSelected);
@@ -38,9 +39,10 @@ const TableBody = ({
     const tableBody = document.getElementsByClassName("tableData")[indexTable];
     tableBody.scrollTop = 0;
   };
-  const resetBTNInsideTable = (indexTable) => {
+  const resetBTNInsideTable = () => {
     const tableBody = document.getElementsByClassName("tableButton");
     if (tableBody) {
+      console.log('testing tablebody ', tableBody.length)
       for (const el of tableBody) {
         if (el.disabled) {
           continue;
@@ -59,12 +61,12 @@ const TableBody = ({
     }
   }, [rows, tabFocus]);
   const handleDataSelector = (data) => {
-    if (!selectedRowHandler) {
-      return false;
-    }
+    // if (!selectedRowHandler) {
+    //   return false;
+    // }
     return selectedRowHandler(data);
   };
-
+  // console.log(page,'this is page')
   return (
     <tbody {...getTableBodyProps()} className="tableData">
       {(page.length > 0 &&
@@ -96,7 +98,7 @@ const TableBody = ({
                         cell.column.Header === "Component id" ? "bold" : ""
                       }`}
                     >
-                      {cell.render("Cell")}{" "}
+                      {cell.render("Cell")}
                     </span>
                   </td>
                 );
@@ -116,7 +118,6 @@ const TableBody = ({
                     className="tableButton"
                     onClick={() => handleDataSelector(row.cells)}
                     aria-label={`Open ${row.cells[1].value} facility`}
-                    
                   >
                     <img
                       src={require("./images/openTab.jpg")}
@@ -146,9 +147,7 @@ const TableBody = ({
                     }}
                     className=" tableButton"
                   >
-                    <GoPencil
-                      alt={`View ${row.cells[1].value} facility`}
-                    />{" "}
+                    <GoPencil alt={`View ${row.cells[1].value} facility`} />
                     View
                   </button>
                 </td>
