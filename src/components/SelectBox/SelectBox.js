@@ -59,7 +59,7 @@ const SelectBox = ({
                 : options[0][selectKey]
             }
             disabled={viewOnly}
-            role="select"
+            
             id={caption + initialSelection}
             onChange={(e) => handleChange(e)}
           >
