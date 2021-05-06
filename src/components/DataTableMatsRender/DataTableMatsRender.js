@@ -4,7 +4,7 @@ import "./DataTableMatsRender.css";
 
 const DataTableMatsRender = ({ columns, data, selectedRowHandler }) => {
   return (
-    <div className="tableContainerWS">
+    <div>
       <UswdsTable
         header
         columns={columns}

@@ -1,6 +1,5 @@
 import React from "react";
 import UswdsTable from "../UswdsTable/UswdsTable";
-import "./SelectFacilitiesDataTableRender.scss";
 
 const SelectFacilitiesDataTableRender = ({
   columns,
@@ -10,11 +9,11 @@ const SelectFacilitiesDataTableRender = ({
 }) => {
   return (
     <div>
-      <div className="selectFacilitiesTitle">
-        <h2>Select Facilities</h2>
-        <hr width="100%" align="center" />
+      <div className="padding-top-4 padding-left-2">
+        <h2 className="padding-0">Select Facilities</h2>
+        <hr width="100%" align="center" className="height-1px bg-base-light"/>
       </div>
-      <div className="tableContainerWS">
+      <div>
         <UswdsTable
           columns={columns}
           data={data}

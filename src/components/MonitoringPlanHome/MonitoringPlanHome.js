@@ -7,7 +7,7 @@ import DataTable from "../SelectFacilitiesDataTable/SelectFacilitiesDataTable";
 const MonitoringPlanHome = () => {
   return (
     <div className="home-container">
-      <div className="header">
+      <div className="text-gray-50">
         <h1 className="title">Monitoring Plans</h1>
         <Button
           className="float-right clearfix radius-pill"
@@ -18,7 +18,7 @@ const MonitoringPlanHome = () => {
         </Button>
       </div>
 
-      <div className="tabsBar">
+      <div>
         <DynamicTabs
           tabsProps={[
             {

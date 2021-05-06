@@ -1,7 +1,5 @@
 import React from "react";
 
-import "./TableHeader.scss";
-
 const TableHeader = ({ headerGroups, viewDataColumn, openTabColumn }) => (
   <thead>
     {headerGroups.map((headerGroup) => (

@@ -155,7 +155,9 @@ const UswdsTable = ({
           )}
         </div>
       </div>
-      <table className={variant} {...getTableProps()}>
+      <table className={variant}
+      //  {...getTableProps()}
+       >
         {header ? (
           <TableHeader
             headerGroups={headerGroups}

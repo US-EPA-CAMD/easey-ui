@@ -4,7 +4,7 @@ import "./DataTableMethodRender.css";
 
 const DataTableMethodRender = ({ columns, data, selectedRowHandler }) => {
   return (
-    <div className="tableContainerWS">
+    <div>
       <UswdsTable
         columns={columns}
         header

@@ -152,7 +152,7 @@ const TablePagination = ({
               }`}
             >
               <button
-                aria-label={`Go to page ${page + 1}`}
+                aria-label={`Go to page ${page}`}
                 className="page-link"
                 onClick={() => gotoPage(page)}
               >
@@ -201,9 +201,9 @@ const TablePagination = ({
       </div>
 
       <div className="paginationTabs">
-        <h3 className="paginationLabel" htmlFor="pagination">
+        <Label className="filterLabel hidden" htmlFor="pagination">
           Pagination Bar
-        </h3>
+        </Label>
         <ul className="pagination" id="pagination">
           <li
             className="page-item-previous"

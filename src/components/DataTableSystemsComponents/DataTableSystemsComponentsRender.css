@@ -16,13 +16,6 @@ tbody {
   width: 100%;
 }
 
-.tableTitle {
-  float: left;
-  padding-left: 10px;
-
-  padding-top: 20px;
-  padding-bottom: 20px;
-}
 .systemsCompTable > .container {
   max-width: 100%;
   min-width: 90%;

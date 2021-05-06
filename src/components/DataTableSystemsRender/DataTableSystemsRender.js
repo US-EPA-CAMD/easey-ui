@@ -40,7 +40,7 @@ const DataTableSystemsRender = ({ columns, data }) => {
   // for testing
   const root = document.getElementById("portal");
   return (
-    <div className="tableContainerWS">
+    <div>
       <div className={`usa-overlay ${show ? "is-visible" : ""}`}></div>
       <UswdsTable
         columns={columns}
