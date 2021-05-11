@@ -78,7 +78,7 @@ const Details = ({ modalData, viewOnly }) => {
           </h2>
           <Form>
             <div className="grid-row">
-              <div className="grid-col">
+              <div className="grid-col padding-bottom-2 padding-right-3">
                 <FormGroup className="margin-top-0">
                   <Label
                     className="margin-0"
@@ -109,7 +109,7 @@ const Details = ({ modalData, viewOnly }) => {
               </div>
             </div>
             <div className="grid-row">
-              <div className="grid-col">
+              <div className="grid-col padding-bottom-2 padding-right-3">
                 <SelectBox
                   caption="System Type"
                   options={types}
@@ -131,7 +131,7 @@ const Details = ({ modalData, viewOnly }) => {
               </div>
             </div>
             <div className="grid-row">
-              <div className="grid-col">
+              <div className="grid-col padding-bottom-2 padding-right-3">
                 <Label className="margin-0" id="dateStart">
                   Start Date and Time (Required)
                 </Label>
