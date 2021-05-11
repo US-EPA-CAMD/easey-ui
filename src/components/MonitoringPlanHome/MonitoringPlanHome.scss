@@ -12,9 +12,6 @@
   margin-right: 0;
   overflow: auto;
 }
-.title {
-  display: inline-block;
-}
 
 .tabsBox,
 .tabContent .selectedTabsBox {
@@ -24,8 +21,4 @@
   justify-content: center;
   bottom: 0;
   margin-bottom: -5px;
-}
-
-.tabsBar {
-  padding-bottom: -5px;
 }

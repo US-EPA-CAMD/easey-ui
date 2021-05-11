@@ -1,5 +1,4 @@
 import React from "react";
-import "./Accessories.scss";
 import {
   BsFillGearFill,
   BsFillPersonFill,
@@ -12,19 +11,30 @@ const Accessories = () => {
     <div className="accessoriesLinks">
       <div className="accessoryLink">
         <BsFillGrid3X3GapFill style={{ fill: "white" }} />
-        <Link to="./apps" rel=" CAMD Apps" title="Go to the  CAMD Apps page">
+        <Link
+          to="./apps"
+          rel=" CAMD Apps"
+          title="Go to the  CAMD Apps page"
+          className="text-white"
+        >
           CAMD Apps
         </Link>
       </div>
       <div className="accessoryLink">
         <BsFillPersonFill style={{ fill: "white" }} />
-        <Link to="./profile" rel="Profile" title="Go to the Profile page">
+        <Link
+          to="./profile"
+          rel="Profile"
+          title="Go to the Profile page"
+          className="text-white"
+        >
           Profile
         </Link>
       </div>
-      <div className="accessoryLink">
+      <div className="text-white">
         <BsFillGearFill style={{ fill: "white" }} />
         <Link
+          className="text-white"
           to="./account_manage"
           rel=" Account Management"
           title="Go to the Account Management page"
@@ -34,7 +44,12 @@ const Accessories = () => {
       </div>
       <div className="accessoryLink">
         <IoIosHelpCircle style={{ fill: "white" }} />
-        <Link to="./help" rel="help" title="Go to the help page">
+        <Link
+          to="./help"
+          rel="help"
+          title="Go to the help page"
+          className="text-white"
+        >
           {"Help & Contact"}
         </Link>
       </div>
