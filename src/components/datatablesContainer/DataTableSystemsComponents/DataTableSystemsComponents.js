@@ -1,6 +1,5 @@
 import React, { useEffect, useMemo } from "react";
 import { connect } from "react-redux";
-// import { FaArrowRight } from "react-icons/fa";
 import { loadMonitoringSystemsComponents } from "../../../store/actions/monitoringSystems";
 import * as fs from "../../../utils/selectors/monitoringPlanSystems";
 import DataTableSystemsComponentsRender from "../DataTableSystemsComponentsRender/DataTableSystemsComponentsRender";
@@ -40,11 +39,6 @@ export const DataTableSystemsComponents = ({
         accessor: "col3",
         width: "410px",
       },
-      // {
-      //   Header: "end",
-      //   accessor: "col4",
-      //   width: "210px",
-      // },
     ],
     []
   );

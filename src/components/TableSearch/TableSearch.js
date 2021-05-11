@@ -11,9 +11,6 @@ const TableSearch = ({ setGlobalFilter, title }) => {
   const updateSearchHandler = () => {
     setGlobalFilter(searchState || undefined);
   };
-  const checkingfc = (e) =>{
-    console.log(e.keyCode);
-  }
   return (
     <div>
       <Label className="filterLabel" htmlFor="input-search">
@@ -36,7 +33,7 @@ const TableSearch = ({ setGlobalFilter, title }) => {
                 if (event.key === "Enter") {
                   updateSearchHandler();
                 }
-          }}
+              }}
             />
           }
         />

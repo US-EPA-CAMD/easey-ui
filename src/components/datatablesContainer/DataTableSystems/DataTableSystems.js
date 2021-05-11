@@ -4,8 +4,6 @@ import { loadMonitoringSystems } from "../../../store/actions/monitoringSystems"
 import * as fs from "../../../utils/selectors/monitoringPlanSystems";
 import DataTableSystemsRender from "../DataTableSystemsRender/DataTableSystemsRender";
 
-import "./DataTableSystems.scss";
-
 export const DataTableSystems = ({
   monitoringSystems,
   loadMonitoringSystemsData,
