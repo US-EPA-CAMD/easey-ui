@@ -1,7 +1,7 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import SelectBox from "./SelectBox";
+import SectionDrop from "./SectionDrop";
 
 let options = [];
 beforeAll(() => {
@@ -14,7 +14,7 @@ beforeAll(() => {
 describe("testing the creation of 1 select drop down and handling change", () => {
   test("renders 1 drop down with an initial value and required text ", () => {
     const { container } = render(
-      <SelectBox
+      <SectionDrop
         caption={"test caption"}
         required={true}
         initialSelection={1}
@@ -29,7 +29,7 @@ describe("testing the creation of 1 select drop down and handling change", () =>
 
   test("renders 1 drop down with no initial value and no required text  ", () => {
     const { container } = render(
-      <SelectBox
+      <SectionDrop
         caption={"Configurations"}
         initialSelection={null}
         required={false}

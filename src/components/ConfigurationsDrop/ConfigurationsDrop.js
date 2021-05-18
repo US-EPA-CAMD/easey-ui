@@ -12,19 +12,17 @@ const ConfigurationsDrop = ({
   selectionHandler,
   showInactive = false,
   initialSelection,
-  viewOnly,
-  required,
   monitoringPlans,
   inactiveCheck,
   showInactiveHandler,
   configurationHandler,
   hasActiveConfigs,
+  orisCode,
 }) => {
   const getIndex = (val) => {
     return options.findIndex((obj) => obj.id === val);
   };
 
-  console.log('initial',initialSelection)
   const getMPIndex = (val) => {
     if (monitoringPlans) {
       // console.log('this is mpindex function',monitoringPlans.findIndex((obj) => obj.id === val) )
@@ -33,21 +31,23 @@ const ConfigurationsDrop = ({
   };
 
   const [selectionState, setSelectionState] = useState(
-    initialSelection ? options.indexOf(monitoringPlans[initialSelection]) : 0
+    initialSelection ? initialSelection : 0
+    // options.indexOf(monitoringPlans[initialSelection]) : 0
   );
 
   const handleChange = (val) => {
     setSelectionState(getIndex(val.target.value));
-
-    selectionHandler(
-      monitoringPlans
-        ? getMPIndex(val.target.value)
-        : getIndex(val.target.value)
-    );
+    selectionHandler(getMPIndex(val.target.value), orisCode);
   };
 
+  for (let x of monitoringPlans) {
+    if (x.active && hasActiveConfigs) {
+      setSelectionState(monitoringPlans.indexOf(x));
+    }
+    break;
+  }
+
   const populateOptions = (optionsList) => {
-    // console.log('this is options',optionsList)
     return optionsList.map((info, index) => {
       return (
         <option key={info.id} value={info.id}>
@@ -57,25 +57,17 @@ const ConfigurationsDrop = ({
     });
   };
 
+  // selectionstate update is lagging behind one causing it to not update immediately. cant figureout
+  // the different in sectiondrop and this 
   useEffect(() => {
-    if (initialSelection >= 0) {
-      setSelectionState(options.indexOf(monitoringPlans[initialSelection]));
-      selectionHandler(initialSelection);
-    } else {
-      setSelectionState(0);
-      selectionHandler(0);
-    }
+    setSelectionState(options.indexOf(monitoringPlans[initialSelection]));
   }, [initialSelection]);
 
   const checkBoxHandler = (evt) => {
     if (evt.target.checked) {
-      showInactiveHandler(true);
-      console.log('sowactivehandler called')
+      showInactiveHandler(orisCode,true);
     } else {
-      showInactiveHandler(false);
-
-    //   console.log(getActiveConfigurations(monitoringPlans).findIndex((val)=>
-    //     monitoringPlans[initialSelection].id === val.id))
+      showInactiveHandler(orisCode,false);
     }
   };
 
@@ -88,14 +80,11 @@ const ConfigurationsDrop = ({
             id="optionList"
             name="optionList"
             // weird bug without this
-            defaultValue={
+            value={
               options[selectionState] !== undefined
-                ? caption === "Configurations"
-                  ? options[selectionState].id
-                  : options[selectionState][selectKey]
+                ? options[selectionState].id
                 : options[0].id
             }
-            disabled={viewOnly}
             id={selectionState}
             onChange={(e) => handleChange(e)}
           >

@@ -5,15 +5,16 @@ import {
 } from "../../utils/selectors/monitoringConfigurations";
 import { Label, Dropdown, FormGroup } from "@trussworks/react-uswds";
 
-const SelectBox = ({
+const SectionDrop = ({
+  orisCode,
   caption,
   selectKey,
   selectionHandler,
   showInactive = false,
   initialSelection,
-  viewOnly,
   required,
   monitoringPlans,
+  activeTab,
 }) => {
   const getIndex = (val) => {
     return sections.findIndex((obj) => obj.name === val);
@@ -32,12 +33,6 @@ const SelectBox = ({
     { name: "Unit Information" },
     { name: "Stack/Pipe Information" },
   ];
-  const getMPIndex = (val) => {
-    if (monitoringPlans) {
-      // console.log('this is mpindex function',monitoringPlans.findIndex((obj) => obj.id === val) )
-      return monitoringPlans.findIndex((obj) => obj.id === val);
-    }
-  };
 
   const [selectionState, setSelectionState] = useState(
     initialSelection ? initialSelection : 0
@@ -46,11 +41,9 @@ const SelectBox = ({
   const handleChange = (val) => {
     setSelectionState(getIndex(val.target.value));
 
-    selectionHandler(getIndex(val.target.value));
+    selectionHandler(getIndex(val.target.value), orisCode);
   };
-  // useEffect(() => {
-  //   console.log("changed", options[selectionState].id);
-  // }, [selectionState]);
+
   const populateOptions = (optionsList) => {
     // console.log('this is options',optionsList)
     return optionsList.map((info, index) => {
@@ -62,15 +55,10 @@ const SelectBox = ({
     });
   };
 
+  // usef
   useEffect(() => {
-    if (initialSelection >= 0) {
-      console.log('THIS IS INTIAL SELECTION',initialSelection)
-      setSelectionState(initialSelection);
-      selectionHandler(initialSelection);
-    } else {
-      setSelectionState(0);
-      selectionHandler(0);
-    }
+    setSelectionState(initialSelection);
+    // selectionHandler(initialSelection,orisCode);
   }, [initialSelection]);
 
   return (
@@ -79,17 +67,9 @@ const SelectBox = ({
         <FormGroup className="margin-right-2 margin-bottom-1">
           <Label htmlFor={caption + initialSelection}>{caption}</Label>
           <Dropdown
-            id="optionList"
-            name="optionList"
-            // weird bug without this
-            defaultValue={
-              sections[selectionState] !== undefined
-                ? caption === "Configurations"
-                  ? sections[selectionState].id
-                  : sections[selectionState][selectKey]
-                : sections[0].id
-            }
-            disabled={viewOnly}
+            id={orisCode}
+            name={"optionList " + orisCode}
+            value={sections[selectionState][selectKey]}
             id={selectionState}
             onChange={(e) => handleChange(e)}
           >
@@ -101,4 +81,4 @@ const SelectBox = ({
   );
 };
 
-export default SelectBox;
+export default SectionDrop;

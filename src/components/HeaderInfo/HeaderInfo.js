@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./HeaderInfo.css";
-import SelectBox from "../SelectBox/SelectBox";
+import SectionDrop from "../SectionDrop/SectionDrop";
 import {
   getActiveConfigurations,
   getInActiveConfigurations,
@@ -11,103 +11,137 @@ import {
   setLocationSelectionState,
   setInactiveToggle,
 } from "../../store/actions/dynamicFacilityTab";
-import {
-  setActiveTab,
-} from "../../store/actions/activeTab";
+import { setActiveTab } from "../../store/actions/activeTab";
 import { Button, Checkbox } from "@trussworks/react-uswds";
 import ConfigurationsDrop from "../ConfigurationsDrop/ConfigurationsDrop";
 import LocationDrop from "../LocationsDrop/LocationsDrop";
 import { connect } from "react-redux";
 const HeaderInfo = ({
   facility,
-  sectionHandler,
+  // sectionHandler,
   monitoringPlans,
+  orisCode,
   // locationHandler,
-  configurationHandler,
-  showInactiveHandler,
+  // configurationHandler,
+  // showInactiveHandler,
 
   hasActiveConfigs,
 
   // selectedLocation,
-  selectedSection,
-  selectedConfiguration,
-  // inactiveCheck,
+  // selectedSection,
+  // selectedConfiguration,
+  // // inactiveCheck,
 
-
+  // setConfiguration,
+  // setInactive,
+  tabs,
+  activeTab,
+  setSection,
   setConfiguration,
   setInactive,
-  tabs,
-  activeTab
+  setLocation,
 }) => {
-
-
-  // possiblely adding showinactive to redux state will fix this issue
+  // // possiblely adding showinactive to redux state will fix this issue
   const [configurations, setConfigurations] = useState(
     hasActiveConfigs
       ? monitoringPlans
       : getInActiveConfigurations(monitoringPlans)
   );
-  const[inactiveCheck,setInactiveCheck] = useState(tabs[activeTab].inactive)
+  // const[inactiveCheck,setInactiveCheck] = useState(tabs[activeTab].inactive)
 
-  const setInactiveToggle = (val) => {
-    setInactiveCheck(val);
-    setInactive(tabs[activeTab].orisCode,val)
-  }
-  // useEffect(() => {
-  //   if (configurations.length > 1 && selectedConfiguration < configurations.length) {
-  //     locationHandler([
-  //       0,
-  //       monitoringPlans[selectedConfiguration].locations[selectedLocation[0]]["id"],
-  //     ]);
-  //   } else if (configurations.length === 1) {
-  //     locationHandler([0, monitoringPlans[0].locations[0]["id"]]);
-  //   }
-  // }, []);
+  // const setInactiveToggle = (val) => {
+  //   setInactiveCheck(val);
+  //   setInactive(tabs[activeTab].orisCode,val)
+  // }
+  // // useEffect(() => {
+  // //   if (configurations.length > 1 && selectedConfiguration < configurations.length) {
+  // //     locationHandler([
+  // //       0,
+  // //       monitoringPlans[selectedConfiguration].locations[selectedLocation[0]]["id"],
+  // //     ]);
+  // //   } else if (configurations.length === 1) {
+  // //     locationHandler([0, monitoringPlans[0].locations[0]["id"]]);
+  // //   }
+  // // }, []);
 
-  // by default is there are no active configs, show inactive (need to disable and check the 
+  // by default is there are no active configs, show inactive (need to disable and check the
   //show inactive checkbox )
   useEffect(() => {
     if (!hasActiveConfigs) {
       setConfigurations(getInActiveConfigurations(monitoringPlans));
-      showInactiveHandler(false);
+      console.log("inactive was called");
+      // showInactiveHandler(false);
     }
+    console.log("this is configurations", configurations);
   }, [hasActiveConfigs, monitoringPlans]);
-
-  // by default only show active configs first 
-  // useEffect(() => {
-  //   setConfigurations(
-  //     inactiveCheck ? monitoringPlans : getActiveConfigurations(monitoringPlans)
-  //   );
-  // }, [monitoringPlans, inactiveCheck]);
+  const [inactiveCheck, setInactiveCheck] = useState(
+    tabs[activeTab[0]].inactive
+  );
+  // by default only show active configs first
+  useEffect(() => {
+    setConfigurations(
+      inactiveCheck ? monitoringPlans : getActiveConfigurations(monitoringPlans)
+    );
+    // console.log('this is configurations',configurations)
+  }, [inactiveCheck]);
 
   useEffect(() => {
     setConfigurations(
-      tabs[activeTab].inactive ? monitoringPlans : getActiveConfigurations(monitoringPlans)
+      tabs[activeTab].inactive
+        ? monitoringPlans
+        : getActiveConfigurations(monitoringPlans)
     );
   }, [monitoringPlans, tabs[activeTab].inactive]);
 
+  useEffect(() => {
+    for (let x of monitoringPlans) {
+      if (x.active && hasActiveConfigs) {
+        setConfigurationSelect(monitoringPlans.indexOf(x));
+      }
+      break;
+    }
+    console.log("active was called");
+  }, [hasActiveConfigs]);
+  // // configuration is lagging behind one
+  // const mpHandler = (index) => {
+  //   configurationHandler(index);
 
-  // configuration is lagging behind one
-  const mpHandler = (index) => {
-    configurationHandler(index);
-
-    // if(index < monitoringPlans.length) {
-    // locationHandler([0, monitoringPlans[index].locations[0]["id"]]);
-    // }
-  };
+  //   // if(index < monitoringPlans.length) {
+  //   // locationHandler([0, monitoringPlans[index].locations[0]["id"]]);
+  //   // }
+  // };
   // const mplHandler = (index) => {
   //   // locationHandler(configurations[configSelect].locations[index]["id"]);
-    
-  //   if(selectedConfiguration < monitoringPlans.length){
-  //   locationHandler([
-  //     index,
-  //     monitoringPlans[selectedConfiguration].locations[index]["id"],
-  //   ]);}
+
+  //   // if(selectedConfiguration < monitoringPlans.length){
+  //   // locationHandler([
+  //   //   index,
+  //   //   monitoringPlans[selectedConfiguration].locations[index]["id"],
+  //   // ]);}
   // };
-  const mpsHandler = (index) => {
-    // sectionHandler(sections[index].name);
-    sectionHandler(index);
-  };
+  // const mpsHandler = (index) => {
+  //   // sectionHandler(sections[index].name);
+  //   sectionHandler(index);
+  // };
+
+  const [sectionSelect, setSectionSelect] = useState(
+    tabs[activeTab[0]].section
+  );
+  const [configurationSelect, setConfigurationSelect] = useState(
+    tabs[activeTab[0]].configuration
+  );
+
+  useEffect(() => {
+    setConfigurationSelect(tabs[activeTab[0]].configuration);
+  }, [tabs[activeTab[0]].configuration]);
+
+  useEffect(() => {
+    setSectionSelect(tabs[activeTab[0]].section);
+  }, [tabs[activeTab[0]].section]);
+
+  useEffect(() => {
+    setInactiveCheck(tabs[activeTab[0]].inactive);
+  }, [tabs[activeTab[0]].inactive, hasActiveConfigs]);
 
   return (
     <div className="header">
@@ -123,36 +157,41 @@ const HeaderInfo = ({
         <div className="row">
           <div className="selects column">
             <div className="configurations-container">
-              <ConfigurationsDrop 
-               caption="Configurations"
-               options={configurations}
-               selectionHandler={mpHandler}
-               selectKey="name"
-               showInactive={inactiveCheck}
-               initialSelection={selectedConfiguration}
-               monitoringPlans={monitoringPlans}
-               inactiveCheck={inactiveCheck}
-               showInactiveHandler={setInactiveToggle}
-               configurationHandler={configurationHandler}
-               hasActiveConfigs={hasActiveConfigs}
+              <ConfigurationsDrop
+                caption="Configurations"
+                options={configurations}
+                selectionHandler={setConfiguration}
+                selectKey="name"
+                initialSelection={configurationSelect}
+                monitoringPlans={monitoringPlans}
+                inactiveCheck={inactiveCheck}
+                showInactiveHandler={setInactive}
+                showInactive={inactiveCheck}
+                configurationHandler={setConfiguration}
+                hasActiveConfigs={hasActiveConfigs}
+                orisCode={orisCode}
               />
             </div>
-            {/* <LocationDrop
+            <LocationDrop
               caption="Locations"
               options={
-                monitoringPlans[selectedConfiguration]
-                  ? monitoringPlans[selectedConfiguration].locations
+                monitoringPlans[tabs[activeTab[0]].configuration]
+                  ? monitoringPlans[tabs[activeTab[0]].configuration].locations
                   : monitoringPlans[0].locations
               }
-              selectionHandler={mplHandler}
+              selectionHandler={setLocation}
               selectKey="name"
-              initialSelection={selectedLocation[0]}   
-            /> */}
-            <SelectBox
+              initialSelection={
+                monitoringPlanstabs[activeTab[0]].configuration.locations[0]
+              }
+            />
+            <SectionDrop
               caption="Sections"
-              selectionHandler={mpsHandler}
+              selectionHandler={setSection}
               selectKey="name"
-              initialSelection={selectedSection}
+              initialSelection={sectionSelect}
+              orisCode={orisCode}
+              activeTab={activeTab}
             />
           </div>
           <div className="statuses column">
@@ -176,10 +215,9 @@ const HeaderInfo = ({
 
 const mapStateToProps = (state) => {
   return {
-
     tabs: state.openedFacilityTabs,
 
-    activeTab:state.activeTab
+    activeTab: state.activeTab,
   };
 };
 
@@ -191,10 +229,9 @@ const mapDispatchToProps = (dispatch) => {
       dispatch(setLocationSelectionState(location, orisCode)),
     setSection: (section, orisCode) =>
       dispatch(setSectionSelectionState(section, orisCode)),
-    setInactive: (orisCode,value ) =>
+    setInactive: (orisCode, value) =>
       dispatch(setInactiveToggle(orisCode, value)),
-      setActiveTab:(orisCode, value) =>
-      dispatch(setActiveTab(orisCode, value)),
+    setActiveTab: (orisCode, value) => dispatch(setActiveTab(orisCode, value)),
   };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(HeaderInfo);
