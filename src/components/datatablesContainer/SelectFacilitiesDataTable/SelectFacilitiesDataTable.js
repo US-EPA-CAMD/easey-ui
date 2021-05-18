@@ -59,6 +59,7 @@ export const SelectFacilitiesDataTable = ({
             <SelectedFacilityTab orisCode={info[0].value} />
           </div>
         ),
+        orisCode:info[0].value,
       },
     ]);
   };

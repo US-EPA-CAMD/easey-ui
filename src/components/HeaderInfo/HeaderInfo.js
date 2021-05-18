@@ -1,20 +1,62 @@
 import React, { useEffect, useState } from "react";
 import "./HeaderInfo.css";
 import SelectBox from "../SelectBox/SelectBox";
-import { getActiveConfigurations } from "../../utils/selectors/monitoringConfigurations";
-import { Button } from "@trussworks/react-uswds";
+import {
+  getActiveConfigurations,
+  getInActiveConfigurations,
+} from "../../utils/selectors/monitoringConfigurations";
+import { Button, Checkbox } from "@trussworks/react-uswds";
 const HeaderInfo = ({
   facility,
   sectionHandler,
   monitoringPlans,
   locationHandler,
+  configurationHandler,
   showInactiveHandler,
-  showInactive,
+
   hasActiveConfigs,
+
+  selectedLocation,
+  selectedSection,
+  selectedConfiguration,
+  inactiveCheck,
 }) => {
+  console.log(inactiveCheck,' got changed')
+  // possiblely adding showinactive to redux state will fix this issue
   const [configurations, setConfigurations] = useState(
-    showInactive ? monitoringPlans : getActiveConfigurations(monitoringPlans)
+    hasActiveConfigs
+      ? monitoringPlans
+      : getInActiveConfigurations(monitoringPlans)
   );
+
+  useEffect(() => {
+    if (configurations.length > 1) {
+      console.log('selectedLocation',selectedLocation,'monitoringplans',monitoringPlans[selectedConfiguration])
+      locationHandler([
+        0,
+        monitoringPlans[selectedConfiguration].locations[selectedLocation[0]]["id"],
+      ]);
+      configurationHandler(selectedConfiguration);
+    } else if (configurations.length === 1) {
+      locationHandler([0, monitoringPlans[0].locations[0]["id"]]);
+    }
+  }, []);
+
+  // by default is there are no active configs, show inactive (need to disable and check the 
+  //show inactive checkbox )
+  useEffect(() => {
+    if (!hasActiveConfigs) {
+      setConfigurations(getInActiveConfigurations(monitoringPlans));
+      showInactiveHandler(false);
+    }
+  }, [hasActiveConfigs, monitoringPlans]);
+
+  // by default only show active configs first 
+  useEffect(() => {
+    setConfigurations(
+      inactiveCheck ? monitoringPlans : getActiveConfigurations(monitoringPlans)
+    );
+  }, [monitoringPlans, inactiveCheck]);
 
   const sections = [
     { name: "Loads" },
@@ -29,38 +71,38 @@ const HeaderInfo = ({
     { name: "Unit Information" },
     { name: "Stack/Pipe Information" },
   ];
-  const [configSelect, setConfigSelect] = useState(0);
 
+  // configuration is lagging behind one
   const mpHandler = (index) => {
-    setConfigSelect(index);
+
+    console.log('this is mp', monitoringPlans)
+    configurationHandler(index);
+    console.log('index',index)
+    locationHandler([0, monitoringPlans[index].locations[0]["id"]]);
   };
-  useEffect(() => {
-    if (configurations.length > 1) {
-      locationHandler(configurations[configSelect].locations[0]["id"]);
-    }
-  }, [configSelect]);
   const mplHandler = (index) => {
-    locationHandler(configurations[configSelect].locations[index]["id"]);
+    // locationHandler(configurations[configSelect].locations[index]["id"]);
+    locationHandler([
+      index,
+      monitoringPlans[selectedConfiguration].locations[index]["id"],
+    ]);
+    console.log('this')
   };
   const mpsHandler = (index) => {
-    sectionHandler(sections[index].name);
+    // sectionHandler(sections[index].name);
+    sectionHandler(index);
   };
 
   const checkBoxHandler = (evt) => {
     if (evt.target.checked) {
-      setConfigurations(monitoringPlans);
       showInactiveHandler(true);
+      // setConfigurations(monitoringPlans);
     } else {
-      setConfigurations(getActiveConfigurations(monitoringPlans));
       showInactiveHandler(false);
+      // setConfigurations(getActiveConfigurations(monitoringPlans));
     }
-    setConfigSelect(0);
+    configurationHandler(0);
   };
-  useEffect(() => {
-    setConfigurations(
-      showInactive ? monitoringPlans : getActiveConfigurations(monitoringPlans)
-    );
-  }, [monitoringPlans, showInactive]);
 
   return (
     <div className="header">
@@ -81,32 +123,38 @@ const HeaderInfo = ({
                 options={configurations}
                 selectionHandler={mpHandler}
                 selectKey="name"
-                showInactive={showInactive}
+                showInactive={inactiveCheck}
+                initialSelection={selectedConfiguration}
+                monitoringPlans={monitoringPlans}
               />
               <div className="mpSelect showInactive">
-                <input
-                  type="checkbox"
-                  id="showInactive"
-                  name="showInactive"
-                  checked={showInactive}
+                <Checkbox
+                  id={`${"selected hovered" + facility}`}
+                  name="checkbox"
+                  label="Show Inactive"
+                  defaultChecked={inactiveCheck}
                   disabled={!hasActiveConfigs}
                   onChange={checkBoxHandler}
                 />
-                <label htmlFor="showInactive"> Show Inactive</label>
               </div>
             </div>
             <SelectBox
               caption="Locations"
-              options={configurations[configSelect].locations}
+              options={
+                monitoringPlans[selectedConfiguration]
+                  ? monitoringPlans[selectedConfiguration].locations
+                  : [{ name: "test" }]
+              }
               selectionHandler={mplHandler}
               selectKey="name"
+              initialSelection={selectedLocation[0]}
             />
             <SelectBox
               caption="Sections"
               options={sections}
               selectionHandler={mpsHandler}
               selectKey="name"
-              initialSelection={3}
+              initialSelection={selectedSection}
             />
           </div>
           <div className="statuses column">
@@ -128,4 +176,4 @@ const HeaderInfo = ({
   );
 };
 
-export default React.memo(HeaderInfo);
+export default HeaderInfo;

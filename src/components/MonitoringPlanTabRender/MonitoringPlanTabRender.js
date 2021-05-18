@@ -13,42 +13,51 @@ export const MonitoringPlanTabRender = ({
   facility,
   monitoringPlans,
   hasActiveConfigs,
+
+  settingStateConfiguration,
+  settingStateLocation,
+  settingStateSection,
+  settingInactiveToggle,
+
+  sectionSelect,
+  locationSelect,
+  configurationSelect,
+  inactiveCheck
 }) => {
-  // ENTIRE PAGE IS GETTING RERENDERED ON SECTIONS STATE UPDATE
 
-  const [locationSelect, setLocationSelect] = useState(0);
-  const [sectionSelect, setSectionsSelect] = useState("Monitoring Methods");
   const [matsTableFlag, setMatsTableFlag] = useState(false);
-  const [showInactive, setShowInactive] = useState(!hasActiveConfigs);
-  useEffect(() => {
-    setShowInactive(!hasActiveConfigs); //Calling setter here to update
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [hasActiveConfigs]);
+  // // const [showInactive, setShowInactive] = useState(!hasActiveConfigs);
+  // useEffect(() => {
+  //   console.log("thjis is mp",monitoringPlans)
+  //   for(let x of monitoringPlans){
+  //     if(x.active && hasActiveConfigs) {
+  //       console.log('yesyes')
+  //       // here
+  //       settingStateConfiguration(monitoringPlans.indexOf(x));
+  //       console.log('configurationSelect',monitoringPlans.indexOf(x))
+  //       break;
+  //     }
+  //   }
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, [monitoringPlans]);
 
-  useEffect(() => {
-    setShowInactive(!hasActiveConfigs);
-    setSectionsSelect("Monitoring Methods");
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [facility]);
+  // useEffect(() => {
+  //   setShowInactive(!hasActiveConfigs);
+  //   // setSectionSelect("Monitoring Methods");
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, [facility]);
 
-  const locationHandler = (location) => {
-    setLocationSelect(location);
-  };
-
-  const sectionHandler = (section) => {
-    setSectionsSelect(section);
-  };
-  const showInactiveHandler = (value) => {
-    setShowInactive(value);
-  };
+  // const showInactiveHandler = (value) => {
+  //   setShowInactive(value);
+  // };
 
   // MONITORING METHODS
 
   const matsTableHandler = (flag) => {
     // setMatsTableFlag(flag);
-    setTimeout(() => {
-      setMatsTableFlag(flag);
-    });
+    // setTimeout(() => {
+    //   setMatsTableFlag(flag);
+    // });
   };
 
   const supItems = [];
@@ -61,8 +70,8 @@ export const MonitoringPlanTabRender = ({
       content: (
         <DataTableMethod
           matsTableHandler={matsTableHandler}
-          locationSelect={locationSelect}
-          showActiveOnly={!showInactive}
+          locationSelectValue={parseInt(locationSelect[1])}
+          // showActiveOnly={!showInactive}
         />
       ),
     },
@@ -72,7 +81,7 @@ export const MonitoringPlanTabRender = ({
       title: <AccordionItemTitle title="Supplemental Methods" />,
       expanded: true,
       id: "7",
-      content: <DataTableMats locationSelect={locationSelect} />,
+      content: <DataTableMats locationSelect={locationSelect[1]} />,
     });
   }
   //---------------
@@ -96,30 +105,27 @@ export const MonitoringPlanTabRender = ({
       matsTableFlag={matsTableFlag}
     />
   );
-
-  // useEffect(() => {
-  //   setTableHandler(
-  //     <Tables
-  //       sectionSelect={sectionSelect}
-  //       methodItems={methodItems}
-  //       systemsItems={systemsItems}
-  //       supItems={supItems}
-  //       matsTableFlag={matsTableFlag}
-  //     />
-  //   );
-  // }, [sectionSelect, locationSelect]);
-
   return (
     <div className="selectedMPTab padding-top-4 ">
       {/* on change of select box, it should modify the accordion items */}
+      {/* pass back the values to send to the datatable, current is sending back index  */}
+
       <HeaderInfo
         facility={facility}
         monitoringPlans={monitoringPlans}
-        locationHandler={locationHandler}
-        sectionHandler={sectionHandler}
-        showInactiveHandler={showInactiveHandler}
-        showInactive={showInactive}
+        locationHandler={settingStateLocation}
+        sectionHandler={settingStateSection}
+        configurationHandler={settingStateConfiguration}
+
+        showInactiveHandler={settingInactiveToggle}
+        // showInactive={showInactive}
         hasActiveConfigs={hasActiveConfigs}
+
+        selectedLocation={locationSelect}
+        selectedConfiguration={configurationSelect}
+        selectedSection={sectionSelect}
+        
+        inactiveCheck={inactiveCheck}
       />
       <Tables
         sectionSelect={sectionSelect}

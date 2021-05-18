@@ -8,16 +8,28 @@ const Tables = ({
   matsTableFlag,
   systemsItems,
 }) => {
+  // console.log('this is section in tables',methodItems)
   // const [expanded, setExpanded] = useState(false);
   // useEffect(() => {
   //   setExpanded(true);
   // }, [sectionSelect]);
   const sections = {
-    "Monitoring Methods": (
+    0:(
+      <div></div>
+    ),
+    1:(
+      <div></div>
+    ),
+    "Monitoring Defaults":(
+      <div></div>
+    ),
+    
+    3: (
       <div>
         <hr width="100%" align="center" />
         <Accordion
           bordered={false}
+          expanded={true}
           items={methodItems}
           className="accordions"
         />
@@ -37,7 +49,7 @@ const Tables = ({
         {/* <hr width="100%" align="center" /> */}
       </div>
     ),
-    "Monitoring Systems": (
+    4: (
       <div>
         <hr width="100%" align="center" />
         <Accordion
@@ -50,6 +62,24 @@ const Tables = ({
 
         {/* <hr width="100%" align="center" /> */}
       </div>
+    ),
+    "Qualifications":(
+      <div></div>
+    ),
+    "Rectangular Duct WAFs":(
+      <div></div>
+    ),
+    "Reporting Frequency":(
+      <div></div>
+    ),
+    "Span, Range, and Formulas":(
+      <div></div>
+    ),
+    "Unit Information":(
+      <div></div>
+    ),
+    "Stack/Pipe Information":(
+      <div></div>
     ),
   };
   return <div>{sections[sectionSelect]}</div>;
