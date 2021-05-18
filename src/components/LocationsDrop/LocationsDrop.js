@@ -5,8 +5,9 @@ import {
 } from "../../utils/selectors/monitoringConfigurations";
 import { Label, Dropdown, FormGroup } from "@trussworks/react-uswds";
 
-const SelectBox = ({
+const LocationDrop = ({
   caption,
+  options,
   selectKey,
   selectionHandler,
   showInactive = false,
@@ -16,27 +17,7 @@ const SelectBox = ({
   monitoringPlans,
 }) => {
   const getIndex = (val) => {
-    return sections.findIndex((obj) => obj.name === val);
-  };
-
-  const sections = [
-    { name: "Loads" },
-    { name: "Location Attributes" },
-    { name: "Monitoring Defaults" },
-    { name: "Monitoring Methods" },
-    { name: "Monitoring Systems" },
-    { name: "Qualifications" },
-    { name: "Rectangular Duct WAFs" },
-    { name: "Reporting Frequency" },
-    { name: "Span, Range, and Formulas" },
-    { name: "Unit Information" },
-    { name: "Stack/Pipe Information" },
-  ];
-  const getMPIndex = (val) => {
-    if (monitoringPlans) {
-      // console.log('this is mpindex function',monitoringPlans.findIndex((obj) => obj.id === val) )
-      return monitoringPlans.findIndex((obj) => obj.id === val);
-    }
+    return options.findIndex((obj) => obj.id === val);
   };
 
   const [selectionState, setSelectionState] = useState(
@@ -48,14 +29,12 @@ const SelectBox = ({
 
     selectionHandler(getIndex(val.target.value));
   };
-  // useEffect(() => {
-  //   console.log("changed", options[selectionState].id);
-  // }, [selectionState]);
+
   const populateOptions = (optionsList) => {
     // console.log('this is options',optionsList)
     return optionsList.map((info, index) => {
       return (
-        <option key={info.id} value={info.name}>
+        <option key={info.id} value={info.id}>
           {info[selectKey]}
         </option>
       );
@@ -64,14 +43,16 @@ const SelectBox = ({
 
   useEffect(() => {
     if (initialSelection >= 0) {
-      console.log('THIS IS INTIAL SELECTION',initialSelection)
       setSelectionState(initialSelection);
+
       selectionHandler(initialSelection);
+      console.log('this got called in locations')
     } else {
       setSelectionState(0);
       selectionHandler(0);
+      console.log('this got called in locationsss')
     }
-  }, [initialSelection]);
+  }, []);
 
   return (
     <div>
@@ -83,17 +64,17 @@ const SelectBox = ({
             name="optionList"
             // weird bug without this
             defaultValue={
-              sections[selectionState] !== undefined
+              options[selectionState] !== undefined
                 ? caption === "Configurations"
-                  ? sections[selectionState].id
-                  : sections[selectionState][selectKey]
-                : sections[0].id
+                  ? options[selectionState].id
+                  : options[selectionState][selectKey]
+                : options[0].id
             }
             disabled={viewOnly}
             id={selectionState}
             onChange={(e) => handleChange(e)}
           >
-            {populateOptions(sections)}
+            {populateOptions(options)}
           </Dropdown>
         </FormGroup>
       </div>
@@ -101,4 +82,4 @@ const SelectBox = ({
   );
 };
 
-export default SelectBox;
+export default LocationDrop;

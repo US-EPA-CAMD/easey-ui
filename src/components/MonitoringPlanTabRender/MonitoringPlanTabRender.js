@@ -22,34 +22,11 @@ export const MonitoringPlanTabRender = ({
   sectionSelect,
   locationSelect,
   configurationSelect,
-  inactiveCheck
+  inactiveCheck,
+  activeTab
 }) => {
 
   const [matsTableFlag, setMatsTableFlag] = useState(false);
-  // // const [showInactive, setShowInactive] = useState(!hasActiveConfigs);
-  // useEffect(() => {
-  //   console.log("thjis is mp",monitoringPlans)
-  //   for(let x of monitoringPlans){
-  //     if(x.active && hasActiveConfigs) {
-  //       console.log('yesyes')
-  //       // here
-  //       settingStateConfiguration(monitoringPlans.indexOf(x));
-  //       console.log('configurationSelect',monitoringPlans.indexOf(x))
-  //       break;
-  //     }
-  //   }
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, [monitoringPlans]);
-
-  // useEffect(() => {
-  //   setShowInactive(!hasActiveConfigs);
-  //   // setSectionSelect("Monitoring Methods");
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, [facility]);
-
-  // const showInactiveHandler = (value) => {
-  //   setShowInactive(value);
-  // };
 
   // MONITORING METHODS
 
@@ -65,7 +42,7 @@ export const MonitoringPlanTabRender = ({
     {
       // title in the comp name should change when selectbox handler is changed as well
       title: <AccordionItemTitle title="Methods" />,
-      expanded: !matsTableFlag,
+      expanded: true,
       id: "5",
       content: (
         <DataTableMethod
@@ -93,7 +70,7 @@ export const MonitoringPlanTabRender = ({
       title: <AccordionItemTitle title="Systems" />,
       expanded: true,
       id: "2",
-      content: <DataTableSystems locationSelect={locationSelect} />,
+      content: <DataTableSystems locationSelect={locationSelect[1]} />,
     },
   ];
   const [tableHandler, setTableHandler] = useState(
@@ -118,7 +95,6 @@ export const MonitoringPlanTabRender = ({
         configurationHandler={settingStateConfiguration}
 
         showInactiveHandler={settingInactiveToggle}
-        // showInactive={showInactive}
         hasActiveConfigs={hasActiveConfigs}
 
         selectedLocation={locationSelect}
@@ -126,6 +102,7 @@ export const MonitoringPlanTabRender = ({
         selectedSection={sectionSelect}
         
         inactiveCheck={inactiveCheck}
+        activeTab={activeTab}
       />
       <Tables
         sectionSelect={sectionSelect}

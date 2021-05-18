@@ -11,6 +11,7 @@ import { connect } from "react-redux";
 import MonitoringPlanTabRender from "../MonitoringPlanTabRender/MonitoringPlanTabRender";
 import { getActiveConfigurations } from "../../utils/selectors/monitoringConfigurations";
 import { BreadcrumbLink } from "@trussworks/react-uswds";
+import { setActiveTab } from "../../store/actions/activeTab";
 
 export const MonitoringPlanTab = ({
   orisCode,
@@ -23,29 +24,35 @@ export const MonitoringPlanTab = ({
   monitoringPlans,
   loading,
   tabs,
+  setActiveTab,
+  activeTab
 }) => {
   const [facility] = useState(fs.getSelectedFacility(orisCode, facilities));
-  const [activeTab, setActiveTab] = useState(0);
+  // const [activeTab, setActiveTab] = useState(0);
   const [locationSelect, setLocationSelect] = useState([
-    tabs[activeTab].location[0],
-    tabs[activeTab].location[1],
+    // tabs[activeTab].location[0],
+    // tabs[activeTab].location[1],
   ]);
-  const [configurationSelect, setConfigurationSelect] = useState(
-    tabs[activeTab].configuration
+  const [configurationSelect, setConfigurationSelect] = useState(''
+    // tabs[activeTab].configuration
   );
-  const [sectionSelect, setSectionSelect] = useState(tabs[activeTab].section);
+  const [sectionSelect, setSectionSelect] = useState(
+    tabs[activeTab].section
+    );
 
   const [hasActiveConfigs, setHasActiveConfigs] = useState(true);
 
-  const [inactiveCheck, setInactiveCheck] = useState(tabs[activeTab].inactive);
+  const [inactiveCheck, setInactiveCheck] = useState(
+    tabs[activeTab].inactive
+    );
   useEffect(() => {
     loadMonitoringPlansData(orisCode);
     // eslint-disable-next-line react-hooks/exhaustive-deps
 
     for (let x of tabs) {
       if (x.orisCode === orisCode) {
-        setActiveTab(tabs.indexOf(x));
-        settingStateSection(tabs[activeTab].configuration);
+        setActiveTab(orisCode,tabs.indexOf(x));
+        settingStateConfiguration(tabs[activeTab].configuration);
         settingStateLocation([0, tabs[activeTab].location[1]]);
         settingStateSection(tabs[activeTab].section);
         setInactiveCheck(tabs[activeTab].inactive);
@@ -60,6 +67,8 @@ export const MonitoringPlanTab = ({
       }
       break;
     }
+settingStateSection(tabs[activeTab].section);
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [monitoringPlans]);
 
@@ -68,6 +77,7 @@ export const MonitoringPlanTab = ({
   const settingStateConfiguration = (index) => {
     setConfiguration(index, orisCode);
     setConfigurationSelect(index);
+    console.log('configuration is updated',index)
   };
 
   const settingStateLocation = (index) => {
@@ -81,13 +91,14 @@ export const MonitoringPlanTab = ({
   };
 
   const settingInactiveToggle = (value) => {
-    setInactive(value, orisCode);
+    setInactive(orisCode,value );
 
-    if (value === inactiveCheck) {
-      setInactiveCheck(!inactiveCheck);
-    } else {
-      setInactiveCheck(value);
-    }
+    // if (value === inactiveCheck) {
+    //   setInactiveCheck(!inactiveCheck);
+    // } else {
+    //   setInactiveCheck(value);
+    // }
+    setInactiveCheck(value);
   };
   useEffect(() => {
     if (monitoringPlans.length > 0) {
@@ -112,6 +123,7 @@ export const MonitoringPlanTab = ({
         locationSelect={locationSelect}
         configurationSelect={configurationSelect}
         inactiveCheck={inactiveCheck}
+        activeTab={activeTab}
       />
     </div>
   );
@@ -122,6 +134,7 @@ const mapStateToProps = (state) => {
     tabs: state.openedFacilityTabs,
     loading: state.apiCallsInProgress.facilities,
     monitoringPlans: state.monitoringPlans,
+    activeTab:state.activeTab
   };
 };
 
@@ -135,8 +148,10 @@ const mapDispatchToProps = (dispatch) => {
       dispatch(setLocationSelectionState(location, orisCode)),
     setSection: (section, orisCode) =>
       dispatch(setSectionSelectionState(section, orisCode)),
-    setInactive: (value, orisCode) =>
+    setInactive: (orisCode,value ) =>
       dispatch(setInactiveToggle(orisCode, value)),
+      setActiveTab:(orisCode, value) =>
+      dispatch(setActiveTab(orisCode, value)),
   };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(MonitoringPlanTab);

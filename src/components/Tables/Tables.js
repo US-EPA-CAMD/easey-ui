@@ -29,7 +29,7 @@ const Tables = ({
         <hr width="100%" align="center" />
         <Accordion
           bordered={false}
-          expanded={true}
+          aria-expanded={true}
           items={methodItems}
           className="accordions"
         />
@@ -54,7 +54,7 @@ const Tables = ({
         <hr width="100%" align="center" />
         <Accordion
           bordered={false}
-          expanded={true}
+          aria-expanded={true}
           items={systemsItems}
           className="accordions"
         />

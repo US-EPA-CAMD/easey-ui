@@ -33,6 +33,7 @@ const reducer = (state = initialState.openedFacilityTabs, action) => {
     }
   }
   else if (action.type === types.SET_SECTION_SELECTION_STATE) {
+    console.log('section disptached')
     if (state && state.length >= 0) {
       return state.map((x, i) =>
         x.orisCode === action.orisCode
@@ -43,8 +44,8 @@ const reducer = (state = initialState.openedFacilityTabs, action) => {
           : x
       );
     }
-  }
-  else if (action.type === types.SET_INACTIVE_TOGGLE) {
+  }  else if (action.type === types.SET_INACTIVE_TOGGLE) {
+    console.log('section disptached')
     if (state && state.length >= 0) {
       return state.map((x, i) =>
         x.orisCode === action.orisCode
