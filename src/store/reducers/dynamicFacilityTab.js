@@ -32,6 +32,18 @@ const reducer = (state = initialState.openedFacilityTabs, action) => {
       );
     }
   }
+  else if (action.type === types.SET_LOCATIONS_STATE) {
+    if (state && state.length >= 0) {
+      return state.map((x, i) =>
+        x.orisCode === action.orisCode
+          ? {
+              ...x,
+              locations: action.locations,
+            }
+          : x
+      );
+    }
+  }
   else if (action.type === types.SET_SECTION_SELECTION_STATE) {
     console.log('section disptached',state,action.section)
     if (state && state.length >= 0) {
@@ -53,6 +65,19 @@ const reducer = (state = initialState.openedFacilityTabs, action) => {
           ? {
               ...x,
               inactive: action.value,
+            }
+          : x
+      );
+    }
+  }
+  else if (action.type === types.SET_MONITORING_PLAN) {
+
+    if (state && state.length >= 0) {
+      return state.map((x, i) =>
+        x.orisCode === action.orisCode
+          ? {
+              ...x,
+              monitoringPlans: action.mp,
             }
           : x
       );

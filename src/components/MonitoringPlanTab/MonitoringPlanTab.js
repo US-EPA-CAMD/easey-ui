@@ -2,10 +2,8 @@ import React, { useState, useEffect } from "react";
 import * as fs from "../../utils/selectors/facilities";
 import { loadMonitoringPlans } from "../../store/actions/monitoringPlans";
 import {
-  setConfigurationSelectionState,
-  setSectionSelectionState,
-  setLocationSelectionState,
   setInactiveToggle,
+  setMonitoringPlan
 } from "../../store/actions/dynamicFacilityTab";
 import { connect } from "react-redux";
 import MonitoringPlanTabRender from "../MonitoringPlanTabRender/MonitoringPlanTabRender";
@@ -17,31 +15,31 @@ export const MonitoringPlanTab = ({
   orisCode,
   facilities,
   loadMonitoringPlansData,
-  setConfiguration,
-  setLocation,
-  setSection,
+
   setInactive,
   monitoringPlans,
   loading,
   tabs,
   setActiveTab,
   activeTab,
+  setMonitoringPlan
 }) => {
   const [facility] = useState(fs.getSelectedFacility(orisCode, facilities));
-  // // const [activeTab, setActiveTab] = useState(0);
-  // const [locationSelect, setLocationSelect] = useState([
-  //   // tabs[activeTab].location[0],
-  //   // tabs[activeTab].location[1],
-  // ]);
-  // const [configurationSelect, setConfigurationSelect] = useState(
-  //   ""
-  //   // tabs[activeTab].configuration
-  // );
+
   const [sectionSelect, setSectionSelect] = useState(tabs[activeTab].section);
+
+  useEffect(()=>{
+    setSectionSelect(tabs[activeTab].section);
+  },[tabs[activeTab].section])
+
+  const [locationSelect, setLocationSelect] = useState(tabs[activeTab].location[1]);
+
+  useEffect(()=>{
+    setLocationSelect(tabs[activeTab].location[1]);
+  },[tabs[activeTab].location])
 
   const [hasActiveConfigs, setHasActiveConfigs] = useState(true);
 
-  // const [inactiveCheck, setInactiveCheck] = useState(tabs[activeTab].inactive);
   useEffect(() => {
     loadMonitoringPlansData(orisCode);
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -49,54 +47,11 @@ export const MonitoringPlanTab = ({
     for (let x of tabs) {
       if (x.orisCode === orisCode) {
         setActiveTab(orisCode, tabs.indexOf(x));
-        // settingStateConfiguration(tabs[activeTab].configuration);
-        // settingStateLocation([0, tabs[activeTab].location[1]]);
-        // settingStateSection(tabs[activeTab].section);
-        // setInactiveCheck(tabs[activeTab].inactive);
         break;
       }
     }
   }, []);
-  // useEffect(() => {
-  //   for (let x of monitoringPlans) {
-  //     if (x.active && hasActiveConfigs) {
-  //       settingStateConfiguration(monitoringPlans.indexOf(x));
-  //     }
-  //     break;
-  //   }
-  //   settingStateSection(tabs[activeTab].section);
 
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, [monitoringPlans]);
-
-  // const [showInactive, setShowInactive] = useState(!hasActiveConfigs);
-
-  // const settingStateConfiguration = (index) => {
-  //   setConfiguration(index, orisCode);
-  //   setConfigurationSelect(index);
-  //   console.log("configuration is updated", index);
-  // };
-
-  // const settingStateLocation = (index) => {
-  //   setLocation(index, orisCode);
-  //   setLocationSelect(index);
-  // };
-
-  // const settingStateSection = (index) => {
-  //   setSection(index, orisCode);
-  //   setSectionSelect(index);
-  // };
-
-  // const settingInactiveToggle = (value) => {
-  //   setInactive(orisCode, value);
-
-  // if (value === inactiveCheck) {
-  //   setInactiveCheck(!inactiveCheck);
-  // } else {
-  //   setInactiveCheck(value);
-  // }
-  //   setInactiveCheck(value);
-  // };
   useEffect(() => {
     if (monitoringPlans.length > 0) {
       setHasActiveConfigs(
@@ -108,6 +63,7 @@ export const MonitoringPlanTab = ({
           true
         );
       }
+      setMonitoringPlan(monitoringPlans,orisCode)
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [monitoringPlans]);
@@ -118,8 +74,9 @@ export const MonitoringPlanTab = ({
         facility={facility}
         monitoringPlans={monitoringPlans}
         hasActiveConfigs={hasActiveConfigs}
-        activeTab={activeTab}
         orisCode={orisCode}
+        sectionSelect={sectionSelect}
+        locationSelect={locationSelect}
       />
     </div>
   );
@@ -138,15 +95,11 @@ const mapDispatchToProps = (dispatch) => {
   return {
     loadMonitoringPlansData: (orisCode) =>
       dispatch(loadMonitoringPlans(orisCode)),
-    setConfiguration: (configuration, orisCode) =>
-      dispatch(setConfigurationSelectionState(configuration, orisCode)),
-    setLocation: (location, orisCode) =>
-      dispatch(setLocationSelectionState(location, orisCode)),
-    setSection: (section, orisCode) =>
-      dispatch(setSectionSelectionState(section, orisCode)),
-    setInactive: (orisCode, value) =>
-      dispatch(setInactiveToggle(orisCode, value)),
     setActiveTab: (orisCode, value) => dispatch(setActiveTab(orisCode, value)),
+    setMonitoringPlan: (mp, orisCode) => dispatch(setMonitoringPlan(mp, orisCode)),
+    setInactive: (orisCode, value) =>
+    dispatch(setInactiveToggle(orisCode, value)),
+
   };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(MonitoringPlanTab);

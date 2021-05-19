@@ -32,7 +32,7 @@ export const DynamicTabs = ({
       newTabs.forEach((t) => {
         if(!tabs.some(facility => facility.title === t.title)){
           tabs.push(t);
-          addFacility({orisCode:t.orisCode, name: t.title,configuration:0,location:[0,0],section:3,inactive:false});
+          addFacility({orisCode:t.orisCode, name: t.title,configuration:0,location:[0,0],section:3,locations:[],monitoringPlans:[],inactive:false});
         }
       });
       setTabs([...tabs]);

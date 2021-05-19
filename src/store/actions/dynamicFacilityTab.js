@@ -41,3 +41,20 @@ export function setInactiveToggle(orisCode,value) {
     value
   };
 }
+
+export function setLocationsState(locations,orisCode) {
+  return {
+    type: types.SET_LOCATIONS_STATE,
+    orisCode,
+    locations
+  };
+}
+
+export function setMonitoringPlan(mp,orisCode) {
+  return {
+    type: types.SET_MONITORING_PLAN,
+    orisCode,
+    mp
+  };
+}
+
