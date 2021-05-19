@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import HeaderInfo from "../HeaderInfo/HeaderInfo";
 import AccordionItemTitle from "../AccordionItemTitle/AccordionItemTitle";
 import "../MonitoringPlanTab/MonitoringPlanTab.scss";
@@ -65,15 +65,7 @@ export const MonitoringPlanTabRender = ({
       content: <DataTableSystems locationSelect={locationSelect} />,
     },
   ];
-  // const [tableHandler, setTableHandler] = useState(
-  //   <Tables
-  //     sectionSelect={sectionSelect}
-  //     methodItems={methodItems}
-  //     systemsItems={systemsItems}
-  //     supItems={supItems}
-  //     matsTableFlag={matsTableFlag}
-  //   />
-  // );
+
   return (
     <div className="selectedMPTab padding-top-4 ">
       {/* on change of select box, it should modify the accordion items */}

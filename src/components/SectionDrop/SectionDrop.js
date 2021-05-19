@@ -1,8 +1,4 @@
 import React, { useState, useEffect } from "react";
-import {
-  getActiveConfigurations,
-  getInActiveConfigurations,
-} from "../../utils/selectors/monitoringConfigurations";
 import { Label, Dropdown, FormGroup } from "@trussworks/react-uswds";
 
 const SectionDrop = ({
@@ -45,7 +41,6 @@ const SectionDrop = ({
   };
 
   const populateOptions = (optionsList) => {
-    // console.log('this is options',optionsList)
     return optionsList.map((info, index) => {
       return (
         <option key={info.id} value={info.name}>
@@ -58,7 +53,6 @@ const SectionDrop = ({
   // usef
   useEffect(() => {
     setSelectionState(initialSelection);
-    // selectionHandler(initialSelection,orisCode);
   }, [initialSelection]);
 
   return (

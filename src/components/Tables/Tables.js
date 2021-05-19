@@ -14,16 +14,10 @@ const Tables = ({
   //   setExpanded(true);
   // }, [sectionSelect]);
   const sections = {
-    0:(
-      <div></div>
-    ),
-    1:(
-      <div></div>
-    ),
-    "Monitoring Defaults":(
-      <div></div>
-    ),
-    
+    0: <div></div>,
+    1: <div></div>,
+    "Monitoring Defaults": <div></div>,
+
     3: (
       <div>
         <hr width="100%" align="center" />
@@ -63,24 +57,12 @@ const Tables = ({
         {/* <hr width="100%" align="center" /> */}
       </div>
     ),
-    "Qualifications":(
-      <div></div>
-    ),
-    "Rectangular Duct WAFs":(
-      <div></div>
-    ),
-    "Reporting Frequency":(
-      <div></div>
-    ),
-    "Span, Range, and Formulas":(
-      <div></div>
-    ),
-    "Unit Information":(
-      <div></div>
-    ),
-    "Stack/Pipe Information":(
-      <div></div>
-    ),
+    Qualifications: <div></div>,
+    "Rectangular Duct WAFs": <div></div>,
+    "Reporting Frequency": <div></div>,
+    "Span, Range, and Formulas": <div></div>,
+    "Unit Information": <div></div>,
+    "Stack/Pipe Information": <div></div>,
   };
   return <div>{sections[sectionSelect]}</div>;
 };

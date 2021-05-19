@@ -10,7 +10,7 @@ const reducer = (state = initialState.openedFacilityTabs, action) => {
       (facility) => state.indexOf(facility) !== action.facility - 1
     );
   } else if (action.type === types.SET_CONFIGURATION_SELECTION_STATE) {
-    if (state && state.length >= 0) {
+    if (state && state.length > 0) {
       return state.map((x, i) =>
         x.orisCode === action.orisCode
           ? {
@@ -20,8 +20,8 @@ const reducer = (state = initialState.openedFacilityTabs, action) => {
           : x
       );
     }
-  }else if (action.type === types.SET_LOCATION_SELECTION_STATE) {
-    if (state && state.length >= 0) {
+  } else if (action.type === types.SET_LOCATION_SELECTION_STATE) {
+    if (state && state.length > 0) {
       return state.map((x, i) =>
         x.orisCode === action.orisCode
           ? {
@@ -31,9 +31,8 @@ const reducer = (state = initialState.openedFacilityTabs, action) => {
           : x
       );
     }
-  }
-  else if (action.type === types.SET_LOCATIONS_STATE) {
-    if (state && state.length >= 0) {
+  } else if (action.type === types.SET_LOCATIONS_STATE) {
+    if (state && state.length > 0) {
       return state.map((x, i) =>
         x.orisCode === action.orisCode
           ? {
@@ -43,10 +42,8 @@ const reducer = (state = initialState.openedFacilityTabs, action) => {
           : x
       );
     }
-  }
-  else if (action.type === types.SET_SECTION_SELECTION_STATE) {
-    console.log('section disptached',state,action.section)
-    if (state && state.length >= 0) {
+  } else if (action.type === types.SET_SECTION_SELECTION_STATE) {
+    if (state && state.length > 0) {
       return state.map((x, i) =>
         x.orisCode === action.orisCode
           ? {
@@ -55,11 +52,9 @@ const reducer = (state = initialState.openedFacilityTabs, action) => {
             }
           : x
       );
-      console.log('section disptached2')
     }
-  }  else if (action.type === types.SET_INACTIVE_TOGGLE) {
-
-    if (state && state.length >= 0) {
+  } else if (action.type === types.SET_INACTIVE_TOGGLE) {
+    if (state && state.length > 0) {
       return state.map((x, i) =>
         x.orisCode === action.orisCode
           ? {
@@ -69,10 +64,8 @@ const reducer = (state = initialState.openedFacilityTabs, action) => {
           : x
       );
     }
-  }
-  else if (action.type === types.SET_MONITORING_PLAN) {
-
-    if (state && state.length >= 0) {
+  } else if (action.type === types.SET_MONITORING_PLAN) {
+    if (state && state.length > 0) {
       return state.map((x, i) =>
         x.orisCode === action.orisCode
           ? {
@@ -82,8 +75,7 @@ const reducer = (state = initialState.openedFacilityTabs, action) => {
           : x
       );
     }
-  }
-   else {
+  } else {
     return state;
   }
 };

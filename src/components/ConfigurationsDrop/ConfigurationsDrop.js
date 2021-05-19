@@ -45,14 +45,9 @@ const ConfigurationsDrop = ({
     }
   };
 
-  const [selectionState, setSelectionState] = useState(
-    options.indexOf(
-      tabs[activeTab[0]].monitoringPlans[tabs[activeTab].configuration]
-    )
-  );
 
   const handleChange = (val) => {
-    setSelectionState(getIndex(val.target.value));
+    
     setConfiguration(getMPIndex(val.target.value), orisCode);
 
     setLocations(
@@ -81,7 +76,7 @@ const ConfigurationsDrop = ({
   };
 
   useEffect(() => {
-    for (let x of tabs[activeTab[0]].monitoringPlans) {
+    for (const x of tabs[activeTab[0]].monitoringPlans) {
       if (x.active && hasActiveConfigs) {
         setSelectionState(options.indexOf(x));
         setConfiguration(tabs[activeTab[0]].monitoringPlans.indexOf(x));
