@@ -44,7 +44,7 @@ export const MonitoringPlanTab = ({
     loadMonitoringPlansData(orisCode);
     // eslint-disable-next-line react-hooks/exhaustive-deps
 
-    for (let x of tabs) {
+    for (const x of tabs) {
       if (x.orisCode === orisCode) {
         setActiveTab(orisCode, tabs.indexOf(x));
         break;

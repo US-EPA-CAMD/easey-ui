@@ -2,10 +2,7 @@ import React, { useState, useEffect } from "react";
 
 import { Label, Dropdown, FormGroup } from "@trussworks/react-uswds";
 import { connect } from "react-redux";
-import {
-  setLocationSelectionState,
-  setInactiveToggle,
-} from "../../store/actions/dynamicFacilityTab";
+import { setLocationSelectionState } from "../../store/actions/dynamicFacilityTab";
 import { setActiveTab } from "../../store/actions/activeTab";
 const LocationDrop = ({
   orisCode,
@@ -44,69 +41,46 @@ const LocationDrop = ({
   };
 
   useEffect(() => {
-  
     if (initialSelection >= 0 && tabs[activeTab[0]].locations.length >= 1) {
-      // setSelectionState(
-      //   options.findIndex(function (obj) {
-      //     return obj.id === initialSelection.id;
-      //   })
-      // );
-
-      // selectionHandler(
-      //   options.findIndex(function (obj) {
-      //     return obj.id === initialSelection.id;
-      //   })
-      // );
-
-      // setLocation(
-      //   [
-      //     options.findIndex(function (obj) {
-      //       return obj.id === initialSelection.id;
-      //     }),
-      //     initialSelection.id,
-      //   ],
-      //   orisCode
-      // );
-
       setSelectionState(tabs[activeTab[0]].location[0]);
-      setLocation([
-        tabs[activeTab[0]].location[0], 
-        tabs[activeTab[0]].
-        locations[
-          // index of selected
-          tabs[activeTab[0]].location[0]]
-        .id
-      ]
-        , orisCode);
-      console.log('got called',)
+      setLocation(
+        [
+          tabs[activeTab[0]].location[0],
+          tabs[activeTab[0]].locations[
+            // index of selected
+            tabs[activeTab[0]].location[0]
+          ].id,
+        ],
+        orisCode
+      );
     } else {
       setSelectionState(0);
     }
   }, []);
 
   return (
-    <div> {
-        tabs[activeTab[0]].locations.length > 0 ? 
-      <div>
-        {/* need to add default value later */}
-        <FormGroup className="margin-right-2 margin-bottom-1">
-          <Label htmlFor={caption + initialSelection}>{caption}</Label>
-          <Dropdown
-            name="optionList"
-            id={selectionState}
-            value={
-                tabs[activeTab[0]].locations[tabs[activeTab[0]].location[0]]
-                    .id
-
-            }
-            onChange={(e) => handleChange(e)}
-          >
-            {/* // this i getting changed */}
-            {populateOptions(tabs[activeTab[0]].locations)}
-          </Dropdown>
-        </FormGroup> 
-      </div>:
-        ''}
+    <div>
+      {" "}
+      {tabs[activeTab[0]].locations.length > 0 ? (
+        <div>
+          {/* need to add default value later */}
+          <FormGroup className="margin-right-2 margin-bottom-1">
+            <Label htmlFor={caption + initialSelection}>{caption}</Label>
+            <Dropdown
+              name="optionList"
+              id={selectionState}
+              value={
+                tabs[activeTab[0]].locations[tabs[activeTab[0]].location[0]].id
+              }
+              onChange={(e) => handleChange(e)}
+            >
+              {populateOptions(tabs[activeTab[0]].locations)}
+            </Dropdown>
+          </FormGroup>
+        </div>
+      ) : (
+        ""
+      )}
     </div>
   );
 };

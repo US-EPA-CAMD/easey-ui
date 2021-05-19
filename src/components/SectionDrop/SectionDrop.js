@@ -6,7 +6,6 @@ const SectionDrop = ({
   caption,
   selectKey,
   selectionHandler,
-  showInactive = false,
   initialSelection,
   required,
   monitoringPlans,
@@ -64,7 +63,6 @@ const SectionDrop = ({
             id={orisCode}
             name={"optionList " + orisCode}
             value={sections[selectionState][selectKey]}
-            id={selectionState}
             onChange={(e) => handleChange(e)}
           >
             {populateOptions(sections)}

@@ -8,11 +8,10 @@ import {
 import { connect } from "react-redux";
 import {
   setSectionSelectionState,
-  setLocationSelectionState,
   setInactiveToggle,
 } from "../../store/actions/dynamicFacilityTab";
 import { setActiveTab } from "../../store/actions/activeTab";
-import { Button, Checkbox } from "@trussworks/react-uswds";
+import { Button } from "@trussworks/react-uswds";
 import ConfigurationsDrop from "../ConfigurationsDrop/ConfigurationsDrop";
 import LocationDrop from "../LocationsDrop/LocationsDrop";
 
@@ -28,7 +27,6 @@ const HeaderInfo = ({
   setSection,
   setConfiguration,
   setInactive,
-
 }) => {
   // // possiblely adding showinactive to redux state will fix this issue
   const [configurations, setConfigurations] = useState(
@@ -107,8 +105,7 @@ const HeaderInfo = ({
               orisCode={orisCode}
               options={tabs[activeTab[0]].locations}
               selectKey="name"
-              initialSelection={ tabs[activeTab[0]].location[0]
-              }
+              initialSelection={tabs[activeTab[0]].location[0]}
             />
             <SectionDrop
               caption="Sections"
