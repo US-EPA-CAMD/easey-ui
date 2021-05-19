@@ -8,6 +8,7 @@ import {
 import { connect } from "react-redux";
 import MonitoringPlanTabRender from "../MonitoringPlanTabRender/MonitoringPlanTabRender";
 import { getActiveConfigurations } from "../../utils/selectors/monitoringConfigurations";
+
 import { setActiveTab } from "../../store/actions/activeTab";
 
 export const MonitoringPlanTab = ({
@@ -19,9 +20,9 @@ export const MonitoringPlanTab = ({
   monitoringPlans,
   loading,
   tabs,
-  setActive,
+  setActiveTab,
   activeTab,
-  setMonitoring
+  setMonitoringPlan
 }) => {
   const [facility] = useState(fs.getSelectedFacility(orisCode, facilities));
 
@@ -43,7 +44,7 @@ export const MonitoringPlanTab = ({
     loadMonitoringPlansData(orisCode);
     // eslint-disable-next-line react-hooks/exhaustive-deps
 
-    for (const x of tabs) {
+    for (let x of tabs) {
       if (x.orisCode === orisCode) {
         setActiveTab(orisCode, tabs.indexOf(x));
         break;
@@ -94,8 +95,8 @@ const mapDispatchToProps = (dispatch) => {
   return {
     loadMonitoringPlansData: (orisCode) =>
       dispatch(loadMonitoringPlans(orisCode)),
-    setActive: (orisCode, value) => dispatch(setActiveTab(orisCode, value)),
-    setMonitoring: (mp, orisCode) => dispatch(setMonitoringPlan(mp, orisCode)),
+    setActiveTab: (orisCode, value) => dispatch(setActiveTab(orisCode, value)),
+    setMonitoringPlan: (mp, orisCode) => dispatch(setMonitoringPlan(mp, orisCode)),
     setInactive: (orisCode, value) =>
     dispatch(setInactiveToggle(orisCode, value)),
 

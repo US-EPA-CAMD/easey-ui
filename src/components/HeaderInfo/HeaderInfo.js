@@ -8,10 +8,11 @@ import {
 import { connect } from "react-redux";
 import {
   setSectionSelectionState,
+  setLocationSelectionState,
   setInactiveToggle,
 } from "../../store/actions/dynamicFacilityTab";
 import { setActiveTab } from "../../store/actions/activeTab";
-import { Button } from "@trussworks/react-uswds";
+import { Button, Checkbox } from "@trussworks/react-uswds";
 import ConfigurationsDrop from "../ConfigurationsDrop/ConfigurationsDrop";
 import LocationDrop from "../LocationsDrop/LocationsDrop";
 
@@ -41,6 +42,7 @@ const HeaderInfo = ({
   useEffect(() => {
     if (!hasActiveConfigs) {
       setConfigurations(getInActiveConfigurations(monitoringPlans));
+      // showInactiveHandler(false);
     }
   }, [hasActiveConfigs, monitoringPlans, orisCode]);
 

@@ -33,6 +33,10 @@ const ConfigurationsDrop = ({
   setLocations,
   setLocation,
 }) => {
+  // ISSUE RIGHT NOW IS SWITCHING BETWEEN TABS'
+  // ACTIVE TAB DOESNT CHANGE RIGHT AWAY SO WHEN IT TRIES TO FIND A MONITORINGPLAN WITH A
+  //HIGH CONFIGURATION, IT THINKS OF THE PREVIOUS TAB WITH A LOW LENGTH CONFIGURATION
+  // AND GIVES ERROR
   const getIndex = (val) => {
     return options.findIndex((obj) => obj.id === val);
   };
@@ -45,9 +49,14 @@ const ConfigurationsDrop = ({
     }
   };
 
+  const [selectionState, setSelectionState] = useState(
+    options.indexOf(
+      tabs[activeTab[0]].monitoringPlans[tabs[activeTab].configuration]
+    )
+  );
 
   const handleChange = (val) => {
-    
+    setSelectionState(getIndex(val.target.value));
     setConfiguration(getMPIndex(val.target.value), orisCode);
 
     setLocations(
@@ -76,14 +85,17 @@ const ConfigurationsDrop = ({
   };
 
   useEffect(() => {
-    for (const x of tabs[activeTab[0]].monitoringPlans) {
+    for (let x of tabs[activeTab[0]].monitoringPlans) {
       if (x.active && hasActiveConfigs) {
         setSelectionState(options.indexOf(x));
         setConfiguration(tabs[activeTab[0]].monitoringPlans.indexOf(x));
 
         if (
           tabs[activeTab[0]].monitoringPlans.length >
-          tabs[activeTab].configuration
+            tabs[activeTab].configuration 
+          // add below if you want to make locations invisible until config is selected
+        //   tabs[activeTab[0]].location === [0, 0]
+          //   && (tabs[activeTab[0]].location.length < 1)
         ) {
           setLocations(
             tabs[activeTab[0]].monitoringPlans[
@@ -91,12 +103,14 @@ const ConfigurationsDrop = ({
             ].locations,
             orisCode
           );
+          console.log("CHECK ECHK");
           setLocation(
             [
               0,
               tabs[activeTab[0]].monitoringPlans[
                 tabs[activeTab[0]].monitoringPlans.indexOf(x)
-              ].locations[0].id,
+              ]
+                .locations[0].id,
             ],
             orisCode
           );
@@ -104,6 +118,7 @@ const ConfigurationsDrop = ({
         break;
       }
     }
+    
   }, []);
   const checkBoxHandler = (evt) => {
     if (evt.target.checked) {
@@ -113,6 +128,7 @@ const ConfigurationsDrop = ({
     }
   };
 
+  // change to text box to check
   return (
     <div>
       {tabs[activeTab[0]].configuration <
