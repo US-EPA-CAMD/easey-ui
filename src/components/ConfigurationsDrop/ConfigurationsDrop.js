@@ -85,35 +85,54 @@ const ConfigurationsDrop = ({
   };
 
   useEffect(() => {
-    for (const x of tabs[activeTab[0]].monitoringPlans) {
-      if (x.active && hasActiveConfigs) {
-        setSelectionState(options.indexOf(x));
-        setConfiguration(tabs[activeTab[0]].monitoringPlans.indexOf(x));
-
-        if (
-          tabs[activeTab[0]].monitoringPlans.length >
-          tabs[activeTab].configuration
-        ) {
-          setLocations(
-            tabs[activeTab[0]].monitoringPlans[
-              tabs[activeTab[0]].monitoringPlans.indexOf(x)
-            ].locations,
-            orisCode
-          );
-          setLocation(
-            [
-              0,
-              tabs[activeTab[0]].monitoringPlans[
-                tabs[activeTab[0]].monitoringPlans.indexOf(x)
-              ].locations[0].id,
-            ],
-            orisCode
-          );
+    const settingLocations = (index, flag) => {
+      if (
+        tabs[activeTab[0]].monitoringPlans.length >
+        tabs[activeTab[0]].configuration
+      ) {
+        setLocations(
+          tabs[activeTab[0]].monitoringPlans[index].locations,
+          orisCode
+        );
+        if (flag){
+        setLocation(
+          [0, tabs[activeTab[0]].monitoringPlans[index].locations[0].id],
+          orisCode
+        );}
+      }
+    };
+    // on a new tab rendering
+    if (tabs[activeTab[0]].location[1] == 0) {
+      if (hasActiveConfigs) {
+        for (const x of tabs[activeTab[0]].monitoringPlans) {
+          if (x.active) {
+            setSelectionState(options.indexOf(x));
+            setConfiguration(tabs[activeTab[0]].monitoringPlans.indexOf(x));
+            settingLocations(tabs[activeTab[0]].monitoringPlans.indexOf(x),true);
+            break;
+          }
         }
-        break;
+      } else {
+        setSelectionState(0);
+        setConfiguration(0);
+        console.log('got called in else ')
+        settingLocations(0,true);
       }
     }
-  }, []);
+    // going back to previous tab
+    else {
+      setSelectionState(tabs[activeTab].configuration);
+      if (
+        tabs[activeTab[0]].monitoringPlans.length >
+        tabs[activeTab[0]].configuration
+      ) {
+        setLocations(
+          tabs[activeTab[0]].monitoringPlans[tabs[activeTab[0]].configuration].locations,
+          orisCode
+        );}
+    }
+
+  }, [tabs[activeTab[0]].monitoringPlans]);
   const checkBoxHandler = (evt) => {
     if (evt.target.checked) {
       showInactiveHandler(orisCode, true);
@@ -154,7 +173,7 @@ const ConfigurationsDrop = ({
 
           <div className="mpSelect showInactive">
             <Checkbox
-              id={options[0].id}
+              id={1}
               name="checkbox"
               label="Show Inactive"
               checked={inactiveCheck}

@@ -19,7 +19,7 @@ const HeaderInfo = ({
   facility,
   monitoringPlans,
   orisCode,
-
+  monitoringPlansState,
   hasActiveConfigs,
 
   tabs,
@@ -84,7 +84,7 @@ const HeaderInfo = ({
         <a href="#/">Reports</a>|<Button className="ovalBTN">Evaluate</Button>
         <Button className="ovalBTN">Submit</Button>
       </div>
-      {configurations.length !== 0 ? (
+      {monitoringPlansState.length !== 0 ? (
         <div className="row">
           <div className="selects column">
             <div className="configurations-container">
@@ -138,7 +138,7 @@ const HeaderInfo = ({
 const mapStateToProps = (state) => {
   return {
     tabs: state.openedFacilityTabs,
-
+    monitoringPlansState:state.monitoringPlans,
     activeTab: state.activeTab,
   };
 };

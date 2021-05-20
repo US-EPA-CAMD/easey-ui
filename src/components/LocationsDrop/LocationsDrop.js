@@ -41,6 +41,7 @@ const LocationDrop = ({
   };
 
   useEffect(() => {
+    
     if (initialSelection >= 0 && tabs[activeTab[0]].locations.length >= 1) {
       setSelectionState(tabs[activeTab[0]].location[0]);
       setLocation(
@@ -69,8 +70,8 @@ const LocationDrop = ({
             <Dropdown
               name="optionList"
               id={selectionState}
-              value={
-                tabs[activeTab[0]].locations[tabs[activeTab[0]].location[0]].id
+              value={(tabs[activeTab[0]].location[0] < tabs[activeTab[0]].locations.length)?
+                tabs[activeTab[0]].locations[tabs[activeTab[0]].location[0]].id : 0
               }
               onChange={(e) => handleChange(e)}
             >
