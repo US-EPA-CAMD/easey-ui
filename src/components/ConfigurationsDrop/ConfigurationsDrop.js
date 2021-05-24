@@ -7,7 +7,6 @@ import { Label, Dropdown, FormGroup, Checkbox } from "@trussworks/react-uswds";
 import { connect } from "react-redux";
 import {
   setConfigurationSelectionState,
-  setSectionSelectionState,
   setLocationSelectionState,
   setLocationsState,
 } from "../../store/actions/dynamicFacilityTab";

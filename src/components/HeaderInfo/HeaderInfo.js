@@ -9,7 +9,6 @@ import { connect } from "react-redux";
 import {
   setSectionSelectionState,
   setInactiveToggle,
-  setLocationsState,
   setLocationSelectionState
 } from "../../store/actions/dynamicFacilityTab";
 import { setActiveTab } from "../../store/actions/activeTab";
