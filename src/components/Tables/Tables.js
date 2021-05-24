@@ -20,7 +20,7 @@ const Tables = ({
         .querySelectorAll(".usa-accordion__button")[0]
         .click();
     }
-  }, [ref2.current, sectionSelect]);
+  }, [ref.current, sectionSelect]);
 
   useEffect(() => {
     if (matsTableFlag) {
@@ -102,7 +102,7 @@ const Tables = ({
     "Unit Information": <div></div>,
     "Stack/Pipe Information": <div></div>,
   };
-  return <div ref={ref}>{sections[sectionSelect]}</div>;
+  return <div aria-live="polite" ref={ref}>{sections[sectionSelect]}</div>;
 };
 
 export default Tables;
