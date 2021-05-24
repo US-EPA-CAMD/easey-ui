@@ -98,7 +98,6 @@ const ConfigurationsDrop = ({
               ],
               orisCode
             );}
-            console.log('this got changed')
       }
     }}
   }, [options]);
