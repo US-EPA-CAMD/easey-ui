@@ -50,10 +50,11 @@ const ConfigurationsDrop = ({
   useEffect(() => {
     // on creation of a new tab
     if (tabs[activeTab[0]].configuration === 0) {
-      console.log(options);
       setConfiguration(options[0].id, orisCode);
       // when the tab exists
     } else {
+
+        if(options.length > 0){
       // on new tab render
       const optionsConID = options.findIndex(
         (obj) => obj.id === tabs[activeTab[0]].configuration
@@ -61,11 +62,13 @@ const ConfigurationsDrop = ({
       // depending on previous options of inactive/active, the first rendering values will be invalid
       // so reset back to valid vlaues
       if (optionsConID === -1) {
+
         setConfiguration(options[0].id, orisCode);
         const mpLocationsId = tabs[activeTab[0]].monitoringPlans.findIndex(
           (obj) => obj.id === options[0].id
         );
         if (mpLocationsId !== -1) {
+
           setLocations(
             tabs[activeTab[0]].monitoringPlans[mpLocationsId].locations,
             orisCode
@@ -78,8 +81,25 @@ const ConfigurationsDrop = ({
             orisCode
           );
         }
+      }else{
+        const mpLocationsId = tabs[activeTab[0]].monitoringPlans.findIndex(
+            (obj) => obj.id === options[optionsConID].id
+          );
+
+          if (mpLocationsId !== -1) {
+            setLocations(
+              tabs[activeTab[0]].monitoringPlans[mpLocationsId].locations,
+              orisCode
+            );
+            setLocation(
+              [
+                0,
+                tabs[activeTab[0]].monitoringPlans[mpLocationsId].locations[0].id,
+              ],
+              orisCode
+            );}
       }
-    }
+    }}
   }, [options]);
 
   useEffect(() => {

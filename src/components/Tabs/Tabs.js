@@ -3,7 +3,6 @@ import './Tabs.scss';
 const Tabs = ({ children, dynamic = false, removeTabs, setResizeObserver, setActive}) => {
   const [activeTabIndex, setActiveTabIndex] = useState(0);
   const settingActiveTab =(index) =>{
-    console.log('this is tab index',index)
     setActiveTabIndex(index);
     setActive(false,index-1);
 
