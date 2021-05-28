@@ -18,10 +18,10 @@ console.log('location',location)
   const subMenu = [
     <NavLink
     className="text-no-underline text-white"
-      to={`/monitoring-plans/${firstName}`}
+      to='/monitoring-plans/'
       rel="Monitoring Plans"
       activeClassName=" activeLink"
-      isActive={()=> location === `/monitoring-plans/${firstName}` }
+      // isActive={()=> location === `/monitoring-plans/${firstName}` }
       title="Go to the Monitoring Plans page"
     >
       Monitoring Plans
@@ -42,7 +42,6 @@ console.log('location',location)
       activeClassName=" activeLink"
       to="/emissions"
       rel="Emissions"
-      
       title="Go to the Emissions page"
     >
     Emissions

@@ -39,11 +39,14 @@ const Accessories = () => {
     <div className="accessoriesLinks">
       {userLoggedIn ? (
         <div>
-          <FontAwesomeIcon
-            icon={faUserCircle}
-            className="text-white font-body-sm"
-          />
-          Welcome {firstName}{" "}
+          <div className="text-white">
+            <FontAwesomeIcon
+              icon={faUserCircle}
+              className="text-white font-body-lg"
+            />
+            {" Welcome "}
+            {firstName}
+          </div>
           {userLoggedIn && (
             <div className="accessoryLink">
               <Button type="button" onClick={() => logOut()}>
