@@ -1,12 +1,9 @@
 import { NavDropDownButton, MegaMenu } from "@trussworks/react-uswds";
 import React, { useState } from "react";
-import { NavLink, useLocation } from "react-router-dom";
-import { faDesktop } from "@fortawesome/free-solid-svg-icons";
-
+import { NavLink } from "react-router-dom";
 import "./Workspace.scss";
 
 const Workspace = () => {
-  const location = useLocation().pathname;
   const [open, setOpen] = useState(true);
   const subMenu = [
     <NavLink
