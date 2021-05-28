@@ -17,11 +17,9 @@ const firstName = cdx_user && cdx_user.firstName ? cdx_user.firstName : false;
 
 const Accessories = () => {
   const [userLoggedIn, setUserLoggedIn] = useState(false);
-  const [profileTitle, setProfileTitle] = useState("Profile");
 
   const checkLoggedIn = () => {
     if (cdx_user && firstName) {
-      setProfileTitle(`Hello "${firstName}"`);
       setUserLoggedIn(true);
     }
   };

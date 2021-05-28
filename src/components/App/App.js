@@ -24,14 +24,8 @@ function App() {
             exact
             component={MonitoringPlanHome}
           />
-           <Route
-            path="/monitoring-plans/*"
-            exact
-            component={MonitoringPlanHome}
-          />
           <Route path="/admin/rules" exact component={RuleEditor} />
           <Route path="*" component={NotFound} />
-          
         </Switch>
       </Layout>
     </div>
