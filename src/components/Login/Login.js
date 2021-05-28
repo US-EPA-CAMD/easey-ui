@@ -53,8 +53,7 @@ const Login = () => {
       try {
         return await authenticate({ userId: username, password })
           .then((response) => {
-            setLoading(true);
-
+            setLoading(false);
             if (response.status === "Valid") {
               setUsername("");
               setPassword("");
