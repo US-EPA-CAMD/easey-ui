@@ -38,8 +38,9 @@ const LeftNavigation = () => {
 
   const items = [
     <NavLink
-      className="text-no-underline text-white"
-      activeClassName=" usa-current"
+      className="text-no-underline"
+      activeClassName=" usa-current text-primary-dark
+      "
       to="/"
       exact={true}
       rel="Home"
@@ -48,30 +49,33 @@ const LeftNavigation = () => {
       Home
     </NavLink>,
     <NavLink
-      className="text-no-underline text-white"
+      className="text-no-underline"
       to="/monitoring-plans"
       strict
       exact={true}
       rel="Monitoring Plans"
-      activeClassName=" usa-current"
+      activeClassName=" usa-current text-primary-dark
+
+      "
       title="Go to the Monitoring Plans page"
     >
       Monitoring Plans
     </NavLink>,
     <NavLink
-      className="text-no-underline text-white"
+      className="text-no-underline "
       to="/qa_certifications"
       strict
       exact={true}
-      activeClassName=" usa-current"
+      activeClassName=" usa-current text-primary-dark
+      "
       rel={"QA & Certifications"}
       title={"Go to the QA & Certifications page"}
     >
       {" QA & Certifications"}
     </NavLink>,
     <NavLink
-      className="text-no-underline text-white"
-      activeClassName=" usa-current"
+      className="text-no-underline "
+      activeClassName=" usa-current text-primary-dark"
       strict
       exact={true}
       to="/emissions"
@@ -81,8 +85,8 @@ const LeftNavigation = () => {
       Emissions
     </NavLink>,
     <NavLink
-      className="text-no-underline text-white"
-      activeClassName=" usa-current"
+      className="text-no-underline"
+      activeClassName=" usa-current text-primary-dark"
       to="/workspace"
       rel="workspace"
       title="Go to the workspace page"
@@ -93,26 +97,26 @@ const LeftNavigation = () => {
       <SideNav
         items={[
           <NavLink
-            className="text-no-underline text-white"
+            className="text-no-underline text-normal"
             to="/workspace/monitoring-plans"
             rel="Monitoring Plans"
-            activeClassName=" usa-current"
+            activeClassName=" usa-current text-primary-dark"
             title="Go to the Monitoring Plans page"
           >
             Monitoring Plans
           </NavLink>,
           <NavLink
-            className="text-no-underline text-white usa-current"
+            className="text-no-underline text-normal "
             to="/workspace/qa_certifications"
-            activeClassName=" usa-current"
+            activeClassName=" usa-current text-primary-dark"
             rel={"QA & Certifications"}
             title={"Go to the QA & Certifications page"}
           >
             {" QA & Certifications"}
           </NavLink>,
           <NavLink
-            className="text-no-underline text-white"
-            activeClassName=" usa-current"
+            className="text-no-underline text-normal "
+            activeClassName=" usa-current text-primary-dark"
 
             to="/workspace/emissions"
             rel="Emissions"
@@ -126,7 +130,7 @@ const LeftNavigation = () => {
     ],
   ];
   return (
-    <div className="bg-base width-full height-full font-body-sm padding-3">
+    <div className="bg-base-lightest width-full height-full font-body-sm padding-3">
       <div className={`usa-overlay ${show ? "is-visible" : ""}`}></div>
       <SideNav items={items} />
 
@@ -141,7 +145,10 @@ const LeftNavigation = () => {
         <Accessories />
       </div>
       {show ? (
+        <div className="">
+
         <Modal show={show} close={closeModalHandler} children={<Login />} />
+        </div>
       ) : (
         ""
       )}
