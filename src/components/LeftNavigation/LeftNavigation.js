@@ -117,7 +117,6 @@ const LeftNavigation = () => {
           <NavLink
             className="text-no-underline text-normal "
             activeClassName=" usa-current text-primary-dark"
-
             to="/workspace/emissions"
             rel="Emissions"
             title="Go to the Emissions page"
@@ -146,8 +145,7 @@ const LeftNavigation = () => {
       </div>
       {show ? (
         <div className="">
-
-        <Modal show={show} close={closeModalHandler} children={<Login />} />
+          <Modal show={show} close={closeModalHandler} children={<Login />} />
         </div>
       ) : (
         ""
