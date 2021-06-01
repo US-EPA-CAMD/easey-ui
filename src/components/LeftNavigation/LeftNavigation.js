@@ -83,57 +83,61 @@ const LeftNavigation = () => {
       title="Go to the Emissions page"
     >
       Emissions
-    </NavLink>,
-    <NavLink
-      className="text-no-underline"
-      activeClassName=" usa-current text-primary-dark"
-      to="/workspace"
-      rel="workspace"
-      title="Go to the workspace page"
-    >
-      Workspace
-    </NavLink>,
-    [
-      <SideNav
-        items={[
-          <NavLink
-            className="text-no-underline text-normal"
-            to="/workspace/monitoring-plans"
-            rel="Monitoring Plans"
-            activeClassName=" usa-current text-primary-dark"
-            title="Go to the Monitoring Plans page"
-          >
-            Monitoring Plans
-          </NavLink>,
-          <NavLink
-            className="text-no-underline text-normal "
-            to="/workspace/qa_certifications"
-            activeClassName=" usa-current text-primary-dark"
-            rel={"QA & Certifications"}
-            title={"Go to the QA & Certifications page"}
-          >
-            {" QA & Certifications"}
-          </NavLink>,
-          <NavLink
-            className="text-no-underline text-normal "
-            activeClassName=" usa-current text-primary-dark"
-            to="/workspace/emissions"
-            rel="Emissions"
-            title="Go to the Emissions page"
-          >
-            Emissions
-          </NavLink>,
-        ]}
-        isSubnav
-      />,
-    ],
+    </NavLink>
   ];
+
+  const wsItems = 
+  [
+  <NavLink
+  className="text-no-underline"
+  activeClassName=" usa-current text-primary-dark"
+  to="/workspace"
+  rel="workspace"
+  title="Go to the workspace page"
+>
+  Workspace
+</NavLink>,
+[
+  <SideNav
+    items={[
+      <NavLink
+        className="text-no-underline text-normal"
+        to="/workspace/monitoring-plans"
+        rel="Monitoring Plans"
+        activeClassName=" usa-current text-primary-dark"
+        title="Go to the Monitoring Plans page"
+      >
+        Monitoring Plans
+      </NavLink>,
+      <NavLink
+        className="text-no-underline text-normal "
+        to="/workspace/qa_certifications"
+        activeClassName=" usa-current text-primary-dark"
+        rel={"QA & Certifications"}
+        title={"Go to the QA & Certifications page"}
+      >
+        {" QA & Certifications"}
+      </NavLink>,
+      <NavLink
+        className="text-no-underline text-normal "
+        activeClassName=" usa-current text-primary-dark"
+
+        to="/workspace/emissions"
+        rel="Emissions"
+        title="Go to the Emissions page"
+      >
+        Emissions
+      </NavLink>,
+    ]}
+    isSubnav
+  />,
+]]
   return (
     <div className="bg-base-lightest width-full height-full font-body-sm padding-3">
       <div className={`usa-overlay ${show ? "is-visible" : ""}`}></div>
       <SideNav items={items} />
 
-      {/* {userLoggedIn ? <Workspace /> : ""} */}
+      {userLoggedIn ?  <SideNav items={wsItems} /> : ""}
       <div className="padding-bottom-4 position-absolute bottom-0">
         {!cdxUser ? (
           <Button onClick={() => openModal(true)}> Log In</Button>
@@ -145,7 +149,8 @@ const LeftNavigation = () => {
       </div>
       {show ? (
         <div className="">
-          <Modal show={show} close={closeModalHandler} children={<Login />} />
+
+        <Modal show={show} close={closeModalHandler} children={<Login />} />
         </div>
       ) : (
         ""

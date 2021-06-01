@@ -55,7 +55,7 @@ const Accessories = () => {
               to="./profile"
               rel="Profile"
               title="Go to the Profile page"
-              className="text-white"
+              className=""
             >
               Profile
             </Link>
