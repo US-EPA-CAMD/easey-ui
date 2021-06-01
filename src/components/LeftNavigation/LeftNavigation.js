@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import Accessories from "../Accessories/Accessories";
-import Workspace from "../Workspace/Workspace";
 import { Button, SideNav } from "@trussworks/react-uswds";
 import Modal from "../Modal/Modal";
 import Login from "../Login/Login";
@@ -12,8 +11,35 @@ const cdxUser = sessionStorage.getItem("cdx_user")
 const firstName = cdxUser && cdxUser.firstName ? cdxUser.firstName : false;
 
 const LeftNavigation = () => {
-  const [userLoggedIn, setUserLoggedIn] = useState(false);
+  const head = [
+    { name: "Home", url: "/" },
+    { name: "Monitoring Plans", url: "/monitoring-plans" },
+    { name: "QA & Certifications", url: "/qa_certifications" },
+    { name: "Emissions", url: "/emission" },
+  ];
 
+  const workSpace = [
+    { name: "Monitoring Plans", url: "/workspace/monitoring-plans" },
+    { name: "QA & Certifications", url: "/workspace/qa_certifications" },
+    { name: "Emissions", url: "/workspace/emission" },
+  ];
+  const makeHeader = (arr, subFlag) => {
+    return arr.map((item) => {
+      return (
+        <NavLink
+          className={subFlag ? "text-normal" : ""}
+          activeClassName=" usa-current text-primary-dark"
+          to={item.url}
+          exact={true}
+          rel={item.name}
+          title={`Go to ${item.name} page`}
+        >
+          {item.name}
+        </NavLink>
+      );
+    });
+  };
+  const [userLoggedIn, setUserLoggedIn] = useState(false);
   const checkLoggedIn = () => {
     if (cdxUser && firstName) {
       setUserLoggedIn(true);
@@ -35,109 +61,23 @@ const LeftNavigation = () => {
   const openModal = (value) => {
     setShow(value);
   };
-
-  const items = [
+  const wsItems = [
     <NavLink
-      className="text-no-underline"
-      activeClassName=" usa-current text-primary-dark
-      "
-      to="/"
-      exact={true}
-      rel="Home"
-      title="Go to the home page"
-    >
-      Home
-    </NavLink>,
-    <NavLink
-      className="text-no-underline"
-      to="/monitoring-plans"
-      strict
-      exact={true}
-      rel="Monitoring Plans"
-      activeClassName=" usa-current text-primary-dark
-
-      "
-      title="Go to the Monitoring Plans page"
-    >
-      Monitoring Plans
-    </NavLink>,
-    <NavLink
-      className="text-no-underline "
-      to="/qa_certifications"
-      strict
-      exact={true}
-      activeClassName=" usa-current text-primary-dark
-      "
-      rel={"QA & Certifications"}
-      title={"Go to the QA & Certifications page"}
-    >
-      {" QA & Certifications"}
-    </NavLink>,
-    <NavLink
-      className="text-no-underline "
       activeClassName=" usa-current text-primary-dark"
-      strict
-      exact={true}
-      to="/emissions"
-      rel="Emissions"
-      title="Go to the Emissions page"
+      to="/workspace"
+      rel="workspace"
+      title="Go to the workspace page"
     >
-      Emissions
-    </NavLink>
+      Workspace
+    </NavLink>,
+    [<SideNav items={makeHeader(workSpace, true)} isSubnav />],
   ];
-
-  const wsItems = 
-  [
-  <NavLink
-  className="text-no-underline"
-  activeClassName=" usa-current text-primary-dark"
-  to="/workspace"
-  rel="workspace"
-  title="Go to the workspace page"
->
-  Workspace
-</NavLink>,
-[
-  <SideNav
-    items={[
-      <NavLink
-        className="text-no-underline text-normal"
-        to="/workspace/monitoring-plans"
-        rel="Monitoring Plans"
-        activeClassName=" usa-current text-primary-dark"
-        title="Go to the Monitoring Plans page"
-      >
-        Monitoring Plans
-      </NavLink>,
-      <NavLink
-        className="text-no-underline text-normal "
-        to="/workspace/qa_certifications"
-        activeClassName=" usa-current text-primary-dark"
-        rel={"QA & Certifications"}
-        title={"Go to the QA & Certifications page"}
-      >
-        {" QA & Certifications"}
-      </NavLink>,
-      <NavLink
-        className="text-no-underline text-normal "
-        activeClassName=" usa-current text-primary-dark"
-
-        to="/workspace/emissions"
-        rel="Emissions"
-        title="Go to the Emissions page"
-      >
-        Emissions
-      </NavLink>,
-    ]}
-    isSubnav
-  />,
-]]
   return (
     <div className="bg-base-lightest width-full height-full font-body-sm padding-3">
       <div className={`usa-overlay ${show ? "is-visible" : ""}`}></div>
-      <SideNav items={items} />
+      <SideNav items={makeHeader(head)} />
 
-      {userLoggedIn ?  <SideNav items={wsItems} /> : ""}
+      {userLoggedIn ? <SideNav items={wsItems} /> : ""}
       <div className="padding-bottom-4 position-absolute bottom-0">
         {!cdxUser ? (
           <Button onClick={() => openModal(true)}> Log In</Button>
@@ -149,8 +89,7 @@ const LeftNavigation = () => {
       </div>
       {show ? (
         <div className="">
-
-        <Modal show={show} close={closeModalHandler} children={<Login />} />
+          <Modal show={show} close={closeModalHandler} children={<Login />} />
         </div>
       ) : (
         ""
