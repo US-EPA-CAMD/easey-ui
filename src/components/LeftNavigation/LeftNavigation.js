@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Accessories from "../Accessories/Accessories";
 import Workspace from "../Workspace/Workspace";
-import { Button } from "@trussworks/react-uswds";
+import { Button, SideNav } from "@trussworks/react-uswds";
 import Modal from "../Modal/Modal";
 import Login from "../Login/Login";
 import { NavLink } from "react-router-dom";
@@ -36,62 +36,101 @@ const LeftNavigation = () => {
     setShow(value);
   };
 
-  return (
-    <div className="bg-base width-full height-full font-body-sm padding-3">
-      <div className={`usa-overlay ${show ? "is-visible" : ""}`}></div>
-      {/* <Title /> */}
-      <div className="">
-        <div className="grid-row">
+  const items = [
+    <NavLink
+      className="text-no-underline text-white"
+      activeClassName=" usa-current"
+      to="/"
+      exact={true}
+      rel="Home"
+      title="Go to the home page"
+    >
+      Home
+    </NavLink>,
+    <NavLink
+      className="text-no-underline text-white"
+      to="/monitoring-plans"
+      strict
+      exact={true}
+      rel="Monitoring Plans"
+      activeClassName=" usa-current"
+      title="Go to the Monitoring Plans page"
+    >
+      Monitoring Plans
+    </NavLink>,
+    <NavLink
+      className="text-no-underline text-white"
+      to="/qa_certifications"
+      strict
+      exact={true}
+      activeClassName=" usa-current"
+      rel={"QA & Certifications"}
+      title={"Go to the QA & Certifications page"}
+    >
+      {" QA & Certifications"}
+    </NavLink>,
+    <NavLink
+      className="text-no-underline text-white"
+      activeClassName=" usa-current"
+      strict
+      exact={true}
+      to="/emissions"
+      rel="Emissions"
+      title="Go to the Emissions page"
+    >
+      Emissions
+    </NavLink>,
+    <NavLink
+      className="text-no-underline text-white"
+      activeClassName=" usa-current"
+      to="/workspace"
+      rel="workspace"
+      title="Go to the workspace page"
+    >
+      Workspace
+    </NavLink>,
+    [
+      <SideNav
+        items={[
           <NavLink
             className="text-no-underline text-white"
-            activeClassName=" activeLink"
-            to="/"
-            exact={true}
-            rel="Home"
-            title="Go to the home page"
-          >
-            Home
-          </NavLink>
-        </div>
-        <div className="grid-row">
-          <NavLink
-            className="text-no-underline text-white"
-            to="/monitoring-plans"
-            strict
+            to="/workspace/monitoring-plans"
             rel="Monitoring Plans"
-            activeClassName=" activeLink"
+            activeClassName=" usa-current"
             title="Go to the Monitoring Plans page"
           >
             Monitoring Plans
-          </NavLink>
-        </div>
-        <div className="grid-row">
+          </NavLink>,
           <NavLink
-            className="text-no-underline text-white"
-            to="/qa_certifications"
-            strict
-            activeClassName=" activeLink"
+            className="text-no-underline text-white usa-current"
+            to="/workspace/qa_certifications"
+            activeClassName=" usa-current"
             rel={"QA & Certifications"}
             title={"Go to the QA & Certifications page"}
           >
             {" QA & Certifications"}
-          </NavLink>
-        </div>
-
-        <div className="grid-row">
+          </NavLink>,
           <NavLink
             className="text-no-underline text-white"
-            activeClassName=" activeLink"
-            strict
-            to="/emissions"
+            activeClassName=" usa-current"
+
+            to="/workspace/emissions"
             rel="Emissions"
             title="Go to the Emissions page"
           >
             Emissions
-          </NavLink>
-        </div>
-      </div>
-      {userLoggedIn ? <Workspace /> : ""}
+          </NavLink>,
+        ]}
+        isSubnav
+      />,
+    ],
+  ];
+  return (
+    <div className="bg-base width-full height-full font-body-sm padding-3">
+      <div className={`usa-overlay ${show ? "is-visible" : ""}`}></div>
+      <SideNav items={items} />
+
+      {/* {userLoggedIn ? <Workspace /> : ""} */}
       <div className="padding-bottom-4 position-absolute bottom-0">
         {!cdxUser ? (
           <Button onClick={() => openModal(true)}> Log In</Button>
