@@ -34,8 +34,12 @@ export const SelectFacilitiesDataTable = ({
 
   // *** generate columns array of object based on columnNames array above
   let columns = [];
+<<<<<<< HEAD
   const handleEnterPress = (normalizedRow) => {
     console.log(normalizedRow)
+=======
+  const handleEnterPress = () => {
+>>>>>>> f89c4596adeaef2bf6b84298380f1680ffaedc1c
     setTimeout(function () {
       const tableBody = document.getElementsByClassName("button-group");
       tableBody[tableBody.length - 1].focus();
