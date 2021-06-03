@@ -30,15 +30,6 @@ const Tabs = ({ children, dynamic = false, removeTabs, setResizeObserver, setAct
       <ul className="usa-button-group usa-button-group--segmented" >
         {children.map((el, i) => (
           <li key={i} className="usa-button-group__item usa-tooltip" style={{position:'relative'}} data-position="bottom" title={el.props.title}>
-            <button
-            tabIndex={0}
-              className={
-                activeTabIndex === i
-                  ? "active-button button-group"
-                  : "notActive-button button-group"
-              }
-              onClick={() => settingActiveTab(i)}
-            >
               {dynamic ? (
                 <i
                 aria-label={`close ${el.props.title} tab`}
@@ -50,7 +41,17 @@ const Tabs = ({ children, dynamic = false, removeTabs, setResizeObserver, setAct
                   }
                   onClick={(e) => closeHandler(e, i)}
                 />
-              ) : null}
+              ) : null}<button
+            tabIndex={0}
+            aria-label={`open ${el.props.title} tab`}
+              className={
+                activeTabIndex === i
+                  ? "active-button button-group"
+                  : "notActive-button button-group"
+              }
+              onClick={() => settingActiveTab(i)}
+            >
+            
               <span className={i!==0?"tabTitle":"firstTabTitle"}>{el.props.title}</span>
             </button>
           </li>
