@@ -308,7 +308,7 @@ const SystemComponentsModal = ({ modalData, viewOnly, backBTN }) => {
           </div>
           <div className="tablet:grid-col padding-left-2">
             <Fieldset
-              legend="hg Converter Indicator"
+              legend="Hg Converter Indicator"
               className=" display-inline-flex"
               id="HgConverterIndicator"
             >
