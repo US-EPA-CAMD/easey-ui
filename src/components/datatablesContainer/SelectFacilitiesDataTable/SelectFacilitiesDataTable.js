@@ -86,7 +86,7 @@ export const SelectFacilitiesDataTable = ({
           <img
             height="32px"
             width="32px"
-            alt="Open Tab"
+            alt={`open ${normalizedRow.col2} facility`}
             src={`${process.env.PUBLIC_URL}/images/openTab.jpg`}
             className="margin-right-1"
           />
