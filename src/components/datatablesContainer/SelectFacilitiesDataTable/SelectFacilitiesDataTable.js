@@ -61,6 +61,15 @@ export const SelectFacilitiesDataTable = ({
     }
   });
 
+//   width={row.cells[0].column.width}
+//   className={`${
+//     row.isSelected ? "selected hovered" : "hovered"
+//   }`}
+// >
+//   <button
+//     disabled={
+//       openTabColumn.includes(row.cells[1].value) ? true : false
+//     }
   columns.push({
     name: "Actions",
     button: true,
@@ -72,6 +81,12 @@ export const SelectFacilitiesDataTable = ({
       return (
         <div
         role="button"
+        className={`${
+          row.isSelected ? "selected hovered cursor-pointer" : "hovered cursor-pointer"
+        }`}
+        disabled={
+          openTabColumn.includes(row.cells[1].value) ? true : false
+        }
           className="cursor-pointer"
           onClick={() => selectedRowHandler(normalizedRow.cells)}
           tabIndex={0}
