@@ -314,7 +314,7 @@ const SystemComponentsModal = ({ modalData, viewOnly, backBTN }) => {
             >
               <Radio
                 id="yes"
-                name="hg-Converter-Indicator"
+                name="Hg-Converter-Indicator"
                 label="Yes"
                 value="Yes"
                 className="padding-right-1"
@@ -323,7 +323,7 @@ const SystemComponentsModal = ({ modalData, viewOnly, backBTN }) => {
               />
               <Radio
                 id="no"
-                name="hg-Converter-Indicator"
+                name="Hg-Converter-Indicator"
                 label="No"
                 value="No"
                 className="padding-left-1"
