@@ -3,6 +3,7 @@ const config = {
     env: process.env.REACT_APP_EASEY_UI_PORTAL_ENV || "local-dev",
     version: process.env.REACT_APP_EASEY_UI_PORTAL_VERSION || "v0.0.0",
     published: process.env.REACT_APP_EASEY_UI_PORTAL_PUBLISHED || "local",
+    title: "EPA Easey",
   },
   services: {
     mdm: {
@@ -14,7 +15,7 @@ const config = {
       uri:
         process.env.REACT_APP_EASEY_RULES_API ||
         "https://easey-dev.app.cloud.gov/api/rules-mgmt",
-    },    
+    },
     facilities: {
       uri:
         process.env.REACT_APP_EASEY_FACILITIES_API ||
@@ -29,6 +30,11 @@ const config = {
       uri:
         process.env.REACT_APP_EASEY_MONITOR_PLAN_API ||
         "https://easey-dev.app.cloud.gov/api/monitor-plan-mgmt",
+    },
+    authApi: {
+      uri:
+        process.env.REACT_APP_EASEY_AUTH_API ||
+        "https://easey-dev.app.cloud.gov/api/auth-mgmt",
     },
   },
 };
