@@ -29,7 +29,10 @@ const CountdownTimerRender = ({ remainingTime }) => {
   return (
     <div className="time-wrapper">
       <div key={remainingTime} className={`time ${isTimeUp ? "up" : ""}`}>
-        {remainingTime}
+        <div>{remainingTime}</div>
+        <div className="font-alt-md position-relative left-neg-4">
+          seconds left
+        </div>
       </div>
       {prevTime.current !== null && (
         <div
@@ -43,13 +46,15 @@ const CountdownTimerRender = ({ remainingTime }) => {
   );
 };
 
-export const CountdownTimer = () => {
+export const CountdownTimer = ({ duration }) => {
   return (
     <div className="countdown-timer-wrapper">
-      <div>
+      It looks like you have been inactive for a while. Save your changes to
+      continue or lose unsaved work. Click OK.
+      <div className="timer-container">
         <CountdownCircleTimer
           isPlaying
-          duration={10}
+          duration={duration}
           colors={[["#004777", 0.33], ["#F7B801", 0.33], ["#A30000"]]}
         >
           {CountdownTimerRender}

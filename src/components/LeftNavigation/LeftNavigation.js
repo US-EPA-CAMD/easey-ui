@@ -74,7 +74,7 @@ const LeftNavigation = () => {
   ];
   return (
     <div className="bg-base-lightest width-full height-full font-body-sm padding-3">
-      <div className={`usa-overlay ${show ? "is-visible" : ""}`}></div>
+      <div className={`usa-overlay ${show ? "is-visible" : ""}`} />
       <SideNav items={makeHeader(head)} />
 
       {userLoggedIn ? <SideNav items={wsItems} /> : ""}
@@ -91,9 +91,7 @@ const LeftNavigation = () => {
         <div className="">
           <Modal show={show} close={closeModalHandler} children={<Login />} />
         </div>
-      ) : (
-        ""
-      )}
+      ) : null}
     </div>
   );
 };

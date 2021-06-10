@@ -1,9 +1,22 @@
-const config = {
+export const second = 1000;
+export const minute = 60 * second;
+
+const activityEvents = [];
+activityEvents.push("click");
+activityEvents.push("keydown");
+
+const title = "EPA Easey";
+
+export const config = {
   app: {
+    activityEvents,
+    activityPollingFrequency: second,
+    countdownDuration: 10 * second,
     env: process.env.REACT_APP_EASEY_UI_PORTAL_ENV || "local-dev",
-    version: process.env.REACT_APP_EASEY_UI_PORTAL_VERSION || "v0.0.0",
+    inactivityDuration: 15 * second,
     published: process.env.REACT_APP_EASEY_UI_PORTAL_PUBLISHED || "local",
-    title: "EPA Easey",
+    version: process.env.REACT_APP_EASEY_UI_PORTAL_VERSION || "v0.0.0",
+    title,
   },
   services: {
     mdm: {
