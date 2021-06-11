@@ -10,10 +10,13 @@ const title = "EPA Easey";
 export const config = {
   app: {
     activityEvents,
-    activityPollingFrequency: second,
-    countdownDuration: 10 * second,
+    activityPollingFrequency:
+      process.env.REACT_APP_EASEY_UI_ACTIVITY_POLLING_FREQUENCY || second,
+    countdownDuration:
+      process.env.REACT_APP_EASEY_UI_ACTIVITY_COUNTDOWN_DURATION || 30 * second,
     env: process.env.REACT_APP_EASEY_UI_PORTAL_ENV || "local-dev",
-    inactivityDuration: 15 * second,
+    inactivityDuration:
+      process.env.REACT_APP_EASEY_UI_INACTIVITY_DURATION || minute,
     published: process.env.REACT_APP_EASEY_UI_PORTAL_PUBLISHED || "local",
     version: process.env.REACT_APP_EASEY_UI_PORTAL_VERSION || "v0.0.0",
     title,

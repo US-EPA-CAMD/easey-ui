@@ -80,17 +80,15 @@ const LeftNavigation = () => {
       {userLoggedIn ? <SideNav items={wsItems} /> : ""}
       <div className="padding-bottom-4 position-absolute bottom-0">
         {!cdxUser ? (
-          <Button onClick={() => openModal(true)}> Log In</Button>
-        ) : (
-          ""
-        )}
+          <Button type="button" onClick={() => openModal(true)}>
+            Log In
+          </Button>
+        ) : null}
 
         <Accessories />
       </div>
       {show ? (
-        <div className="">
-          <Modal show={show} close={closeModalHandler} children={<Login />} />
-        </div>
+        <Modal show={show} close={closeModalHandler} children={<Login />} />
       ) : null}
     </div>
   );
