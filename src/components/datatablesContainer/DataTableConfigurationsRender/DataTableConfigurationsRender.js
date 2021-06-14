@@ -30,7 +30,11 @@ const DataTableConfigurationsRender = ({ columns, data }) => {
             className="data-display-table react-transition fade-in"
           />
         ) : (
+<<<<<<< HEAD
           <div id = "preloader" className="margin-y-9 padding-y-9 react-transition fade-in">
+=======
+          <div className="margin-y-9 padding-y-9 react-transition fade-in">
+>>>>>>> d81e16b27f3113366c01af412523198860827dff
             <Preloader />
           </div>
         )}
