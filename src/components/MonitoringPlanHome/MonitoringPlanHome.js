@@ -4,7 +4,8 @@ import DynamicTabs from "../DynamicTabs/DynamicTabs";
 import { Button } from "@trussworks/react-uswds";
 import DataTable from "../datatablesContainer/SelectFacilitiesDataTable/SelectFacilitiesDataTable";
 
-const MonitoringPlanHome = () => {
+const MonitoringPlanHome = (props) => {
+  console.log('this is props',props.user)
   return (
     <div className="home-container">
       <div className="text-gray-50">
