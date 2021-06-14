@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo,useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { connect } from "react-redux";
 import * as fs from "../../../utils/selectors/monitoringConfigurations";
 import DataTableConfigurationsRender from "../DataTableConfigurationsRender/DataTableConfigurationsRender";
@@ -11,10 +11,9 @@ export const DataTableConfigurations = ({
   monitoringPlans,
   data,
 }) => {
-
   const cdxUser = sessionStorage.getItem("cdx_user")
-  ? JSON.parse(sessionStorage.getItem("cdx_user"))
-  : false;
+    ? JSON.parse(sessionStorage.getItem("cdx_user"))
+    : false;
   const [userLoggedIn, setUserLoggedIn] = useState(false);
   const checkLoggedIn = () => {
     if (cdxUser && firstName) {
@@ -26,7 +25,7 @@ export const DataTableConfigurations = ({
   useEffect(() => {
     checkLoggedIn();
   }, []);
-  
+
   // *** column names for dataset (will be passed to normalizeRowObjectFormat later to generate the row object
   // *** in the format expected by the modal / tabs plugins)
   const columnNames = [];
@@ -67,28 +66,11 @@ export const DataTableConfigurations = ({
 
       return (
         <div>
-
-        
-        <Button
-        data-testid="btnOpenConfiguration"
-          className="cursor-pointer"
-          //   onClick={() => selectedRowHandler(normalizedRow.cells)}
-          aria-label={`open configuration ${normalizedRow.col1} `}
-          //   onKeyPress={(event) => {
-          //     if (event.key === "Enter") {
-          //       selectedRowHandler(normalizedRow.cells);
-          //       handleEnterPress(normalizedRow);
-          //     }
-          //   }}
-        >
-          Open
-        </Button>
-        {cdxUser ?(
           <Button
-          data-testid="btnOpenCheckOut"
+            data-testid="btnOpenConfiguration"
             className="cursor-pointer"
             //   onClick={() => selectedRowHandler(normalizedRow.cells)}
-            aria-label={`open configuration and check out ${normalizedRow.col1} `}
+            aria-label={`open configuration ${normalizedRow.col1} `}
             //   onKeyPress={(event) => {
             //     if (event.key === "Enter") {
             //       selectedRowHandler(normalizedRow.cells);
@@ -96,9 +78,26 @@ export const DataTableConfigurations = ({
             //     }
             //   }}
           >
-            {"Open & Check Out"}
-          </Button>): ""
-        }
+            Open
+          </Button>
+          {cdxUser ? (
+            <Button
+              data-testid="btnOpenCheckOut"
+              className="cursor-pointer"
+              //   onClick={() => selectedRowHandler(normalizedRow.cells)}
+              aria-label={`open configuration and check out ${normalizedRow.col1} `}
+              //   onKeyPress={(event) => {
+              //     if (event.key === "Enter") {
+              //       selectedRowHandler(normalizedRow.cells);
+              //       handleEnterPress(normalizedRow);
+              //     }
+              //   }}
+            >
+              {"Open & Check Out"}
+            </Button>
+          ) : (
+            ""
+          )}
         </div>
       );
     },
@@ -113,11 +112,11 @@ export const DataTableConfigurations = ({
           return fs.getConfigurationNames(index);
         }
       }
-      return fs.getConfigurationNames(monitoringPlans[0][1]);
+      return [{ col1: "Loading list of configurations..." }];
     } else {
-      return [{ col1: "Loading list of facilities..." }];
+      return [{ col1: "Loading list of configurations..." }];
     }
-    
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [monitoringPlans]);
 
