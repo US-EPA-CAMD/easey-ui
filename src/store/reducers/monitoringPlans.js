@@ -5,7 +5,7 @@ const reducer = (state = initialState.monitoringPlans, action) => {
   if (action.type === types.LOAD_MONITORING_PLANS_SUCCESS) {
     return action.monitoringPlans;
   } else if (action.type === types.LOAD_MONITORING_PLANS_ARRAY_SUCCESS) {
-    return (state = [...state, [action.orisCode, action.monitoringPlans]]);
+    return [...state, [action.orisCode, action.monitoringPlans]];
   } else if (action.type === types.EMPTY_MONITORING_PLANS) {
     return action.value;
   } else {

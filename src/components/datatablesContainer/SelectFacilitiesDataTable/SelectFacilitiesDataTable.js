@@ -16,9 +16,8 @@ export const SelectFacilitiesDataTable = ({
   addTabs,
   openedFacilityTabs,
   emptyPlan,
-  monitoringPlans
+  monitoringPlans,
 }) => {
-  
   useEffect(() => {
     if (facilities.length === 0) {
       loadFacilitiesData();
@@ -79,18 +78,17 @@ export const SelectFacilitiesDataTable = ({
 
   const data = useMemo(() => {
     if (facilities.length > 0) {
-      
       return fs.getTableRecords(facilities).map((item) => {
-        let disabled = false;
-        let expanded = false;
-        // modify this for keeping expanded state between tabs 
+        const disabled = false;
+        const expanded = false;
+        // modify this for keeping expanded state between tabs
         // for(const x of monitoringPlans){
         //   if(x[0] === item.col1){
         //     expanded =true;
         //     break;
         //   }
         // }
-        return { ...item, disabled,expanded};
+        return { ...item, disabled, expanded };
       });
     } else {
       return [{ col2: "Loading list of facilities..." }];
@@ -114,7 +112,7 @@ const mapStateToProps = (state) => {
     facilities: state.facilities,
     loading: state.apiCallsInProgress.facilities,
     openedFacilityTabs: state.openedFacilityTabs,
-    monitoringPlans:state.monitoringPlans
+    monitoringPlans: state.monitoringPlans,
   };
 };
 

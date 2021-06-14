@@ -33,7 +33,7 @@ export const DataTableConfigurations = ({
   columnNames.push("Status");
 
   // *** generate columns array of object based on columnNames array above
-  let columns = [];
+  const columns = [];
 
   useEffect(() => {
     let flag = false;
@@ -80,7 +80,7 @@ export const DataTableConfigurations = ({
           >
             Open
           </Button>
-          {cdxUser ? (
+          {userLoggedIn ? (
             <Button
               data-testid="btnOpenCheckOut"
               className="cursor-pointer"
