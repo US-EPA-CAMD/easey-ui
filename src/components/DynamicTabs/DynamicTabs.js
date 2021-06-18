@@ -34,7 +34,8 @@ export const DynamicTabs = ({
       newTabs.forEach((t) => {
         if(!tabs.some(facility => facility.title === t.title)){
           tabs.push(t);
-          addFacility({orisCode:t.orisCode, name: t.title,location:[0,t.locations[0].id],section:3,locations:t.locations});
+          console.log('this t',t)
+          addFacility({orisCode:t.orisCode,configID:t.configID, name: t.title,location:[0,t.locations[0].id],section:3,locations:t.locations});
         }
       });
       setTabs([...tabs]);

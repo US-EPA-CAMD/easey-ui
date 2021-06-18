@@ -49,6 +49,7 @@ user,
           setLocationSelect={setLocationSelect}
           locations={locations}
           user={user}
+          configID={tabs[activeTab[0]].configID}
         />
       </div>
     </div>

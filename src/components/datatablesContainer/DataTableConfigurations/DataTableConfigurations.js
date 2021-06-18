@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import * as fs from "../../../utils/selectors/monitoringConfigurations";
 import DataTableConfigurationsRender from "../DataTableConfigurationsRender/DataTableConfigurationsRender";
 import { loadMonitoringPlansArray } from "../../../store/actions/monitoringPlans";
-
+import * as mpApi from '../../../utils/api/monitoringPlansApi'
 import { Button } from "@trussworks/react-uswds";
 export const DataTableConfigurations = ({
   loading,
@@ -15,7 +15,6 @@ export const DataTableConfigurations = ({
 }) => {
   // *** column names for dataset (will be passed to normalizeRowObjectFormat later to generate the row object
   // *** in the format expected by the modal / tabs plugins)
-  console.log('tuser in congfig',user.user)
   const columnNames = [];
   columnNames.push("Configurations");
   columnNames.push("Status");
@@ -40,8 +39,10 @@ export const DataTableConfigurations = ({
   };
 
   const openConfig = (config) => {
+    
     const val = findSelectedConfig(config.col1);
-    setSelectedConfig([data.col2, data.col1, config.col1, val]);
+    console.log(data,config,val,'config')
+    setSelectedConfig([data,config,val]);
   };
 
   useEffect(() => {
@@ -79,6 +80,11 @@ export const DataTableConfigurations = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [monitoringPlans.length]);
 
+  const checkOut = (config) => {
+    let res = mpApi.postCheckoutMonitoringPlanConfiguration(config.col3,user.id);
+    console.log('res',res)
+    openConfig(config);
+  }
   columnNames.forEach((name, index) => {
     columns.push({
       name,
@@ -123,7 +129,7 @@ export const DataTableConfigurations = ({
                 }
               }}
             >
-              {" Open & Check Out"}
+              {"| Open & Check Out"}
             </Button>
           ) : (
             ""
@@ -139,6 +145,7 @@ export const DataTableConfigurations = ({
       for (const x of monitoringPlans) {
         if (x[0] === data.col1) {
           index = x[1];
+          console.log(index)
           return fs.getConfigurationNames(index);
         }
       }

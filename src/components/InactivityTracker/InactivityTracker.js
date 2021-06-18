@@ -5,7 +5,7 @@ import { CountdownTimer } from "../CountdownTimer/CountdownTimer";
 import { Button } from "@trussworks/react-uswds";
 import { config } from "../../config";
 
-export const InactivityTracker = () => {
+export const InactivityTracker = ({apiCall}) => {
   const [timeInactive, setTimeInactive] = useState(0);
   const [showInactiveModal, setShowInactiveModal] = useState(false);
   const [trackInactivity, setTrackInactivity] = useState(false);
@@ -19,9 +19,17 @@ export const InactivityTracker = () => {
   const extendUserInactivityTimer = useCallback(() => {
     if (window.countdownInitiated !== true) {
       resetUserInactivityTimer();
+      //call api here
+      apiCall();
     }
+
+    
   }, []);
 
+  useEffect(() => {
+  
+    setTrackInactivity(true)
+  }, [])
   const useInterval = (callback, delay) => {
     const savedCallback = useRef();
 

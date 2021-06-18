@@ -12,7 +12,6 @@ const DataTableConfigurationsRender = ({ columns, data }) => {
       <div aria-live="polite" className="padding-left-4 padding-bottom-3">
         {data.length > 0 ? (
           <DataTable
-            defaultSortField="col1"
             fixedHeader={true}
             sortIcon={
               <FontAwesomeIcon

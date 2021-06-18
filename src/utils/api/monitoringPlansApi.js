@@ -56,3 +56,28 @@ export async function getMonitoringSystemsComponents(systemId, componentId) {
     .then(handleResponse)
     .catch(handleError);
 }
+
+export async function postCheckoutMonitoringPlanConfiguration(id, user) {
+  const userName = { username: user };
+  const axiosConfig = {
+    headers: {
+      "Content-Type": "application/json;charset=UTF-8",
+      "Access-Control-Allow-Origin": "*",
+    },
+  };
+  return axios
+    .post(
+      `${config.services.monitorPlans.uri}/monitor-plans/${id}/check-out`,
+      userName,
+      axiosConfig
+    )
+    .then(handleResponse)
+    .catch(handleError);
+}
+
+export async function putLockTimerUpdateConfiguration(id) {
+  return axios
+    .put(`${config.services.monitorPlans.uri}/monitor-plans/${id}/check-out`)
+    .then(handleResponse)
+    .catch(handleError);
+}
