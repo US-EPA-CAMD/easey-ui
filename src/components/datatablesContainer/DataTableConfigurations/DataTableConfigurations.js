@@ -80,7 +80,8 @@ export const DataTableConfigurations = ({
   }, [monitoringPlans.length]);
 
   const checkOut = (config) => {
-    mpApi.postCheckoutMonitoringPlanConfiguration(config.col3,user.firstName);
+    let res = mpApi.postCheckoutMonitoringPlanConfiguration(config.col3,user.firstName);
+    console.log('res',res.data)
     openConfig(config,true);
   }
   columnNames.forEach((name, index) => {
