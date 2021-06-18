@@ -59,16 +59,15 @@ export async function getMonitoringSystemsComponents(systemId, componentId) {
 
 export async function postCheckoutMonitoringPlanConfiguration(id, user) {
   const userName = { username: user };
-  const axiosConfig = {
-    headers: {
-      "Content-Type": "application/json;charset=UTF-8",
-    },
-  };
+  // const axiosConfig = {
+  //   headers: {
+  //     "Content-Type": "application/json;charset=UTF-8",
+  //   },
+  // };
   return axios
     .post(
       `${config.services.monitorPlans.uri}/monitor-plans/${id}/check-out`,
-      userName,
-      axiosConfig
+      userName
     )
     .then(handleResponse)
     .catch(handleError);
