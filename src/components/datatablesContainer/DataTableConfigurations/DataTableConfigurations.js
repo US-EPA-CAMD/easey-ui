@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import * as fs from "../../../utils/selectors/monitoringConfigurations";
 import DataTableConfigurationsRender from "../DataTableConfigurationsRender/DataTableConfigurationsRender";
 import { loadMonitoringPlansArray } from "../../../store/actions/monitoringPlans";
-import * as mpApi from '../../../utils/api/monitoringPlansApi'
+import * as mpApi from "../../../utils/api/monitoringPlansApi";
 import { Button } from "@trussworks/react-uswds";
 export const DataTableConfigurations = ({
   loading,
@@ -38,10 +38,9 @@ export const DataTableConfigurations = ({
     return val;
   };
 
-  const openConfig = (config,checkout) => {
-    
+  const openConfig = (config, checkout) => {
     const val = findSelectedConfig(config.col1);
-    setSelectedConfig([data,config,val,checkout]);
+    setSelectedConfig([data, config, val, checkout]);
   };
 
   useEffect(() => {
@@ -80,10 +79,13 @@ export const DataTableConfigurations = ({
   }, [monitoringPlans.length]);
 
   const checkOut = (config) => {
-    let res = mpApi.postCheckoutMonitoringPlanConfiguration(config.col3,user.firstName);
-    console.log('res',res.data)
-    openConfig(config,true);
-  }
+    let res = mpApi.postCheckoutMonitoringPlanConfiguration(
+      config.col3,
+      user.firstName
+    );
+    console.log("res", res);
+    openConfig(config, true);
+  };
   columnNames.forEach((name, index) => {
     columns.push({
       name,
@@ -115,7 +117,7 @@ export const DataTableConfigurations = ({
           >
             Open
           </Button>
-          {"|"}
+          {user ? "|" : ""}
           {user ? (
             <Button
               unstyled="true"
@@ -129,6 +131,7 @@ export const DataTableConfigurations = ({
                 }
               }}
             >
+              {" "}
               {"Open & Check Out"}
             </Button>
           ) : (
