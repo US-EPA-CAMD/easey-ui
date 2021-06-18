@@ -62,7 +62,6 @@ export async function postCheckoutMonitoringPlanConfiguration(id, user) {
   const axiosConfig = {
     headers: {
       "Content-Type": "application/json;charset=UTF-8",
-      "Access-Control-Allow-Origin": "*",
     },
   };
   return axios
