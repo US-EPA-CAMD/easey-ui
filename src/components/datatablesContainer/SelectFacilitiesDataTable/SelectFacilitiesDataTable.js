@@ -61,29 +61,36 @@ export const SelectFacilitiesDataTable = ({
         break;
     }
   });
-  // {col1: "3", col2: "Barry", col3: "AL", disabled: false, expanded: false} 
-  // {col1: "1, 2, CS0AAN", col2: "Active", col3: "TWCORNEL5-C0E3879920A14159BAA98E03F1980A7A"} 
+  // {col1: "3", col2: "Barry", col3: "AL", disabled: false, expanded: false}
+  // {col1: "1, 2, CS0AAN", col2: "Active", col3: "TWCORNEL5-C0E3879920A14159BAA98E03F1980A7A"}
   // "config"
   // {id: "TWCORNEL5-C0E3879920A14159BAA98E03F1980A7A", name: "1, 2, CS0AAN", locations: Array(3), active: true, links: Array(1)}
   const selectedRowHandler = (info) => {
     addtabs([
       {
-        title: `${info[0].col2} (${info[1].col1}) ${info[1].col2 === "Inactive"?'Inactive':''}`,
+        title: `${info[0].col2} (${info[1].col1}) ${
+          info[1].col2 === "Inactive" ? "Inactive" : ""
+        }`,
         component: (
           <div className="selectedTabsBox">
             <SelectedFacilityTab
               orisCode={info[0].col1}
               locations={info[2].locations}
               selectedConfig={info[2]}
-              title={ `${info[0].col2} (${info[1].col1}) ${info[1].col2 === "Inactive"?'Inactive':''}`}
+              title={`${info[0].col2} (${info[1].col1}) ${
+                info[1].col2 === "Inactive" ? "Inactive" : ""
+              }`}
               configID={info[2].id}
+              user={user}
+              checkout={info[3]}
             />
           </div>
         ),
         orisCode: info[0].col1,
         selectedConfig: info[2],
         locations: info[2].locations,
-        configID:info[2].id
+        configID: info[2].id,
+        checkout: info[3],
       },
     ]);
   };
@@ -116,7 +123,7 @@ export const SelectFacilitiesDataTable = ({
         data={data}
         selectedRowHandler={selectedRowHandler}
         openedFacilityTabs={openedFacilityTabs}
-        user={user.user}
+        user={user}
       />
     </div>
   );

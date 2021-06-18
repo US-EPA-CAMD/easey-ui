@@ -41,8 +41,8 @@ export const DataTableSystemsComponents = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [showActiveOnly, monitoringSystemsComponents]);
 
-  // *** column names for dataset (will be passed to normalizeRowObjectFormat later to generate the row object
-  // *** in the format expected by the modal / tabs plugins)
+  // *** column names for dataset will be passed to normalizeRowObjectFormat later to generate the row object
+  // *** in the format expected by the modal / tabs plugins
   const columnNames = [];
   columnNames.push("Component ID");
   columnNames.push("Type Code");
@@ -71,10 +71,12 @@ export const DataTableSystemsComponents = ({
       return (
         <div
           className="cursor-pointer"
+          tabIndex="0"
+          aria-label={viewOnly ? "Click to View" : "Click to View or Edit"}
           onClick={() => selectedRowHandler(normalizedRow.cells)}
         >
           <FontAwesomeIcon icon={faPencilAlt} className="margin-right-1" />
-          {viewOnly? 'View': 'View/Edit'}
+          {viewOnly ? "View" : "View/Edit"}
         </div>
       );
     },
@@ -110,6 +112,8 @@ export const DataTableSystemsComponents = ({
       return (
         <div
           className="cursor-pointer"
+          tabIndex="0"
+          aria-label="Click to view fuel flow details"
           onClick={() => selectedRowHandler(normalizedRow.cells)}
         >
           <FontAwesomeIcon icon={faPencilAlt} className="margin-right-1" />
@@ -129,7 +133,7 @@ export const DataTableSystemsComponents = ({
     }
 
     for (const x of monitoringSystemsFuelFlows) {
-      if (x.sysFuelUomCode === val[0].value) {
+      if (x.fuelCode === val[0].value) {
         setSelectedComponent(x);
         setSecondLevel(true);
       }

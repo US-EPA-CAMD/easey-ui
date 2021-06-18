@@ -38,11 +38,10 @@ export const DataTableConfigurations = ({
     return val;
   };
 
-  const openConfig = (config) => {
+  const openConfig = (config,checkout) => {
     
     const val = findSelectedConfig(config.col1);
-    console.log(data,config,val,'config')
-    setSelectedConfig([data,config,val]);
+    setSelectedConfig([data,config,val,checkout]);
   };
 
   useEffect(() => {
@@ -81,9 +80,8 @@ export const DataTableConfigurations = ({
   }, [monitoringPlans.length]);
 
   const checkOut = (config) => {
-    let res = mpApi.postCheckoutMonitoringPlanConfiguration(config.col3,user.id);
-    console.log('res',res)
-    openConfig(config);
+    mpApi.postCheckoutMonitoringPlanConfiguration(config.col3,user.firstName);
+    openConfig(config,true);
   }
   columnNames.forEach((name, index) => {
     columns.push({
@@ -104,7 +102,7 @@ export const DataTableConfigurations = ({
           <Button
             unstyled="true"
             epa-testid="btnOpenConfiguration"
-            className="cursor-pointer"
+            className="cursor-pointer margin-right-1"
             id="btnOpenConfiguration"
             onClick={() => openConfig(row)}
             aria-label={`open configuration ${row.col1} `}
@@ -116,20 +114,21 @@ export const DataTableConfigurations = ({
           >
             Open
           </Button>
+          {"|"}
           {user ? (
             <Button
               unstyled="true"
               epa-testid="btnOpenCheckOut"
-              className="cursor-pointer margin-left-2"
-              onClick={() => openConfig(row)}
+              className="cursor-pointer margin-left-1"
+              onClick={() => checkOut(row)}
               aria-label={`open configuration and check out ${row.col1} `}
               onKeyPress={(event) => {
                 if (event.key === "Enter") {
-                  openConfig(row);
+                  checkOut(row);
                 }
               }}
             >
-              {"| Open & Check Out"}
+              {"Open & Check Out"}
             </Button>
           ) : (
             ""
@@ -145,7 +144,6 @@ export const DataTableConfigurations = ({
       for (const x of monitoringPlans) {
         if (x[0] === data.col1) {
           index = x[1];
-          console.log(index)
           return fs.getConfigurationNames(index);
         }
       }

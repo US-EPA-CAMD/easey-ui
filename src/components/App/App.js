@@ -1,3 +1,4 @@
+//import "../../additional-functions/wdyr";
 import React, { useState, useEffect } from "react";
 import { Route, Switch, Redirect } from "react-router-dom";
 
@@ -12,20 +13,19 @@ import Login from "../Login/Login";
 import "./App.scss";
 
 const App = () => {
-  const cdxUser = sessionStorage.getItem("cdx_user")
-    ? JSON.parse(sessionStorage.getItem("cdx_user"))
-    : false;
-  const firstName = cdxUser && cdxUser.firstName ? cdxUser.firstName : false;
-  const [userLoggedIn, setUserLoggedIn] = useState(false);
-  const checkLoggedIn = () => {
-    if (cdxUser && firstName) {
-      setUserLoggedIn(true);
-    }
-  };
-
+  // const [userLoggedIn, setUserLoggedIn] = useState(false);
+  const [user, setUser] = useState(false);
   useEffect(() => {
-    checkLoggedIn();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    const cdxUser = sessionStorage.getItem("cdx_user")
+      ? JSON.parse(sessionStorage.getItem("cdx_user"))
+      : false;
+      setUser(cdxUser && cdxUser.firstName ? cdxUser : false);
+    // const checkLoggedIn = () => {
+    //   if (cdxUser && userFirstName) {
+    //     setUserLoggedIn(true);
+    //   }
+    // };
+    // checkLoggedIn();
   }, []);
 
   return (
@@ -38,12 +38,12 @@ const App = () => {
           <Route
             path="/monitoring-plans"
             exact
-            component={()=> <MonitoringPlanHome user={false}/>}
+            component={() => <MonitoringPlanHome user={false} />}
           />
           <Route
             path="/workspace/monitoring-plans/"
             exact
-            component={()=> <MonitoringPlanHome user={userLoggedIn}/>}
+            component={() => <MonitoringPlanHome user={user} />}
           />
           <Route path="/admin/rules" exact component={RuleEditor} />
           <Route path="*" component={NotFound} />

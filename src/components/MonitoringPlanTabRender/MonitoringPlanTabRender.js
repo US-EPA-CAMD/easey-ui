@@ -21,10 +21,10 @@ export const MonitoringPlanTabRender = ({
   locationSelect,
   orisCode,
   configID,
+  checkout,
 }) => {
   const [matsTableFlag, setMatsTableFlag] = useState(false);
   // // MONITORING METHODS
-  console.log(user);
   const matsTableHandler = (flag) => {
     setMatsTableFlag(flag);
   };
@@ -81,7 +81,7 @@ export const MonitoringPlanTabRender = ({
 
   return (
     <div className="selectedMPTab padding-top-4 ">
-      {user ? <InactivityTracker apiCall={resetInactivityTimerApiCall} /> : ""}
+      {user && checkout ? <InactivityTracker apiCall={resetInactivityTimerApiCall} /> : ""}
 
       {/* on change of select box, it should modify the accordion items */}
       {/* pass back the values to send to the datatable, current is sending back index  */}
