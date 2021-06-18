@@ -79,7 +79,7 @@ export const DataTableConfigurations = ({
   }, [monitoringPlans.length]);
 
   const checkOut = (config) => {
-    let res = mpApi.postCheckoutMonitoringPlanConfiguration(
+    const res = mpApi.postCheckoutMonitoringPlanConfiguration(
       config.col3,
       user.firstName
     );
