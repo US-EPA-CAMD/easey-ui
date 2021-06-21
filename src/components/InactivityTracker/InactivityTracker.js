@@ -30,6 +30,8 @@ export const InactivityTracker = ({ apiCall }) => {
       clearTimeout(timer);
       startInterval(10000);
       resetUserInactivityTimer();
+      //call api here
+      apiCall();
     }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
