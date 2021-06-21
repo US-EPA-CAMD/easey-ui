@@ -82,12 +82,11 @@ export const DataTableConfigurations = ({
     mpApi
       .postCheckoutMonitoringPlanConfiguration(config.col3, user.firstName)
       .then((res) => {
-       console.log(res,'data')
+        console.log(res, "data");
       })
       .catch((err) => {
         console.log(err);
       });
-    // console.log("res", res);
     openConfig(config, true);
   };
   columnNames.forEach((name, index) => {
