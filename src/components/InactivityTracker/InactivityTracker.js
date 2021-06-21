@@ -9,15 +9,13 @@ export const InactivityTracker = ({ apiCall }) => {
   const [timeInactive, setTimeInactive] = useState(0);
   const [showInactiveModal, setShowInactiveModal] = useState(false);
   const [trackInactivity, setTrackInactivity] = useState(false);
-  const [apiCallInterval, setApiCallInterva] = useState(false);
-
-  let flag = false;
+  let timer;
+  
   const resetUserInactivityTimer = () => {
     setTimeInactive(0);
     setShowInactiveModal(false);
     window.countdownInitiated = false;
   };
-  let timer;
 
   function startInterval(_interval) {
     // Store the id of the interval so we can clear it later
