@@ -10,7 +10,7 @@ export const InactivityTracker = ({ apiCall }) => {
   const [showInactiveModal, setShowInactiveModal] = useState(false);
   const [trackInactivity, setTrackInactivity] = useState(false);
   let timer;
-  
+
   const resetUserInactivityTimer = () => {
     setTimeInactive(0);
     setShowInactiveModal(false);
