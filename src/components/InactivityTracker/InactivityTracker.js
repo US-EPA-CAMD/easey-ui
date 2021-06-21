@@ -9,18 +9,27 @@ export const InactivityTracker = ({ apiCall }) => {
   const [timeInactive, setTimeInactive] = useState(0);
   const [showInactiveModal, setShowInactiveModal] = useState(false);
   const [trackInactivity, setTrackInactivity] = useState(false);
+  const [apiCallInterval, setApiCallInterva] = useState(false);
 
+  let flag = false;
   const resetUserInactivityTimer = () => {
     setTimeInactive(0);
     setShowInactiveModal(false);
     window.countdownInitiated = false;
   };
+  let timer;
 
+  function startInterval(_interval) {
+    // Store the id of the interval so we can clear it later
+    timer = setTimeout(function () {
+      apiCall();
+    }, _interval);
+  }
   const extendUserInactivityTimer = useCallback(() => {
     if (window.countdownInitiated !== true) {
+      clearTimeout(timer);
+      startInterval(10000);
       resetUserInactivityTimer();
-      //call api here
-      apiCall();
     }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
