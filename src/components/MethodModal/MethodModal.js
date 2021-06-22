@@ -17,7 +17,7 @@ const MethodModal = ({ modalData, viewOnly }) => {
   const [endDate, setEndDate] = React.useState(null);
   const [startHour, setStartHour] = React.useState(null);
   const [endHour, setEndHour] = React.useState(null);
-
+console.log('this is modalDAta',modalData)
   /*const findValue = (options, val) => {
     for (const x of options) {
       if (x.code === val) {
