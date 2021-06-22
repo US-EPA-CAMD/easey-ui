@@ -65,7 +65,7 @@ export const DataTableMethod = ({
               className="cursor-pointer"
               id="btnOpenMethod"
               // onClick={() => openConfig(row)}
-              onClick={() => openMonitoringMethodsModal(row.col1, row.col2)}
+              onClick={() => openMonitoringMethodsModal(row.col1, row.col2,row.col7)}
               aria-label={`open method ${row.col1} `}
               onKeyPress={(event) => {
                 if (event.key === "Enter") {
