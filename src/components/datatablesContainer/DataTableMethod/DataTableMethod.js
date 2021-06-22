@@ -20,6 +20,7 @@ export const DataTableMethod = ({
   matsTableHandler,
   showActiveOnly,
   user,
+  checkout,
 }) => {
   useEffect(() => {
     loadMonitoringMethodsData(locationSelectValue);
@@ -56,24 +57,25 @@ export const DataTableMethod = ({
       // const normalizedRow = normalizeRowObjectFormat(row, columnNames);
       return (
         <div>
-          <Button
-            type="button"
-            unstyled="true"
-            epa-testid="btnOpenMethod"
-            className="cursor-pointer"
-            id="btnOpenMethod"
-            // onClick={() => openConfig(row)}
-            onClick={() => openMonitoringMethodsModal(row.col1, row.col2)}
-            aria-label={`open method ${row.col1} `}
-            onKeyPress={(event) => {
-              if (event.key === "Enter") {
-                // openConfig(row);
-              }
-            }}
-          >
-            Open
-          </Button>
-          {user ? (
+          {!(user && checkout) ? (
+            <Button
+              type="button"
+              unstyled="true"
+              epa-testid="btnOpenMethod"
+              className="cursor-pointer"
+              id="btnOpenMethod"
+              // onClick={() => openConfig(row)}
+              onClick={() => openMonitoringMethodsModal(row.col1, row.col2)}
+              aria-label={`open method ${row.col1} `}
+              onKeyPress={(event) => {
+                if (event.key === "Enter") {
+                  // openConfig(row);
+                }
+              }}
+            >
+              Open
+            </Button>
+          ) : (
             <Button
               type="button"
               unstyled="true"
@@ -87,10 +89,8 @@ export const DataTableMethod = ({
                 }
               }}
             >
-              {" Edit"}
+              {"Open & Edit"}
             </Button>
-          ) : (
-            ""
           )}
         </div>
       );
@@ -157,7 +157,10 @@ export const DataTableMethod = ({
           showSave
           children={
             <div>
-              <MethodModal modalData={selectedMonitoringMethod} />
+              <MethodModal
+                modalData={selectedMonitoringMethod}
+                viewOnly={!(user && checkout)}
+              />
             </div>
           }
         />

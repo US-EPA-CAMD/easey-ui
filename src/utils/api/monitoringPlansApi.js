@@ -1,4 +1,3 @@
-//import axios from "./axiosSetup";
 import axios from "axios";
 import { handleResponse, handleError } from "./apiUtils";
 import config from "../../config";
@@ -64,7 +63,7 @@ export async function postCheckoutMonitoringPlanConfiguration(id, user) {
       `${config.services.monitorPlans.uri}/workspace/plans/${id}/check-out`,
       userName
     )
-    .then(response=> response.data)
+    .then((response) => response.data)
     .catch(handleError);
 }
 
