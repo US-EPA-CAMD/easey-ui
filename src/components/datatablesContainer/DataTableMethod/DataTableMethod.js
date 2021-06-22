@@ -73,7 +73,7 @@ export const DataTableMethod = ({
                 }
               }}
             >
-              Open
+              View
             </Button>
           ) : (
             <Button
