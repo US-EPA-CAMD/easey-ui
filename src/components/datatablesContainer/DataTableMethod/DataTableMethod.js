@@ -81,7 +81,9 @@ export const DataTableMethod = ({
               unstyled="true"
               epa-testid="btnEditMethod"
               className="cursor-pointer margin-left-2"
-              onClick={() =>  openMonitoringMethodsModal(row.col1, row.col2,row.col7)}
+              onClick={() =>
+                openMonitoringMethodsModal(row.col1, row.col2, row.col7)
+              }
               aria-label={`edit method ${row.col1} `}
               onKeyPress={(event) => {
                 if (event.key === "Enter") {
@@ -97,14 +99,14 @@ export const DataTableMethod = ({
     },
   });
 
-  const openMonitoringMethodsModal = (parameterCode, methodCode,methodId) => {
+  const openMonitoringMethodsModal = (parameterCode, methodCode, methodId) => {
     if (monitoringMethods.length > 0 || loading === false) {
       setSelectedMonitoringMethod(
         monitoringMethods.filter(
           (element) =>
             element.parameterCode === parameterCode &&
-            element.methodCode === methodCode
-            && element.id === methodId
+            element.methodCode === methodCode &&
+            element.id === methodId
         )[0]
       );
 
