@@ -1,30 +1,45 @@
 import React, { useEffect, useMemo, useState } from "react";
-import { connect } from "react-redux";
-import {
-  loadMonitoringMethods,
-  loadMonitoringMatsMethods,
-} from "../../../store/actions/monitoringMethods";
 import * as fs from "../../../utils/selectors/monitoringPlanMethods";
 import { Preloader } from "../../Preloader/Preloader";
 import { Button } from "@trussworks/react-uswds";
 import Modal from "../../Modal/Modal";
 import MethodModal from "../../MethodModal/MethodModal";
 import DataTableRender from "../../DataTableRender/DataTableRender";
+import * as mpApi from "../../../utils/api/monitoringPlansApi";
+import log from "loglevel";
 export const DataTableMethod = ({
   monitoringMethods,
   monitoringMatsMethods,
-  loadMonitoringMethodsData,
-  loading,
+
   locationSelectValue,
-  loadMonitoringMatsMethodsData,
+
   matsTableHandler,
   showActiveOnly,
   user,
   checkout,
 }) => {
+
+  const [methods,setMethods] = useState([])
+  
+  const [matsMethods,setMatsMethods] = useState([])
+
   useEffect(() => {
-    loadMonitoringMethodsData(locationSelectValue);
-    loadMonitoringMatsMethodsData(locationSelectValue);
+    mpApi
+      .getMonitoringMethods(locationSelectValue)
+      .then((res) => {
+        setMethods(res.data);
+      })
+      .catch((err) => {
+        log(err);
+      });
+      mpApi
+      .getMonitoringMatsMethods(locationSelectValue)
+      .then((res) => {
+        setMatsMethods(res.data);
+      })
+      .catch((err) => {
+        log(err);
+      });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [locationSelectValue, showActiveOnly]);
 
@@ -100,9 +115,9 @@ export const DataTableMethod = ({
   });
 
   const openMonitoringMethodsModal = (parameterCode, methodCode, methodId) => {
-    if (monitoringMethods.length > 0 || loading === false) {
+    if (methods.length > 0 ) {
       setSelectedMonitoringMethod(
-        monitoringMethods.filter(
+        methods.filter(
           (element) =>
             element.parameterCode === parameterCode &&
             element.methodCode === methodCode &&
@@ -115,26 +130,26 @@ export const DataTableMethod = ({
   };
 
   const data = useMemo(() => {
-    if (monitoringMethods.length > 0 || loading === false) {
+    if (methods.length > 0) {
       return fs.getMonitoringPlansMethodsTableRecords(
         showActiveOnly
-          ? fs.getActiveMethods(monitoringMethods)
-          : monitoringMethods
+          ? fs.getActiveMethods(methods)
+          : methods
       );
     } else {
       return [{ col3: <Preloader /> }];
     }
-  }, [loading, monitoringMethods, showActiveOnly]);
+  }, [ methods, showActiveOnly]);
 
   useMemo(() => {
     if (matsTableHandler) {
-      if (monitoringMatsMethods.length < 1) {
+      if (matsMethods.length < 1) {
         matsTableHandler(false);
       } else {
         matsTableHandler(true);
       }
     }
-  }, [monitoringMatsMethods.length, matsTableHandler]);
+  }, [matsMethods.length, matsTableHandler]);
 
   const [show, setShow] = useState(false);
   const [selectedMonitoringMethod, setSelectedMonitoringMethod] = useState(
@@ -172,21 +187,5 @@ export const DataTableMethod = ({
   );
 };
 
-const mapStateToProps = (state) => {
-  return {
-    monitoringMethods: state.monitoringMethods.methods,
-    loading: state.apiCallsInProgress.monitoringMethods,
-    monitoringMatsMethods: state.monitoringMethods.matsMethods,
-  };
-};
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    loadMonitoringMethodsData: (monitoringPlanLocationSelect) =>
-      dispatch(loadMonitoringMethods(monitoringPlanLocationSelect)),
-    loadMonitoringMatsMethodsData: (monitoringPlanLocationSelect) =>
-      dispatch(loadMonitoringMatsMethods(monitoringPlanLocationSelect)),
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(DataTableMethod);
+export default (DataTableMethod);
