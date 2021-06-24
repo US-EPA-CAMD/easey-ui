@@ -119,8 +119,8 @@ export const DataTableMethod = ({
   });
 
   const openMonitoringMethodsModal = (parameterCode, methodCode) => {
-    if (monitoringMethods.length > 0) {
-      const monMethod = monitoringMethods.filter(
+    if (methods.length > 0) {
+      const monMethod = methods.filter(
         (element) =>
           element.parameterCode === parameterCode &&
           element.methodCode === methodCode
