@@ -100,7 +100,7 @@ export const DataTableMethod = ({
               epa-testid="btnEditMethod"
               className="cursor-pointer margin-left-2"
               onClick={() =>
-                openMonitoringMethodsModal(row.col1, row.col2, row)
+                openMonitoringMethodsModal(row.col1, row.col2
               }
               aria-label={`edit method ${row.col1} `}
               onKeyPress={(event) => {
