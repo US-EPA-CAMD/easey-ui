@@ -22,6 +22,10 @@ export const DataTableMethod = ({
   const [methods,setMethods] = useState([])
   
   const [matsMethods,setMatsMethods] = useState([])
+  const [show, setShow] = useState(false);
+  const [selectedMonitoringMethod, setSelectedMonitoringMethod] = useState(
+    null
+  );
 
   useEffect(() => {
     mpApi
@@ -80,7 +84,7 @@ export const DataTableMethod = ({
               className="cursor-pointer"
               id="btnOpenMethod"
               // onClick={() => openConfig(row)}
-              onClick={() => openMonitoringMethodsModal(row.col1, row.col2,row.col7)}
+              onClick={() => openMonitoringMethodsModal(row.col1, row.col2)}
               aria-label={`open method ${row.col1} `}
               onKeyPress={(event) => {
                 if (event.key === "Enter") {
@@ -97,7 +101,7 @@ export const DataTableMethod = ({
               epa-testid="btnEditMethod"
               className="cursor-pointer margin-left-2"
               onClick={() =>
-                openMonitoringMethodsModal(row.col1, row.col2, row.col7)
+                openMonitoringMethodsModal(row.col1, row.col2, row)
               }
               aria-label={`edit method ${row.col1} `}
               onKeyPress={(event) => {
@@ -114,16 +118,15 @@ export const DataTableMethod = ({
     },
   });
 
-  const openMonitoringMethodsModal = (parameterCode, methodCode, methodId) => {
-    if (methods.length > 0 ) {
-      setSelectedMonitoringMethod(
-        methods.filter(
-          (element) =>
-            element.parameterCode === parameterCode &&
-            element.methodCode === methodCode &&
-            element.id === methodId
-        )[0]
-      );
+  const openMonitoringMethodsModal = (parameterCode, methodCode) => {
+    if (monitoringMethods.length > 0) {
+      const monMethod = monitoringMethods.filter(
+        (element) =>
+          element.parameterCode === parameterCode &&
+          element.methodCode === methodCode
+      )[0];
+
+      setSelectedMonitoringMethod(monMethod);
 
       openModal(true);
     }
@@ -151,15 +154,72 @@ export const DataTableMethod = ({
     }
   }, [matsMethods.length, matsTableHandler]);
 
-  const [show, setShow] = useState(false);
-  const [selectedMonitoringMethod, setSelectedMonitoringMethod] = useState(
-    null
-  );
-
   const closeModalHandler = () => setShow(false);
 
   const openModal = (value) => {
     setShow(value);
+  };
+
+  const saveMethods = () => {
+    // *** construct payload
+    const payloadInputs = document.querySelectorAll(".modalUserInput");
+    const datepickerPayloads = document.querySelectorAll(
+      ".usa-date-picker__internal-input"
+    );
+
+    let payloadArray = [];
+
+    payloadInputs.forEach((input) => {
+      console.log(input);
+      if (input.id === undefined || input.id === null || input.id === "") {
+        return;
+      }
+      let item = { name: "", value: "" };
+      item.name = document.getElementById(input.id).attributes[
+        "epaDataname"
+      ].value;
+      item.value = document.getElementById(input.id).value;
+      payloadArray.push(item);
+    });
+
+    datepickerPayloads.forEach((input) => {
+      let item = { name: "", value: "" };
+      item.name = input.attributes["epaDataname"].value;
+      item.value = input.value;
+      payloadArray.push(item);
+    });
+
+    let payload = {
+      monLocId: locationSelectValue,
+      id: "",
+      parameterCode: "",
+      subDataCode: "",
+      bypassApproachCode: "",
+      methodCode: "",
+      beginDate: "",
+      beginHour: 0,
+      endDate: "",
+      endHour: 0,
+      userId: user.id,
+      addDate: "",
+      updateDate: "",
+      active: true,
+    };
+
+    payloadArray.forEach((item) => {
+      payload[item.name] = item.value;
+    });
+
+    mpApi
+      .saveMonitoringMethods(payload)
+      .then((result) => {
+        console.log(result);
+        openModal(false);
+      })
+      .catch((error) => {
+        console.log(error);
+        openModal(false);
+      });
   };
 
   return (
@@ -171,6 +231,7 @@ export const DataTableMethod = ({
         <Modal
           show={show}
           close={closeModalHandler}
+          save={saveMethods}
           showCancel
           showSave
           children={
