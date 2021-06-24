@@ -18,10 +18,9 @@ export const DataTableMethod = ({
   user,
   checkout,
 }) => {
+  const [methods, setMethods] = useState([]);
 
-  const [methods,setMethods] = useState([])
-  
-  const [matsMethods,setMatsMethods] = useState([])
+  const [matsMethods, setMatsMethods] = useState([]);
   const [show, setShow] = useState(false);
   const [selectedMonitoringMethod, setSelectedMonitoringMethod] = useState(
     null
@@ -36,7 +35,7 @@ export const DataTableMethod = ({
       .catch((err) => {
         log(err);
       });
-      mpApi
+    mpApi
       .getMonitoringMatsMethods(locationSelectValue)
       .then((res) => {
         setMatsMethods(res.data);
@@ -135,14 +134,12 @@ export const DataTableMethod = ({
   const data = useMemo(() => {
     if (methods.length > 0) {
       return fs.getMonitoringPlansMethodsTableRecords(
-        showActiveOnly
-          ? fs.getActiveMethods(methods)
-          : methods
+        showActiveOnly ? fs.getActiveMethods(methods) : methods
       );
     } else {
       return [{ col3: <Preloader /> }];
     }
-  }, [ methods, showActiveOnly]);
+  }, [methods, showActiveOnly]);
 
   useMemo(() => {
     if (matsTableHandler) {
@@ -167,14 +164,14 @@ export const DataTableMethod = ({
       ".usa-date-picker__internal-input"
     );
 
-    let payloadArray = [];
+    const payloadArray = [];
 
     payloadInputs.forEach((input) => {
       console.log(input);
       if (input.id === undefined || input.id === null || input.id === "") {
         return;
       }
-      let item = { name: "", value: "" };
+      const item = { name: "", value: "" };
       item.name = document.getElementById(input.id).attributes[
         "epaDataname"
       ].value;
@@ -183,13 +180,13 @@ export const DataTableMethod = ({
     });
 
     datepickerPayloads.forEach((input) => {
-      let item = { name: "", value: "" };
+      const item = { name: "", value: "" };
       item.name = input.attributes["epaDataname"].value;
       item.value = input.value;
       payloadArray.push(item);
     });
 
-    let payload = {
+    const payload = {
       monLocId: locationSelectValue,
       id: "",
       parameterCode: "",
@@ -248,5 +245,4 @@ export const DataTableMethod = ({
   );
 };
 
-
-export default (DataTableMethod);
+export default DataTableMethod;

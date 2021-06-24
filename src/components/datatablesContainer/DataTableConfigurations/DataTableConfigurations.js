@@ -1,7 +1,6 @@
 import React, { useEffect, useMemo, useState, useRef } from "react";
 import { connect } from "react-redux";
 import * as fs from "../../../utils/selectors/monitoringConfigurations";
-// import DataTableConfigurationsRender from "../DataTableConfigurationsRender/DataTableConfigurationsRender";
 import { loadMonitoringPlansArray } from "../../../store/actions/monitoringPlans";
 import * as mpApi from "../../../utils/api/monitoringPlansApi";
 import { Button } from "@trussworks/react-uswds";

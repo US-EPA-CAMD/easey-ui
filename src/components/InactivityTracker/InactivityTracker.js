@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState, useCallback } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import { config } from "../../config";
 import { useInterval } from "../../additional-functions/use-interval";
 
