@@ -73,7 +73,7 @@ const HeaderInfo = ({
                       outline={false}
                       tabIndex="0"
                       aria-label={`Check back in the configuration `}
-                      className="initial-tab-button"
+                      className=" padding-1 padding-right-3 padding-left-3 margin-2"
                       onClick={() => checkoutAPI(false)}
                     >
                       <LockOpenIcon /> {"Check Back In"}
@@ -83,7 +83,7 @@ const HeaderInfo = ({
                       outline={true}
                       tabIndex="0"
                       aria-label={`Check out the configuration`}
-                      className="float-top"
+                      className="float-top padding-1 padding-right-3 padding-left-3 margin-2"
                       onClick={() => checkoutAPI(true)}
                     >
                       <CreateOutlinedIcon color="primary" /> {"Check Out"}
@@ -138,7 +138,7 @@ const HeaderInfo = ({
             </Button>
           </div>
           <div className=" grid-row padding-1">
-            <div className="text-align-right">
+            <div className="float-right">
               <span className="text-bold grid-col">Evaluation Status: </span>
               <span className="font-body-2xs grid-col">
                 {" Passed with no errors "}{" "}
@@ -146,7 +146,7 @@ const HeaderInfo = ({
             </div>
           </div>
           <div className=" grid-row padding-1 ">
-            <div className="text-align-right">
+            <div className="float-right">
               <span className="text-bold grid-col"> Submission Status: </span>
               <span className="font-body-2xs grid-col">
                 {" Resubmission required "}{" "}
