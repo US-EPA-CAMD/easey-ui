@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Accessories from "../Accessories/Accessories";
 import { Button, SideNav } from "@trussworks/react-uswds";
 import Modal from "../Modal/Modal";
@@ -7,12 +7,8 @@ import Login from "../Login/Login";
 import { Link } from "react-router-dom";
 import { Link as USWDSLink } from "@trussworks/react-uswds";
 
-const cdxUser = sessionStorage.getItem("cdx_user")
-  ? JSON.parse(sessionStorage.getItem("cdx_user"))
-  : false;
-const firstName = cdxUser && cdxUser.firstName ? cdxUser.firstName : false;
 
-export const LeftNavigation = () => {
+export const LeftNavigation = (props) => {
   const head = [
     { name: "Home", url: "/" },
     { name: "Monitoring Plans", url: "/monitoring-plans" },
@@ -49,16 +45,6 @@ export const LeftNavigation = () => {
       );
     });
   };
-  const [userLoggedIn, setUserLoggedIn] = useState(false);
-  const checkLoggedIn = () => {
-    if (cdxUser && firstName) {
-      setUserLoggedIn(true);
-    }
-  };
-
-  useEffect(() => {
-    checkLoggedIn();
-  }, []);
 
   const [show, setShow] = useState(false);
 
@@ -90,17 +76,23 @@ export const LeftNavigation = () => {
       <div className={`usa-overlay ${show ? "is-visible" : ""}`} />
       <SideNav items={makeHeader(head)} />
 
-      {userLoggedIn ? <SideNav items={wsItems} /> : ""}
+      {props.user ? <SideNav items={wsItems} /> : ""}
       <div className="padding-bottom-4 position-absolute bottom-3">
-        {!cdxUser ? (
-          <div className="padding-bottom-2" > 
-          <Button type="button" outline={true} onClick={() => openModal(true)}>
-            Log In
-          </Button>
+        {!props.user ? (
+          <div className="padding-bottom-2">
+            <Button
+              type="button"
+              outline={true}
+              id="openModalBTN"
+              epa-testid="openModalBTN"
+              onClick={() => openModal(true)}
+            >
+              Log In
+            </Button>
           </div>
         ) : null}
 
-        <Accessories />
+        <Accessories user={props.user} logOut={props.logOut} />
       </div>
       {show ? (
         <Modal show={show} close={closeModalHandler} children={<Login />} />
