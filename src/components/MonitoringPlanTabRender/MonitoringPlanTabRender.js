@@ -25,21 +25,14 @@ export const MonitoringPlanTabRender = ({
   setInactive,
   inactive,
 }) => {
-  useEffect(() => {
-    console.log("this is inactive", inactive);
-  }, [inactive]);
   const [matsTableFlag, setMatsTableFlag] = useState(false);
   // // MONITORING METHODS
   const matsTableHandler = (flag) => {
     setMatsTableFlag(flag);
   };
-  const settingInactiveCheckBox = (check,disable) => {
-
-
-      setInactive([check,disable],title)
-
-    
-  }
+  const settingInactiveCheckBox = (check, disable) => {
+    setInactive([check, disable], title);
+  };
   // checks mats table
   useEffect(() => {
     if (matsTableFlag) {
@@ -156,7 +149,6 @@ export const MonitoringPlanTabRender = ({
   const resetInactivityTimerApiCall = () => {
     console.log(mpApi.putLockTimerUpdateConfiguration(configID), "api called");
   };
-
 
   const checkoutAPI = (/*direction*/) => {};
   return (

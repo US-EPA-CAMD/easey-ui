@@ -124,7 +124,7 @@ const HeaderInfo = ({
                 <div  className="">
                   <div className="bottom-0 position-absolute padding-bottom-05">
                   <Checkbox
-                  key={Math.random()}
+                    epa-testid="inactiveCheckBox"
                     id="checkbox"
                     name="checkbox"
                     label="Show Inactive"

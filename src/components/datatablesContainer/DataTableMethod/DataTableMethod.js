@@ -121,8 +121,6 @@ export const DataTableMethod = ({
 
   const data = useMemo(() => {
     if (methods.length > 0) {
-      console.log("methids", methods);
-
       const activeOnly = getActiveData(methods);
       const inactiveOnly = getInactiveData(methods);
 
@@ -131,7 +129,6 @@ export const DataTableMethod = ({
         // uncheck it and disable checkbox 
         //function parameters ( check flag, disable flag )
         settingInactiveCheckBox(false,true)
-        console.log('test')
         return fs.getMonitoringPlansMethodsTableRecords(methods);
       }
 
@@ -139,10 +136,11 @@ export const DataTableMethod = ({
       if (inactiveOnly.length === methods.length) {
         //check it and disable checkbox 
         settingInactiveCheckBox(true,true)
-        console.log('test inactive only')
         return fs.getMonitoringPlansMethodsTableRecords(methods);
       }
 
+      // resets checkbox
+      settingInactiveCheckBox(false,false)
       return fs.getMonitoringPlansMethodsTableRecords(
         !inactive[0] ? getActiveData(methods) : methods
       );
