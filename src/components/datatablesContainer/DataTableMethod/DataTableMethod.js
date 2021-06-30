@@ -146,6 +146,8 @@ export const DataTableMethod = ({
       );
     }
     return [];
+    
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [methods,inactive]);
 
   useEffect(() => {

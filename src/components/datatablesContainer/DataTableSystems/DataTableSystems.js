@@ -9,11 +9,15 @@ import DataTableSystemsComponents from "../DataTableSystemsComponents/DataTableS
 import DataTableRender from "../../DataTableRender/DataTableRender";
 import * as mpApi from "../../../utils/api/monitoringPlansApi";
 
-import { getActiveData } from "../../../additional-functions/filter-data";
+import {
+  getActiveData,
+  getInactiveData,
+} from "../../../additional-functions/filter-data";
 export const DataTableSystems = ({
   loadMonitoringSystemsData,
   locationSelect,
-  inactive
+  inactive,
+  settingInactiveCheckBox,
 }) => {
   const [show, setShow] = useState(false);
   const [monitoringSystems, setMonitoringSystems] = useState([]);
@@ -107,12 +111,33 @@ export const DataTableSystems = ({
   // *** memoize data
   const data = useMemo(() => {
     if (monitoringSystems.length > 0) {
-      return (!inactive? fs.getMonitoringPlansSystemsTableRecords(getActiveData(monitoringSystems)) : fs.getMonitoringPlansSystemsTableRecords(monitoringSystems));
-    } else {
-      return [{ col2: "Loading list of Systems" }];
+      const activeOnly = getActiveData(monitoringSystems);
+      const inactiveOnly = getInactiveData(monitoringSystems);
+
+      // only active data >  disable checkbox and unchecks it
+      if (activeOnly.length === monitoringSystems.length) {
+        // uncheck it and disable checkbox
+        //function parameters ( check flag, disable flag )
+        settingInactiveCheckBox(false, true);
+        return fs.getMonitoringPlansSystemsTableRecords(monitoringSystems);
+      }
+
+      // only inactive data > disables checkbox and checks it
+      if (inactiveOnly.length === monitoringSystems.length) {
+        //check it and disable checkbox
+        settingInactiveCheckBox(true, true);
+        return fs.getMonitoringPlansSystemsTableRecords(monitoringSystems);
+      }
+
+      // resets checkbox
+      settingInactiveCheckBox(false, false);
+      return fs.getMonitoringPlansSystemsTableRecords(
+        !inactive[0] ? getActiveData(monitoringSystems) : monitoringSystems
+      );
     }
+    return [];
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [monitoringSystems,inactive]);
+  }, [monitoringSystems, inactive]);
   const viewOnly = true;
   return (
     <>

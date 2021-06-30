@@ -1,12 +1,11 @@
-import React, { useEffect, useState } from "react";
-import  Accessories  from "../Accessories/Accessories";
+import React, { useState } from "react";
+import Accessories from "../Accessories/Accessories";
 import { Button, SideNav } from "@trussworks/react-uswds";
 import Modal from "../Modal/Modal";
 import Login from "../Login/Login";
 
 import { Link } from "react-router-dom";
 import { Link as USWDSLink } from "@trussworks/react-uswds";
-
 
 export const LeftNavigation = (props) => {
   const [currentRoute, setCurrentRoute] = useState(

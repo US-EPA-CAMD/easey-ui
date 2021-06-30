@@ -83,7 +83,6 @@ export const MonitoringPlanTabRender = ({
             user={user}
             inactive={inactive}
             settingInactiveCheckBox={settingInactiveCheckBox}
-            // showActiveOnly={!showInactive}
           />,
           "Methods",
         ],
@@ -123,7 +122,6 @@ export const MonitoringPlanTabRender = ({
           user={user}
           inactive={inactive}
           settingInactiveCheckBox={settingInactiveCheckBox}
-          // showActiveOnly={!showInactive}
         />,
         "Methods",
       ],
