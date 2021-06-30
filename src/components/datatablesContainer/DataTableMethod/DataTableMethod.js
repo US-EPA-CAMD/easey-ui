@@ -6,6 +6,7 @@ import MethodModal from "../../MethodModal/MethodModal";
 import DataTableRender from "../../DataTableRender/DataTableRender";
 import * as mpApi from "../../../utils/api/monitoringPlansApi";
 
+import { getActiveData,getInactiveData } from "../../../additional-functions/filter-data";
 export const DataTableMethod = ({
   locationSelectValue,
 
@@ -14,8 +15,10 @@ export const DataTableMethod = ({
   user,
   checkout,
   inactive,
+  settingInactiveCheckBox,
 }) => {
   const [methods, setMethods] = useState([]);
+
 
   const [matsMethods, setMatsMethods] = useState([]);
   const [show, setShow] = useState(false);
@@ -31,7 +34,7 @@ export const DataTableMethod = ({
       setMatsMethods(res.data);
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [locationSelectValue, showActiveOnly]);
+  }, [locationSelectValue]);
 
   // *** column names for dataset (will be passed to normalizeRowObjectFormat later to generate the row object
   // *** in the format expected by the modal / tabs plugins)
@@ -67,14 +70,14 @@ export const DataTableMethod = ({
               type="button"
               unstyled="true"
               epa-testid="btnOpenMethod"
-              className="cursor-pointer"
+              className="cursor-pointer open-modal-button"
               id="btnOpenMethod"
               // onClick={() => openConfig(row)}
               onClick={() => openMonitoringMethodsModal(row.col1, row.col2)}
               aria-label={`open method ${row.col1} `}
               onKeyPress={(event) => {
                 if (event.key === "Enter") {
-                  // openConfig(row);
+                  openMonitoringMethodsModal(row.col1, row.col2);
                 }
               }}
             >
@@ -84,17 +87,17 @@ export const DataTableMethod = ({
             <Button
               type="button"
               unstyled="true"
-              epa-testid="btnEditMethod"
-              className="cursor-pointer margin-left-2"
+              epa-testid="btnOpenMethod"
+              className="cursor-pointer margin-left-2 open-modal-button"
               onClick={() => openMonitoringMethodsModal(row.col1, row.col2)}
               aria-label={`edit method ${row.col1} `}
               onKeyPress={(event) => {
                 if (event.key === "Enter") {
-                  // openConfig(row);
+                  openMonitoringMethodsModal(row.col1, row.col2);
                 }
               }}
             >
-              {"View/Edit"}
+              {"View / Edit"}
             </Button>
           )}
         </div>
@@ -118,12 +121,34 @@ export const DataTableMethod = ({
 
   const data = useMemo(() => {
     if (methods.length > 0) {
+      console.log("methids", methods);
+
+      const activeOnly = getActiveData(methods);
+      const inactiveOnly = getInactiveData(methods);
+
+      // only active data >  disable checkbox and unchecks it 
+      if (activeOnly.length === methods.length) {
+        // uncheck it and disable checkbox 
+        //function parameters ( check flag, disable flag )
+        settingInactiveCheckBox(false,true)
+        console.log('test')
+        return fs.getMonitoringPlansMethodsTableRecords(methods);
+      }
+
+      // only inactive data > disables checkbox and checks it 
+      if (inactiveOnly.length === methods.length) {
+        //check it and disable checkbox 
+        settingInactiveCheckBox(true,true)
+        console.log('test inactive only')
+        return fs.getMonitoringPlansMethodsTableRecords(methods);
+      }
+
       return fs.getMonitoringPlansMethodsTableRecords(
-        !inactive ? fs.getActiveMethods(methods) : methods
+        !inactive[0] ? getActiveData(methods) : methods
       );
     }
     return [];
-  }, [methods, inactive]);
+  }, [methods,inactive]);
 
   useEffect(() => {
     if (matsTableHandler) {
@@ -151,7 +176,6 @@ export const DataTableMethod = ({
     const payloadArray = [];
 
     payloadInputs.forEach((input) => {
-      console.log(input);
       if (input.id === undefined || input.id === null || input.id === "") {
         return;
       }
@@ -181,10 +205,6 @@ export const DataTableMethod = ({
       beginHour: 0,
       endDate: "",
       endHour: 0,
-      userId: user.id,
-      addDate: "",
-      updateDate: "",
-      active: true,
     };
 
     payloadArray.forEach((item) => {

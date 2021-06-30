@@ -112,7 +112,7 @@ export const DataTableSystems = ({
       return [{ col2: "Loading list of Systems" }];
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [monitoringSystems]);
+  }, [monitoringSystems,inactive]);
   const viewOnly = true;
   return (
     <>

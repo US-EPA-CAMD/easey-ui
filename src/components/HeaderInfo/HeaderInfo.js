@@ -44,18 +44,12 @@ const HeaderInfo = ({
   const facilityAdditionalName = facility.split("(")[1].replace(")", "");
   const [checkoutState, setCheckoutState] = useState(checkout);
 
-  const [inactiveState, setInactiveState] = useState(inactive);
-  useEffect(() => {
-    setInactive(inactiveState, facility);
-  }, [inactiveState]);
-
-  const InactiveData = () => {};
-
   const checkoutAPI = (direction) => {
     setCheckoutState(direction);
     // setCheckoutAPI(direction);
     setCheckout(direction, facility);
   };
+  
   return (
     <div className="header">
       <div className="grid-row clearfix position-relative">
@@ -127,16 +121,18 @@ const HeaderInfo = ({
                   initialSelection={sectionSelect[0]}
                   orisCode={orisCode}
                 />
-                <div className="">
+                <div  className="">
+                  <div className="bottom-0 position-absolute padding-bottom-05">
                   <Checkbox
-                    className="bottom-0"
+                  key={Math.random()}
                     id="checkbox"
                     name="checkbox"
                     label="Show Inactive"
-                    defaultChecked={inactiveState}
-                    onClick={(e) => setInactiveState(!inactiveState)}
+                    defaultChecked={inactive[0]}
+                    disabled = {inactive[1]}
+                    onClick={(e) => setInactive([!inactive[0],inactive[1]],facility)}
                   />
-                </div>
+                </div></div>
               </div>
             </div>
           </div>
@@ -160,21 +156,19 @@ const HeaderInfo = ({
               Submit
             </Button>
           </div>
-          <div className=" grid-row padding-1">
-            <div className="float-right">
-              <span className="text-bold grid-col">Evaluation Status: </span>
-              <span className="font-body-2xs grid-col">
-                {" Passed with no errors "}{" "}
-              </span>
-            </div>
-          </div>
-          <div className=" grid-row padding-1 ">
-            <div className="float-right">
-              <span className="text-bold grid-col"> Submission Status: </span>
-              <span className="font-body-2xs grid-col">
-                {" Resubmission required "}{" "}
-              </span>
-            </div>
+          <div className="grid-row padding-1 float-right text-right margin-right-3">
+            <table role="presentation">
+              <tbody>
+                <tr>
+                  <th className="padding-1">Evaluation Status:</th>
+                  <td className="padding-1">Passed with no errors</td>
+                </tr>
+                <tr>
+                  <th className="padding-1">Submission Status:</th>
+                  <td className="padding-1">Resubmission required</td>
+                </tr>
+              </tbody>
+            </table>
           </div>
         </div>
       </div>

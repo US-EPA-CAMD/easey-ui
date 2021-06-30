@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import Accessories from "../Accessories/Accessories";
+import React, { useEffect, useState } from "react";
+import  Accessories  from "../Accessories/Accessories";
 import { Button, SideNav } from "@trussworks/react-uswds";
 import Modal from "../Modal/Modal";
 import Login from "../Login/Login";
@@ -9,6 +9,10 @@ import { Link as USWDSLink } from "@trussworks/react-uswds";
 
 
 export const LeftNavigation = (props) => {
+  const [currentRoute, setCurrentRoute] = useState(
+    window.location.href.replace(`${window.location.origin}`, "")
+  );
+
   const head = [
     { name: "Home", url: "/" },
     { name: "Monitoring Plans", url: "/monitoring-plans" },
@@ -21,17 +25,16 @@ export const LeftNavigation = (props) => {
     { name: "QA & Certifications", url: "/workspace/qa_certifications" },
     { name: "Emissions", url: "/workspace/emission" },
   ];
-  const makeHeader = (arr, subFlag) => {
+
+  const handleRouteChange = (event, url) => {
+    setCurrentRoute(url);
+  };
+
+  const makeHeader = (arr) => {
     return arr.map((item) => {
       return (
         <USWDSLink
-          className={
-            window.location.href.indexOf(item.url) > -1 &&
-            item.url !== "/" &&
-            subFlag === true
-              ? "usa-current"
-              : ""
-          }
+          className={currentRoute === item.url ? "usa-current" : ""}
           variant="unstyled"
           asCustom={Link}
           to={item.url}
@@ -39,6 +42,7 @@ export const LeftNavigation = (props) => {
           rel={item.name}
           title={`Go to ${item.name} page`}
           key={item.name}
+          onClick={(event) => handleRouteChange(event, item.url)}
         >
           {item.name}
         </USWDSLink>
@@ -63,13 +67,7 @@ export const LeftNavigation = (props) => {
     >
       Workspace
     </USWDSLink>,
-    [
-      <SideNav
-        key="sideNav"
-        items={makeHeader(workSpace, true)}
-        isSubnav={true}
-      />,
-    ],
+    [<SideNav key="sideNav" items={makeHeader(workSpace)} isSubnav={true} />],
   ];
   return (
     <div className="minh-tablet font-body-sm padding-3">
