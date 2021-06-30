@@ -21,7 +21,9 @@ export const MonitoringPlanTabRender = ({
   orisCode,
   configID,
   checkout,
-  setCheckout
+  setCheckout,
+  setInactive,
+  inactive
 }) => {
   const [matsTableFlag, setMatsTableFlag] = useState(false);
   // // MONITORING METHODS
@@ -41,8 +43,9 @@ export const MonitoringPlanTabRender = ({
                   locationSelectValue={parseInt(locationSelect[1])}
                   checkout={checkout}
                   user={user}
+                  inactive={inactive}
                 />,'Methods'],
-                [<DataTableMats locationSelect={locationSelect[1]} />,'Supplemental Methods']
+                [<DataTableMats locationSelect={locationSelect[1]} inactive={inactive} />,'Supplemental Methods']
               ]
             : element
         )
@@ -64,6 +67,7 @@ export const MonitoringPlanTabRender = ({
           locationSelectValue={parseInt(locationSelect[1])}
           checkout={checkout}
           user={user}
+          inactive={inactive}
           // showActiveOnly={!showInactive}
         />,'Methods']
       ],
@@ -72,7 +76,7 @@ export const MonitoringPlanTabRender = ({
       [],
       [],    
       [],
-      [[<DataTableSystems locationSelect={parseInt(locationSelect[1])} />,'Systems']],
+      [[<DataTableSystems locationSelect={parseInt(locationSelect[1])} inactive={inactive} />,'Systems']],
       [],
   
     ]);
@@ -91,6 +95,7 @@ export const MonitoringPlanTabRender = ({
         locationSelectValue={parseInt(locationSelect[1])}
         checkout={checkout}
         user={user}
+        inactive={inactive}
         // showActiveOnly={!showInactive}
       />,'Methods']
     ],
@@ -134,6 +139,8 @@ export const MonitoringPlanTabRender = ({
           user={user}
           checkoutAPI={checkoutAPI}
           setCheckout ={setCheckout}
+          setInactive={setInactive}
+          inactive={inactive}
         />
          
       </div>

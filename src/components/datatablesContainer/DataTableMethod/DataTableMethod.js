@@ -13,6 +13,7 @@ export const DataTableMethod = ({
   showActiveOnly,
   user,
   checkout,
+  inactive,
 }) => {
   const [methods, setMethods] = useState([]);
 
@@ -118,11 +119,11 @@ export const DataTableMethod = ({
   const data = useMemo(() => {
     if (methods.length > 0) {
       return fs.getMonitoringPlansMethodsTableRecords(
-        showActiveOnly ? fs.getActiveMethods(methods) : methods
+        !inactive ? fs.getActiveMethods(methods) : methods
       );
     }
     return [];
-  }, [methods, showActiveOnly]);
+  }, [methods, inactive]);
 
   useEffect(() => {
     if (matsTableHandler) {

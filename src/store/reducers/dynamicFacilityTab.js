@@ -59,6 +59,18 @@ const reducer = (state = initialState.openedFacilityTabs, action) => {
         );
       }
       break;
+    case types.SET_INACTIVE_STATE:
+      if (state && state.length > 0) {
+        returnObject = state.map((x, i) =>
+          x.name === action.title
+            ? {
+                ...x,
+                inactive: action.inactive,
+              }
+            : x
+        );
+      }
+      break;
 
     default:
       returnObject = state;

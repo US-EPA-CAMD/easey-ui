@@ -9,9 +9,11 @@ import DataTableSystemsComponents from "../DataTableSystemsComponents/DataTableS
 import DataTableRender from "../../DataTableRender/DataTableRender";
 import * as mpApi from "../../../utils/api/monitoringPlansApi";
 
+import { getActiveData } from "../../../additional-functions/filter-data";
 export const DataTableSystems = ({
   loadMonitoringSystemsData,
   locationSelect,
+  inactive
 }) => {
   const [show, setShow] = useState(false);
   const [monitoringSystems, setMonitoringSystems] = useState([]);
@@ -105,7 +107,7 @@ export const DataTableSystems = ({
   // *** memoize data
   const data = useMemo(() => {
     if (monitoringSystems.length > 0) {
-      return fs.getMonitoringPlansSystemsTableRecords(monitoringSystems);
+      return (!inactive? fs.getMonitoringPlansSystemsTableRecords(getActiveData(monitoringSystems)) : fs.getMonitoringPlansSystemsTableRecords(monitoringSystems));
     } else {
       return [{ col2: "Loading list of Systems" }];
     }

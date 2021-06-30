@@ -35,3 +35,11 @@ export function setCheckoutState(checkout, title) {
     checkout,
   };
 }
+
+export function setInactiveState(inactive, title) {
+  return {
+    type: types.SET_INACTIVE_STATE,
+    title,
+    inactive,
+  };
+}

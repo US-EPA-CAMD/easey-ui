@@ -1,5 +1,6 @@
 export function getMonitoringPlansSystemsTableRecords(data) {
   const records = [];
+  console.log('this is data',data)
   data.forEach((el) => {
     const beginDate = el.beginDate
       ? formateStringToDate(el.beginDate.toString())
