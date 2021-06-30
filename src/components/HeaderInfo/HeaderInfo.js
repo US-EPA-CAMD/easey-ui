@@ -130,7 +130,7 @@ const HeaderInfo = ({
                     label="Show Inactive"
                     checked={inactive[0]}
                     disabled = {inactive[1]}
-                    onClick={(e) => setInactive([!inactive[0],inactive[1]],facility)}
+                    onChange={(e) => setInactive([!inactive[0],inactive[1]],facility)}
                   />
                 </div></div>
               </div>
