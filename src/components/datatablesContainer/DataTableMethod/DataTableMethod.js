@@ -140,7 +140,7 @@ export const DataTableMethod = ({
       }
 
       // resets checkbox
-      settingInactiveCheckBox(false,false)
+      settingInactiveCheckBox(inactive[0],false)
       return fs.getMonitoringPlansMethodsTableRecords(
         !inactive[0] ? getActiveData(methods) : methods
       );

@@ -130,7 +130,7 @@ export const DataTableSystems = ({
       }
 
       // resets checkbox
-      settingInactiveCheckBox(false, false);
+      settingInactiveCheckBox(inactive[0], false);
       return fs.getMonitoringPlansSystemsTableRecords(
         !inactive[0] ? getActiveData(monitoringSystems) : monitoringSystems
       );
