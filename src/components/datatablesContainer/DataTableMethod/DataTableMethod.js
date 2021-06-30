@@ -6,7 +6,10 @@ import MethodModal from "../../MethodModal/MethodModal";
 import DataTableRender from "../../DataTableRender/DataTableRender";
 import * as mpApi from "../../../utils/api/monitoringPlansApi";
 
-import { getActiveData,getInactiveData } from "../../../additional-functions/filter-data";
+import {
+  getActiveData,
+  getInactiveData,
+} from "../../../additional-functions/filter-data";
 export const DataTableMethod = ({
   locationSelectValue,
 
@@ -18,7 +21,6 @@ export const DataTableMethod = ({
   settingInactiveCheckBox,
 }) => {
   const [methods, setMethods] = useState([]);
-
 
   const [matsMethods, setMatsMethods] = useState([]);
   const [show, setShow] = useState(false);
@@ -124,31 +126,31 @@ export const DataTableMethod = ({
       const activeOnly = getActiveData(methods);
       const inactiveOnly = getInactiveData(methods);
 
-      // only active data >  disable checkbox and unchecks it 
+      // only active data >  disable checkbox and unchecks it
       if (activeOnly.length === methods.length) {
-        // uncheck it and disable checkbox 
+        // uncheck it and disable checkbox
         //function parameters ( check flag, disable flag )
-        settingInactiveCheckBox(false,true)
+        settingInactiveCheckBox(false, true);
         return fs.getMonitoringPlansMethodsTableRecords(methods);
       }
 
-      // only inactive data > disables checkbox and checks it 
+      // only inactive data > disables checkbox and checks it
       if (inactiveOnly.length === methods.length) {
-        //check it and disable checkbox 
-        settingInactiveCheckBox(true,true)
+        //check it and disable checkbox
+        settingInactiveCheckBox(true, true);
         return fs.getMonitoringPlansMethodsTableRecords(methods);
       }
 
       // resets checkbox
-      settingInactiveCheckBox(inactive[0],false)
+      settingInactiveCheckBox(inactive[0], false);
       return fs.getMonitoringPlansMethodsTableRecords(
         !inactive[0] ? getActiveData(methods) : methods
       );
     }
     return [];
-    
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [methods,inactive]);
+  }, [methods, inactive]);
 
   useEffect(() => {
     if (matsTableHandler) {

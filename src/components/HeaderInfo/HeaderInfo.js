@@ -18,7 +18,7 @@ const HeaderInfo = ({
   setInactive,
   setLocationSelect,
   setSectionSelect,
-  // reduxx store 
+  // reduxx store
   sectionSelect,
   locationSelect,
   locations,
@@ -49,7 +49,7 @@ const HeaderInfo = ({
     // setCheckoutAPI(direction);
     setCheckout(direction, facility);
   };
-  
+
   return (
     <div className="header">
       <div className="grid-row clearfix position-relative">
@@ -121,18 +121,21 @@ const HeaderInfo = ({
                   initialSelection={sectionSelect[0]}
                   orisCode={orisCode}
                 />
-                <div  className="">
+                <div className="">
                   <div className="bottom-0 position-absolute padding-bottom-05">
-                  <Checkbox
-                    epa-testid="inactiveCheckBox"
-                    id="checkbox"
-                    name="checkbox"
-                    label="Show Inactive"
-                    checked={inactive[0]}
-                    disabled = {inactive[1]}
-                    onChange={(e) => setInactive([!inactive[0],inactive[1]],facility)}
-                  />
-                </div></div>
+                    <Checkbox
+                      epa-testid="inactiveCheckBox"
+                      id="checkbox"
+                      name="checkbox"
+                      label="Show Inactive"
+                      checked={inactive[0]}
+                      disabled={inactive[1]}
+                      onChange={(e) =>
+                        setInactive([!inactive[0], inactive[1]], facility)
+                      }
+                    />
+                  </div>
+                </div>
               </div>
             </div>
           </div>
