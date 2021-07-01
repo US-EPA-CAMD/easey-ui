@@ -110,13 +110,12 @@ export const DataTableSystems = ({
     },
   });
 
-
   // *** memoize data
   const data = useMemo(() => {
     if (monitoringSystems.length > 0) {
       const activeOnly = getActiveData(monitoringSystems);
       const inactiveOnly = getInactiveData(monitoringSystems);
-      
+
       // only active data >  disable checkbox and unchecks it
       if (activeOnly.length === monitoringSystems.length) {
         // uncheck it and disable checkbox
@@ -146,7 +145,13 @@ export const DataTableSystems = ({
     <>
       <div className={`usa-overlay ${show ? "is-visible" : ""}`} />
       <div className="methodTable">
-        <DataTableRender dataLoaded = {dataLoaded} pagination filter columns={columns} data={data} />
+        <DataTableRender
+          dataLoaded={dataLoaded}
+          pagination
+          filter
+          columns={columns}
+          data={data}
+        />
       </div>
       {show ? (
         <Modal

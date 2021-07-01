@@ -6,7 +6,6 @@ import LockOpenIcon from "@material-ui/icons/LockOpen";
 import LockIcon from "@material-ui/icons/Lock";
 import { Button, Checkbox } from "@trussworks/react-uswds";
 
-import * as mpApi from "../../utils/api/monitoringPlansApi";
 const HeaderInfo = ({
   facility,
   selectedConfig,
@@ -24,7 +23,7 @@ const HeaderInfo = ({
   checkout = false,
   inactive,
   ///
-  checkoutAPI
+  checkoutAPI,
 }) => {
   const sections = [
     { name: "Defaults" },
@@ -45,9 +44,8 @@ const HeaderInfo = ({
   const facilityAdditionalName = facility.split("(")[1].replace(")", "");
   const [checkoutState, setCheckoutState] = useState(checkout);
 
-
   // direction -> false = check back in
-  // true = check out 
+  // true = check out
   const checkoutStateHandler = (direction) => {
     setCheckoutState(direction);
     checkoutAPI(direction);

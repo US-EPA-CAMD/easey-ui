@@ -231,7 +231,7 @@ export const DataTableMethod = ({
     <div className="methodTable">
       <div className={`usa-overlay ${show ? "is-visible" : ""}`} />
 
-      <DataTableRender columns={columns} data={data} dataLoaded={dataLoaded}/>
+      <DataTableRender columns={columns} data={data} dataLoaded={dataLoaded} />
       {show ? (
         <Modal
           show={show}

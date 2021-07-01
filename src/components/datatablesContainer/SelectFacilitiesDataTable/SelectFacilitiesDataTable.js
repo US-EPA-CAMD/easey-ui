@@ -14,7 +14,7 @@ export const SelectFacilitiesDataTable = ({
   openedFacilityTabs,
 }) => {
   const [facilities, setFacilities] = useState("");
-  
+
   const [dataLoaded, setDataLoaded] = useState(false);
   useEffect(() => {
     if (facilities.length === 0) {
