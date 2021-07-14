@@ -85,7 +85,7 @@ export const Modal = ({
                 {children}
               </div>
 
-              <div className="modal-footer ">
+              <div className="modal-footer  ">
                 {showSave ? (
                   <div>
                     <Button
@@ -93,6 +93,7 @@ export const Modal = ({
                       onClick={save ? save : close}
                       title="Click to save"
                       epa-testid="saveBtn"
+                      className='margin-right-2'
                     >
                       {saveButtonText}
                     </Button>
@@ -114,6 +115,7 @@ export const Modal = ({
                     onClick={close}
                     title="Click to close"
                     epa-testid="closeBtn"
+                    className="float-left"
                   >
                     {"Close"}
                   </Button>
