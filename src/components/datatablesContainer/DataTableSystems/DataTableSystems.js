@@ -90,6 +90,7 @@ export const DataTableSystems = ({
       (element) => element.id === row.col7
     )[0];
     setSelected(row.cells);
+    console.log(row.cells)
     setSelectedModalData(
       modalViewData(
         selectSystem,
@@ -196,7 +197,7 @@ export const DataTableSystems = ({
                   modalData={modalData}
                   data={selectedModalData}
                   cols={2}
-                  title={"Systems"}
+                  title={`System: ${selected[0]['value']}`}
                   viewOnly={!(user && checkout)}
                 />
               }

@@ -85,26 +85,37 @@ export const Modal = ({
                 {children}
               </div>
 
-              <div className="modal-footer">
+              <div className="modal-footer ">
+                {showSave ? (
+                  <div>
+                    <Button
+                      type="button"
+                      onClick={save ? save : close}
+                      title="Click to save"
+                      epa-testid="saveBtn"
+                    >
+                      {saveButtonText}
+                    </Button>
+                    <Button
+                      type="button"
+                      onClick={close}
+                      title="Click to cancel"
+                      epa-testid="cancelBtn"
+                      outline={true}
+                      unstyled={"true"}
+                    >
+                      {cancelButtonText}
+                    </Button>
+                  </div>
+                ) : null}
                 {showCancel ? (
                   <Button
                     type="button"
                     onClick={close}
-                    title="Click to save"
-                    epa-testid="cancelBtn"
-                    outline={true}
+                    title="Click to close"
+                    epa-testid="closeBtn"
                   >
-                    {cancelButtonText}
-                  </Button>
-                ) : null}
-                {showSave ? (
-                  <Button
-                    type="button"
-                    onClick={save ? save : close}
-                    title="Click to save"
-                    epa-testid="saveBtn"
-                  >
-                    {saveButtonText}
+                    {"Close"}
                   </Button>
                 ) : null}
               </div>
