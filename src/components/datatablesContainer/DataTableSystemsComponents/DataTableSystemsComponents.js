@@ -6,12 +6,8 @@ import {
   acqMethodCode,
   basisCode,
 } from "../../SystemComponentsModal/SystemComponentsData";
-import SystemComponentsModal from "../../SystemComponentsModal/SystemComponentsModal";
-import SystemFuelFlowsModal from "../../SystemFuelFlowsModal/SystemFuelFlowsModal";
-import {
-  findValue,
-  adjustDate,
-} from "../../../additional-functions/find-values-in-array";
+
+import { modalViewData } from "../../../additional-functions/create-modal-input-controls";
 import * as mpApi from "../../../utils/api/monitoringPlansApi";
 
 import DataTableRender from "../../DataTableRender/DataTableRender";
@@ -66,7 +62,7 @@ export const DataTableSystemsComponents = ({
       });
   }, [selected]);
 
-  const columnNames = ["Component ID", "Type Code", "Begin to End Date"];
+  const columnNames = ["ID", "Type", "Date and Time"];
 
   // *** column names for dataset (will be passed to normalizeRowObjectFormat later to generate the row object
   // *** in the format expected by the modal / tabs plugins)
@@ -76,60 +72,16 @@ export const DataTableSystemsComponents = ({
 
   // object property,Label Name, value, control type,  = arr
 
-  const modalViewData = (selected, label, time, codeList) => {
-    const arr = [];
-
-    for (let y in label) {
-      if (label[y][1] === "dropdown") {
-        const labels = findValue(codeList[y], selected[y], "name");
-        arr.push([
-          y,
-          label[y][0],
-          labels,
-          "required",
-          "dropdown",
-          selected[y],
-          codeList[y],
-        ]);
-      } else if (label[y][1] === "input") {
-        arr.push([y, label[y][0], selected[y], "required", "input"]);
-      } else if (label[y][1] === "radio") {
-        arr.push([y, label[y][0], "required", selected[y], "radio"]);
-      } else if (y === "skip") {
-        arr.push([[], [], [], "", "skip"]);
-      }
+  // *** row handler onclick event listener
+  const openComponent = (row, bool, create) => {
+    let selectComponents = null;
+    // setCreateNewSystem(create);
+    if (monitoringSystemsComponents.length > 0 && !create) {
+      selectComponents = monitoringSystemsComponents.filter(
+        (element) => element.componentIdentifier === row.col1
+      )[0];
+      setSelectedComponent(selectComponents);
     }
-
-    for (let y in time) {
-      if (y === "endDate" || y === "beginDate") {
-        const formattedDate = adjustDate("mm/dd/yyyy", selected[y]);
-        arr.push([
-          y,
-          time[y][0],
-          formattedDate,
-          y === "endDate" ? " " : "required",
-          "date",
-          selected[y],
-        ]);
-      }
-      if (y === "endHour" || y === "beginHour") {
-        arr.push([
-          y,
-          time[y][0],
-          selected[y],
-          y === "endHour" ? " " : "required",
-          "time",
-          selected[y],
-        ]);
-      }
-    }
-    return arr;
-  };
-  const selectedRowHandlerComponent = (val) => {
-    const selectComponents = monitoringSystemsComponents.filter(
-      (element) => element.componentIdentifier === val.col1
-    )[0];
-    setSelectedComponent(selectComponents);
     setSelectedModalData(
       modalViewData(
         selectComponents,
@@ -149,15 +101,50 @@ export const DataTableSystemsComponents = ({
           endDate: ["End Date", "date"],
           endHour: ["End Time", "time"],
         },
-        {
-          componentTypeCode: componentTypes,
-          acquisitionMethodCode: acqMethodCode,
-          basisCode: basisCode,
-        }
+        create
       )
     );
-    setSecondLevel(true,'Component');
+    // if (create) {
+    //   // setSecondLevel(create);
+
+      setSecondLevel(true, "Component");
+    // }
   };
+ 
+    // *** row handler onclick event listener
+    const openFuelFlows = (row, bool, create) => {
+      let selectFuelFlows = null;
+      // setCreateNewSystem(create);
+      if (monitoringSystemsFuelFlows.length > 0 && !create) {
+        selectFuelFlows = monitoringSystemsFuelFlows.filter(
+          (element) => element.fuelCode === row.col1
+        )[0];
+        setSelectedComponent(selectFuelFlows);
+      }
+      setSelectedModalData(
+        modalViewData(
+          selectFuelFlows,
+          {
+            maxRateSourceCode: ["Rate Source Code", "dropdown"],
+            skip: [""],
+            maxRate: ["Max Rate ", "input"],
+            sysFuelUomCode: ["Unit of Measure Code", "dropdown"],
+          },
+          {
+            beginDate: ["Start Date", "date"],
+            beginHour: ["Start Time", "time"],
+            endDate: ["End Date", "date"],
+            endHour: ["End Time", "time"],
+          },
+          create
+        )
+      );
+      // if (create) {
+      //   // setSecondLevel(create);
+  
+        setSecondLevel(true, "Fuel Flow");
+      // }
+    };
   const selectedRowHandlerFuelFlows = (val) => {
     const selectFuelFlows = monitoringSystemsFuelFlows.filter(
       (element) => element.fuelCode === val.col1
@@ -168,7 +155,7 @@ export const DataTableSystemsComponents = ({
         selectFuelFlows,
         {
           maxRateSourceCode: ["Rate Source Code", "dropdown"],
-          skip: [""],
+          skip: ["",'skip'],
           maxRate: ["Max Rate ", "input"],
           sysFuelUomCode: ["Unit of Measure Code", "dropdown"],
         },
@@ -185,7 +172,7 @@ export const DataTableSystemsComponents = ({
         }
       )
     );
-    setSecondLevel(true,'Fuel Flow');
+    setSecondLevel(true, "Fuel Flow");
   };
 
   const data = useMemo(() => {
@@ -217,7 +204,7 @@ export const DataTableSystemsComponents = ({
               <DataTableRender
                 columnNames={columnNames}
                 data={data}
-                openHandler={selectedRowHandlerComponent}
+                openHandler={openComponent}
                 tableTitle="System Components"
                 componentStyling="systemsCompTable"
                 dataLoaded={dataLoaded}
@@ -230,14 +217,14 @@ export const DataTableSystemsComponents = ({
               <DataTableRender
                 columnNames={fuelFlowsColumnNames}
                 data={fuelFlowsData}
-                openHandler={selectedRowHandlerFuelFlows}
+                openHandler={openFuelFlows}
                 tableTitle="Fuel Flows"
                 user={user}
                 checkout={checkout}
                 componentStyling="systemsCompTable"
                 dataLoaded={dataFuelLoaded}
                 actionsBtn={"View"}
-                addBtn
+                addBtn={openFuelFlows}
                 addBtnName={"Create New Fuel Flow"}
               />
             </div>
