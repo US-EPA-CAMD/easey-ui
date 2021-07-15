@@ -29,7 +29,6 @@ export const Modal = ({
   breadCrumbBar,
 }) => {
   const modalRef = createRef();
-  console.log("breadCrumbBar", breadCrumbBar);
   useEffect(() => {
     const { handleKeyPress } = focusTrap(".modal-content", close);
 
