@@ -85,7 +85,7 @@ export const DataTableMethod = ({
         labels,
         "required",
         "dropdown",
-        createNew ? "" : selected[y],
+        createNew ? "select" : selected[y],
         codeList[y],
       ]);
     }

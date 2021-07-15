@@ -77,7 +77,7 @@ export const DataTableSystems = ({
           labels,
           "required",
           "dropdown",
-          createNew ? "" : selected[y],
+          createNew ? "select" : selected[y],
           codeList[y],
         ]);
       } else if (label[y][1] === "input") {
