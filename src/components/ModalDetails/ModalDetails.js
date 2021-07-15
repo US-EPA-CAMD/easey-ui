@@ -25,7 +25,7 @@ const ModalDetails = ({ modalData, data, cols, title, viewOnly, backBtn }) => {
             {value[1]}
           </Label>
           <div tabIndex="0" id={`${value[1]}`}>
-            {value[2] ? value[2] : ""}
+            {value[2] ? value[2] : (value[3] ==="radio")? "No":''}
           </div>
         </FormGroup>}
       </div>
@@ -194,7 +194,7 @@ const ModalDetails = ({ modalData, data, cols, title, viewOnly, backBtn }) => {
                 />
               </Button>
 
-              <h4 className="text-bold" className="float-left">
+              <h4 className="text-bold float-left">
                 {title}
               </h4>
             </div>

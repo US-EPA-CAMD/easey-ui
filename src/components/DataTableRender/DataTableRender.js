@@ -215,7 +215,7 @@ const DataTableRender = ({
         {dataLoaded && data.length > 0 ? (
           
           <div>
-            <h3 className="margin-top-5">{tableTitle}</h3>
+            <h4 className="margin-top-5 text-bold">{tableTitle}</h4>
             <DataTable
               keyField="col1"
               className={`data-display-table react-transition fade-in ${className}`}
@@ -273,7 +273,7 @@ const DataTableRender = ({
               </h2>
             </div>
           </div>
-        ) : ((dataLoaded && data.length == 0 )? '':(
+        ) : ((dataLoaded && data.length === 0 )? '':(
           <div className="margin-y-3 padding-y-3 react-transition fade-in font-body-sm width-full">
             <Preloader />
           </div>)

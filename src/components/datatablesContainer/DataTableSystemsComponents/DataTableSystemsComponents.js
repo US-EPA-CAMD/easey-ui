@@ -1,12 +1,6 @@
 import React, { useEffect, useMemo, useState } from "react";
 import * as fs from "../../../utils/selectors/monitoringPlanSystems";
 import ModalDetails from "../../ModalDetails/ModalDetails";
-import {
-  componentTypes,
-  acqMethodCode,
-  basisCode,
-} from "../../SystemComponentsModal/SystemComponentsData";
-
 import { modalViewData } from "../../../additional-functions/create-modal-input-controls";
 import * as mpApi from "../../../utils/api/monitoringPlansApi";
 
@@ -107,55 +101,26 @@ export const DataTableSystemsComponents = ({
     // if (create) {
     //   // setSecondLevel(create);
 
-      setSecondLevel(true, "Component");
+    setSecondLevel(true, "Component");
     // }
   };
- 
-    // *** row handler onclick event listener
-    const openFuelFlows = (row, bool, create) => {
-      let selectFuelFlows = null;
-      // setCreateNewSystem(create);
-      if (monitoringSystemsFuelFlows.length > 0 && !create) {
-        selectFuelFlows = monitoringSystemsFuelFlows.filter(
-          (element) => element.fuelCode === row.col1
-        )[0];
-        setSelectedComponent(selectFuelFlows);
-      }
-      setSelectedModalData(
-        modalViewData(
-          selectFuelFlows,
-          {
-            maxRateSourceCode: ["Rate Source Code", "dropdown"],
-            skip: [""],
-            maxRate: ["Max Rate ", "input"],
-            sysFuelUomCode: ["Unit of Measure Code", "dropdown"],
-          },
-          {
-            beginDate: ["Start Date", "date"],
-            beginHour: ["Start Time", "time"],
-            endDate: ["End Date", "date"],
-            endHour: ["End Time", "time"],
-          },
-          create
-        )
-      );
-      // if (create) {
-      //   // setSecondLevel(create);
-  
-        setSecondLevel(true, "Fuel Flow");
-      // }
-    };
-  const selectedRowHandlerFuelFlows = (val) => {
-    const selectFuelFlows = monitoringSystemsFuelFlows.filter(
-      (element) => element.fuelCode === val.col1
-    )[0];
-    setSelectedComponent(selectFuelFlows);
+
+  // *** row handler onclick event listener
+  const openFuelFlows = (row, bool, create) => {
+    let selectFuelFlows = null;
+    // setCreateNewSystem(create);
+    if (monitoringSystemsFuelFlows.length > 0 && !create) {
+      selectFuelFlows = monitoringSystemsFuelFlows.filter(
+        (element) => element.fuelCode === row.col1
+      )[0];
+      setSelectedComponent(selectFuelFlows);
+    }
     setSelectedModalData(
       modalViewData(
         selectFuelFlows,
         {
           maxRateSourceCode: ["Rate Source Code", "dropdown"],
-          skip: ["",'skip'],
+          skip: ["", "skip"],
           maxRate: ["Max Rate ", "input"],
           sysFuelUomCode: ["Unit of Measure Code", "dropdown"],
         },
@@ -165,14 +130,14 @@ export const DataTableSystemsComponents = ({
           endDate: ["End Date", "date"],
           endHour: ["End Time", "time"],
         },
-        {
-          maxRateSourceCode: componentTypes,
-          maxRate: acqMethodCode,
-          sysFuelUomCode: basisCode,
-        }
+        create
       )
     );
+    // if (create) {
+    //   // setSecondLevel(create);
+
     setSecondLevel(true, "Fuel Flow");
+    // }
   };
 
   const data = useMemo(() => {

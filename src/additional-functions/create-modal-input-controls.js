@@ -39,28 +39,41 @@ export const modalViewData = (selected, label, time, createNew) => {
   };
 
   for (let y in label) {
-    if (label[y][1] === "dropdown") {
-      let labels = "";
-      if (!createNew) {
-        labels = findValue(codeList[y], selected[y], "name");
-      }
-      arr.push([
-        y,
-        label[y][0],
-        labels,
-        "required",
-        "dropdown",
-        createNew ? "select" : selected[y],
-        codeList[y],
-      ]);
-    } else if (label[y][1] === "input") {
-      arr.push([
-        y,
-        label[y][0],
-        createNew ? "" : selected[y],
-        "required",
-        "input",
-      ]);
+    let labels = "";
+    switch (label[y][1]) {
+      case "dropdown":
+        if (!createNew) {
+          labels = findValue(codeList[y], selected[y], "name");
+        }
+        arr.push([
+          y,
+          label[y][0],
+          labels,
+          "required",
+          "dropdown",
+          createNew ? "select" : selected[y],
+          codeList[y],
+        ]);
+        break;
+      case "input":
+        arr.push([
+          y,
+          label[y][0],
+          createNew ? "" : selected[y],
+          "required",
+          "input",
+        ]);
+        break;
+
+      case "skip":
+        arr.push([[], [], [], "", "skip"]);
+
+        break;
+      case "radio":
+        arr.push([y, label[y][0], selected[y], "radio"]);
+        break;
+      default:
+        break;
     }
   }
 

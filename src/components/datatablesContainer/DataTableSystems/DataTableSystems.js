@@ -26,7 +26,7 @@ export const DataTableSystems = ({
   const [show, setShow] = useState(false);
   const [monitoringSystems, setMonitoringSystems] = useState([]);
   const [secondLevel, setSecondLevel] = useState(false);
-  const [firstLevel, setFirstLevel] = useState(false);
+  // const [firstLevel, setFirstLevel] = useState(false);
   const [dataLoaded, setDataLoaded] = useState(false);
   useEffect(() => {
     mpApi.getMonitoringSystems(locationSelectValue).then((res) => {
@@ -169,7 +169,7 @@ export const DataTableSystems = ({
     return [];
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [monitoringSystems, inactive]);
-  const viewOnly = true;
+
   return (
     <>
       <div className={`usa-overlay ${show ? "is-visible" : ""}`} />
@@ -182,7 +182,6 @@ export const DataTableSystems = ({
           actionsBtn="View"
           checkout={checkout}
           user={user}
-          addBtn
           addBtn={openSystem}
           addBtnName={"Create System"}
         />
