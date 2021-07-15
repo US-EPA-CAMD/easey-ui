@@ -28,6 +28,7 @@ export const DataTableSystems = ({
   const [show, setShow] = useState(false);
   const [monitoringSystems, setMonitoringSystems] = useState([]);
   const [secondLevel, setSecondLevel] = useState(false);
+  const [firstLevel, setFirstLevel] = useState(false);
   const [dataLoaded, setDataLoaded] = useState(false);
   useEffect(() => {
     mpApi.getMonitoringSystems(locationSelectValue).then((res) => {
@@ -142,6 +143,7 @@ export const DataTableSystems = ({
   };
   const [createNewSystem, setCreateNewSystem] = useState(false);
   const openCreateSystem = () => {
+    setSecondLevel(false);
     setCreateNewSystem(true);
     setSelectedModalData(
       modalViewData(
