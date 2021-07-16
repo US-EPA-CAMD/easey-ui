@@ -43,12 +43,12 @@ jobs:
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.ARTIFACTS_STORAGE_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.ARTIFACTS_STORAGE_SECRET_ACCESS_KEY }}
-  TestDeploynent:
+  Test-Deploynent:
     needs: Build-Test-Package
     runs-on: ubuntu-latest
     environment:
       name: Test
-      url: 'http://testing.org'
+      url: 'https://easey-tst.app.cloud.gov/ecmps'
     steps:
       - name: Checkout repo
         uses: actions/checkout@v2
@@ -78,12 +78,12 @@ jobs:
       - name: Deployment
         run: |
           devops/scripts/deploy.sh
-  StageDeployment:
-    needs: TestDeploynent
+  Staging-Deployment:
+    needs: Test-Deploynent
     runs-on: ubuntu-latest
     environment:
-      name: Stage
-      url: 'http://staging.org'
+      name: Staging
+      url: 'https://easey-stg.app.cloud.gov/ecmps'
     steps:
       - name: Checkout repo
         uses: actions/checkout@v2
