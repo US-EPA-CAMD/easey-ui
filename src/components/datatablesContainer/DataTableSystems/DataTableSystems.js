@@ -189,18 +189,16 @@ export const DataTableSystems = ({
       {show ? (
         createNewSystem ? (
           <Modal
-            secondLevel={secondLevel}
             show={show}
             close={closeModalHandler}
             showCancel={!(user && checkout)}
             showSave={user && checkout}
             breadCrumbBar={currentBar}
             title={
-              createNewSystem
-                ? "Create System"
-                : `System: ${selected[0]["value"]}`
+                "Create System"
+              
             }
-            createNew={createNewSystem ? "Create System" : `Save and Close`}
+            createNew="Create System" 
             children={
               <ModalDetails
                 modalData={modalData}
@@ -220,11 +218,9 @@ export const DataTableSystems = ({
             showSave={user && checkout}
             breadCrumbBar={currentBar}
             title={
-              createNewSystem
-                ? "Create System"
-                : `System: ${selected[0]["value"]}`
+                 `System: ${selected[0]["value"]}`
             }
-            createNew={createNewSystem ? "Create System" : `Save and Close`}
+            createNew= "Save and Close"
             children={
               <div>
                 {secondLevel ? (
