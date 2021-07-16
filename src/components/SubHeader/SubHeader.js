@@ -49,21 +49,19 @@ export const SubHeader = () => {
     setCategorySelected([false, false, false, false, false]);
   };
 
-  const logOut = () => {};
-
   return (
     <div className="subheader-wrapper bg-primary-dark">
       <Header className="padding-y-2 mobile-lg:padding-x-2 desktop:padding-x-4">
         <div className="usa-nav-container clearfix padding-x-0">
           <Title className="float-left margin-0">
             <h1 className="display-inline-block text-white text-bold desktop-lg:font-sans-3xl desktop:font-sans-2xl mobile-lg:font-sans-xl margin-0">
-              ECMPS
+              CAMD
             </h1>
             <span
               className="display-none desktop:display-block
               desktop-lg:display-inline-block desktop-lg:margin-left-1 text-white text-normal font-sans-md width-card-lg text-wrap"
             >
-              Emissions Collection and Monitoring Plan System
+              Clean Air Markets Division
             </span>
           </Title>
           <Button className="desktop:display-none float-right bg-transparent margin-0 position-relative top-1">

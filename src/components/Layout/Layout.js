@@ -1,9 +1,7 @@
 import React from "react";
-import { Footer } from "../Footer/Footer";
 import { WideHeader } from "../WideHeader/WideHeader";
 import "./Layout.scss";
 import { Link } from "@trussworks/react-uswds";
-import { LeftNavigation } from "../LeftNavigation/LeftNavigation";
 import { SubHeader } from "../SubHeader/SubHeader";
 
 const Layout = (props) => {
@@ -20,15 +18,9 @@ const Layout = (props) => {
         <SubHeader />
       </div>
       <div className="grid-row">
-        <div className="grid-col-2 bg-base-lightest">
-          <LeftNavigation user={props.user} logOut={props.logOut} />
-        </div>
         <div className="grid-col margin-x-2 minh-tablet-lg" id="main">
           <main>{childrenWithProps} </main>
         </div>
-      </div>
-      <div className="bottomFooter">
-        <Footer />
       </div>
     </div>
   );

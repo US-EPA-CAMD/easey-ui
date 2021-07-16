@@ -1,9 +1,5 @@
 #THIS FILE SHOULD CONTAIN DEV SETTINGS AND CI/CD WORKFLOW WILL CHANGE SETTINGS BASED ON ENV
-name: ecmps-ui
-path: ecmps
+name: easey-ui
 host: easey-dev.app.cloud.gov
 environment: development
 memory: 1024M
-inactivityDurationMinutes: 1
-activityPollingFrequencySeconds: 1
-activityCountdownDurationSeconds: 30

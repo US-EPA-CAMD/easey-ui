@@ -1,5 +1,4 @@
 import React from "react";
-import { Button } from "@trussworks/react-uswds";
 
 export const environmentalTopics = [
   {
@@ -154,40 +153,6 @@ export const collapsableFooterTopics = [
 ];
 
 export const subHeaderMenuList = [
-  {
-    label: (
-      <span
-        data-initials={"TD"}
-        className="text-bold position-relative top-neg-2"
-        id="loggedInUserInitials"
-      >
-        {" "}
-      </span>
-    ),
-    items: [{}],
-  },
-  {
-    label: (
-      <span className="text-bold text-white text-no-wrap">Welcome, Tony!</span>
-    ),
-    items: [],
-  },
-  {
-    label: (
-      <Button
-        type="button"
-        id="logoutBtn"
-        epa-testid="logoutBtn"
-        outline={true}
-        onClick={() => void 0}
-        className="text-white border-white position-relative top-neg-2 text-no-wrap"
-      >
-        Log Out
-      </Button>
-    ),
-    items: [],
-  },
-
   {
     label: <span className="margin-right-1 text-no-wrap">Resources</span>,
     items: [{ menu: "", link: "" }],

@@ -1,25 +1,16 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter } from "react-router-dom";
-import { Provider } from "react-redux";
-//import { createStore, applyMiddleware, combineReducers } from "redux";
-//import thunk from "redux-thunk";
-import configureStore from "./store/configureStore.dev";
 import config from "./config";
 
-//import "./utils/remoteLogging";
 import App from "./components/App/App";
 import * as serviceWorker from "./serviceWorker";
 
-const store = configureStore();
-
 ReactDOM.render(
   <React.StrictMode>
-    <Provider store={store}>
-      <BrowserRouter basename={config.app.path}>
-        <App />
-      </BrowserRouter>
-    </Provider>
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
   </React.StrictMode>,
   document.getElementById("root")
 );

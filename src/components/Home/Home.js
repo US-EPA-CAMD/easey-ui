@@ -5,7 +5,8 @@ export const Home = () => {
   return (
     <div className="home-container react-transition fade-in">
       <div className="text-center text-bold text-primary-dark minh-tablet-lg font-heading-xl padding-top-9">
-        Home Screen is currently undergoing development
+        <h1>UNDER CONSTRUCTION</h1>
+        <p>This will eventually be the home of the EASEY Baby/EASEY Suite for the Clear Air Markets Division (CAMD) of the EPA</p>
         <div className="padding-9">
           <img
             title="Home Screen Coming Soon"
