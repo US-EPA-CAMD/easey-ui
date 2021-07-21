@@ -25,6 +25,18 @@ Given
 When
 Then
 
+### Does this Story require 508 Testing?
+- [ ] Implementing a new authoring tool that will produce code / content for the application
+- [ ] Implementing a 3rd party widget that will be part of the application
+- [ ] Adding new / updating custom functionality 
+- [ ] Adding new / updating a page template
+- [ ] Adding new / replacing existing functionality (unless the replacement has already passed 508 testing)
+- [ ] Full Site Review prior to a scheduled EPA 508 review
+- [ ] Planning a video that will appear on the application
+- [ ] Producing a video that will appear on the application
+- [ ] Producing Training materials
+- [ ] Producing documents
+
 ## Context
 (User journeys, design mockups, architectural diagrams, business rules, data element definitions)
 
