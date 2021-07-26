@@ -1,11 +1,13 @@
 import React, { useEffect } from "react";
-import { Route, Switch, Redirect } from "react-router-dom";
+import {Route, Switch, Redirect, BrowserRouter} from 'react-router-dom';
 
 import Home from "../Home/Home";
 import NotFound from "../NotFound/NotFound";
 
 import Layout from "../Layout/Layout";
+import config from '../../config';
 import { handleActiveElementFocus } from "../../additional-functions/add-active-class";
+import { AppVersion } from "@us-epa-camd/easey-design-system";
 
 import "./App.scss";
 
@@ -34,6 +36,10 @@ const App = () => {
           <Route path="*" component={NotFound} />
         </Switch>
       </Layout>
+        <AppVersion
+            publishDate={config.app.published}
+            version={config.app.version}
+        />
     </div>
   );
 };
