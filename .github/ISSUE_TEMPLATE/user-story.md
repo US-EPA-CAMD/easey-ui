@@ -25,6 +25,9 @@ Given
 When
 Then
 
+### Development Notes
+
+
 ### Does this Story require 508 Testing?
 - [ ] Implementing a new authoring tool that will produce code / content for the application
 - [ ] Implementing a 3rd party widget that will be part of the application
