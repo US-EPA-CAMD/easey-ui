@@ -12,7 +12,8 @@ assignees: ''
 - [ ] Does this have a clearly defined user?
 - [ ] Does this have an estimate?
 - [ ] Does this have acceptance criteria?
-- [ ] Does this have sufficient context (wireframes, business rules, etc.)?
+- [ ] Does this have sufficient context for the specific functionality being developed (design, business rules, etc.)
+- [ ] Does this have a dev link been provided in the design?
 - [ ] Is this traceable to a feature, epic, or PI?
 
 ## User Story
@@ -24,6 +25,9 @@ So that
 Given
 When
 Then
+
+### Development Notes
+
 
 ### Does this Story require 508 Testing?
 - [ ] Implementing a new authoring tool that will produce code / content for the application
@@ -49,5 +53,4 @@ Tester:
 - [ ] Has the code been unit tested and peer reviewed?
 - [ ] Have the functional tests been executed?
 - [ ] Have all defects been reviewed and dispositioned, resolved, or deferred?
-- [ ] Has the user story been accepted by the Product Owner?
 - [ ] Is the user story ready to be deployed to the test/staging environments?
